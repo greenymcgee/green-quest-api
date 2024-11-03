@@ -5,3 +5,4 @@ one:
   first_name: Ned
   last_name: Flanders
   username: flanman
+  jti: 1224abcd

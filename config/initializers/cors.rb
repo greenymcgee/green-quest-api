@@ -10,7 +10,9 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     origins [ "greenquestgames.com", "dev.greenquestgames.com", "staging.greenquestgames.com" ]
 
     resource "*",
+      expose: %w[Authorization],
       headers: :any,
+      max_age: 600,
       methods: [ :get, :post, :put, :patch, :delete, :options, :head ]
   end
 end

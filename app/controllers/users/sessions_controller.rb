@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+DEVISE_JWT_SECRET_KEY = Rails.application.credentials.devise_jwt_secret_key!
+
 class Users::SessionsController < Devise::SessionsController
   include RackSessionsFix
 
@@ -17,28 +19,57 @@ class Users::SessionsController < Devise::SessionsController
     )
   end
 
-  # TODO: facade
   def respond_to_on_destroy
-    if request.headers["Authorization"].present?
-      auth_header = request.headers["Authorization"]
-      _, token = auth_header.split(" ")
-      devise_jwt_secret_key =
-        Rails.application.credentials.devise_jwt_secret_key!
-      jwt_payload = JWT.decode(token, devise_jwt_secret_key).first
-      current_user = User.find(jwt_payload["sub"])
-    end
+    set_current_green_quest_user
+    return render_acitve_user_response if @current_green_quest_user.present?
 
-    if current_user
-      render(json: { message: "Logged out successfully." }, status: :ok)
-    else
-      render(
-        json: {
-          message: "Couldn't find an active session.",
-        },
-        status: :unauthorized,
-      )
-    end
+    render_inactive_user_response
   end
+
+  def render_acitve_user_response
+    render(json: { message: "Logged out successfully." }, status: :ok)
+  end
+
+  def render_inactive_user_response
+    render(
+      json: {
+        message: "Couldn't find an active session.",
+      },
+      status: :unauthorized,
+    )
+  end
+
+  def set_request_auth_header
+    @request_auth_header = request.headers["Authorization"]
+  end
+
+  def set_bearer_token
+    return unless @request_auth_header.present?
+
+    _, bearer_token = @request_auth_header.split(" ")
+    @bearer_token = bearer_token
+  end
+
+  def set_jwt_payload
+    return unless @bearer_token.present?
+
+    jwt_payload, = JWT.decode(@bearer_token, DEVISE_JWT_SECRET_KEY)
+    @jwt_payload = jwt_payload
+  end
+
+  def set_current_green_quest_user
+    set_request_auth_header
+    set_bearer_token
+    set_jwt_payload
+    return unless @jwt_payload.present?
+
+    @current_green_quest_user = User.find(@jwt_payload["sub"])
+  end
+
+  # ##
+  # Devise made these comments, and they may come in handy someday.
+  # ##
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

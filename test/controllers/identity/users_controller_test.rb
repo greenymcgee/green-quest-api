@@ -1,14 +1,9 @@
 require "test_helper"
-require "devise/jwt/test_helpers"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:ned_flanders)
-    headers = {
-      "Accept" => "application/json",
-      "Content-Type" => "application/json",
-    }
-    @auth_headers = Devise::JWT::TestHelpers.auth_headers(headers, @user)
+    @auth_headers = set_auth_headers(@user)
   end
 
   test "should get index" do

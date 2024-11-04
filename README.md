@@ -17,6 +17,8 @@ Things you may want to cover:
 - System dependencies
 
 * [Mail Catcher](https://mailcatcher.me/)
+* Must open the project with `code .` from terminal for VSCode Ruby Prettier
+* setup to work.
 
 - Configuration
   `docker compose up --build`

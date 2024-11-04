@@ -7,26 +7,34 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def respond_with(current_user, _opts = {})
-    # TODO: put this behind a facade
-    if resource.persisted?
-      serializer = UserSerializer.new(current_user)
-      render(
-        json: {
-          user: serializer.serializable_hash[:data][:attributes],
-        },
-        status: :ok,
-      )
-    else
-      render(
-        json: {
-          message:
-            "User couldn't be created successfully. #{current_user.errors.full_messages.to_sentence}",
-        },
-        status: :unprocessable_entity,
-      )
-    end
+  def respond_with(user, _opts = {})
+    return render_invalid_user_response(user) unless resource.persisted?
+
+    render_valid_user_response(user)
   end
+
+  def render_invalid_user_response(user)
+    render(
+      json: {
+        message:
+          "User couldn't be created successfully. #{user.errors.full_messages.to_sentence}",
+      },
+      status: :unprocessable_entity,
+    )
+  end
+
+  def render_valid_user_response(user)
+    render(json: { user: get_user_attributes(user) }, status: :ok)
+  end
+
+  def get_user_attributes(user)
+    user_serializer = UserSerializer.new(user)
+    user_serializer.serializable_hash[:data][:attributes]
+  end
+
+  # ##
+  # Devise made these comments, and they may come in handy someday.
+  # ##
 
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]

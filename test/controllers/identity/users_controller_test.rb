@@ -3,7 +3,7 @@ require "devise/jwt/test_helpers"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:one)
+    @user = users(:ned_flanders)
     headers = {
       "Accept" => "application/json",
       "Content-Type" => "application/json",

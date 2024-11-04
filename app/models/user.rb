@@ -11,6 +11,10 @@ class User < ApplicationRecord
     :rememberable,
     :validatable,
     :jwt_authenticatable,
-    jwt_revocation_strategy: self
+    jwt_revocation_strategy: self,
   )
+
+  validates :email, presence: true
+  validates :roles, presence: true
+  validates :username, presence: true
 end

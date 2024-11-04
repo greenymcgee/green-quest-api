@@ -1,5 +1,4 @@
 class UserSerializer
   include JSONAPI::Serializer
-  # TODO: add roles
-  attributes :id, :email, :first_name, :last_name
+  attributes :id, :email, :first_name, :last_name, :roles, :username
 end

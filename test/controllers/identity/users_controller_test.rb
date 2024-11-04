@@ -6,7 +6,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @user = users(:one)
     headers = {
       "Accept" => "application/json",
-      "Content-Type" => "application/json"
+      "Content-Type" => "application/json",
     }
     @auth_headers = Devise::JWT::TestHelpers.auth_headers(headers, @user)
   end
@@ -24,9 +24,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should update user" do
     patch(
       identity_user_url(@user),
-      params: { user: @user },
+      params: {
+        user: @user,
+      },
       as: :json,
-      headers: @auth_headers
+      headers: @auth_headers,
     )
     assert_response :success
   end

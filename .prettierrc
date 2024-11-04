@@ -1,0 +1,12 @@
+{
+  "plugins": ["@prettier/plugin-ruby"],
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": false,
+  "trailingComma": "all",
+  "rubyArrayLiteral": true,
+  "rubyHashLabel": true,
+  "rubyModifier": true,
+  "rubySingleQuote": false,
+  "rubyToProc": false
+}

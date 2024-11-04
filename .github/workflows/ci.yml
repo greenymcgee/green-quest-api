@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   Brakeman:
@@ -43,6 +43,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Install node@22.11.0
+        uses: actions/setup-node@v1
+        with:
+          node-version: 22.11.0
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Dependencies Audit
+        run: npm audit --omit=dev --audit-level=high
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1

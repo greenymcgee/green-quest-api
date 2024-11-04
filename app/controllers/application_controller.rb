@@ -6,14 +6,14 @@ class ApplicationController < ActionController::API
   protected
 
   def permit_user_params(user_params)
-      user_params.permit(
-        { roles: [] },
-        :email,
-        :first_name,
-        :last_name,
-        :password,
-        :password_confirmation,
-      )
+    user_params.permit(
+      { roles: [] },
+      :email,
+      :first_name,
+      :last_name,
+      :password,
+      :password_confirmation,
+    )
   end
 
   def configure_permitted_user_params

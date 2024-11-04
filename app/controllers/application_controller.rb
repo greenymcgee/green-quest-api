@@ -13,6 +13,7 @@ class ApplicationController < ActionController::API
       :last_name,
       :password,
       :password_confirmation,
+      :username,
     )
   end
 

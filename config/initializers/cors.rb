@@ -12,7 +12,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
         greenquestgames.com
         dev.greenquestgames.com
         staging.greenquestgames.com
-      ]
+      ],
     )
 
     resource(
@@ -20,7 +20,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
       expose: %w[Authorization],
       headers: :any,
       max_age: 600,
-      methods: %i[get post put patch delete options head]
+      methods: %i[get post put patch delete options head],
     )
   end
 end

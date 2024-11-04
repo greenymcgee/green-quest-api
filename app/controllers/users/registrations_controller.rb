@@ -13,17 +13,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
       serializer = UserSerializer.new(current_user)
       render(
         json: {
-          user: serializer.serializable_hash[:data][:attributes]
+          user: serializer.serializable_hash[:data][:attributes],
         },
-        status: :ok
+        status: :ok,
       )
     else
       render(
         json: {
           message:
-            "User couldn't be created successfully. #{current_user.errors.full_messages.to_sentence}"
+            "User couldn't be created successfully. #{current_user.errors.full_messages.to_sentence}",
         },
-        status: :unprocessable_entity
+        status: :unprocessable_entity,
       )
     end
   end

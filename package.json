@@ -1,0 +1,10 @@
+{
+  "author": "greenhouston@gmail.com",
+  "name": "green-quest-api",
+  "version": "1.0.0",
+  "scripts": {},
+  "devDependencies": {
+    "@prettier/plugin-ruby": "^4.0.4",
+    "prettier": "^3.3.3"
+  }
+}

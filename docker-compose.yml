@@ -4,10 +4,10 @@ services:
     ports:
       - "1080:1080"
       - "1025:1025"
-  db: 
+  db:
     image: postgres:17.0
     container_name: postgres
-    volumes: 
+    volumes:
       - data:/var/lib/postgresql/data
     environment:
       - POSTGRES_HOST=${POSTGRES_HOST}

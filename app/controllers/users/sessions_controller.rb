@@ -8,10 +8,12 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def respond_with(current_user, _opts = {})
-    serializer= UserSerializer.new(current_user)
+    serializer = UserSerializer.new(current_user)
     render(
-      json: { user: serializer.serializable_hash[:data][:attributes] },
-      status: :ok
+      json: {
+        user: serializer.serializable_hash[:data][:attributes],
+      },
+      status: :ok,
     )
   end
 
@@ -20,20 +22,20 @@ class Users::SessionsController < Devise::SessionsController
     if request.headers["Authorization"].present?
       auth_header = request.headers["Authorization"]
       _, token = auth_header.split(" ")
-      devise_jwt_secret_key = Rails.application.credentials.devise_jwt_secret_key!
+      devise_jwt_secret_key =
+        Rails.application.credentials.devise_jwt_secret_key!
       jwt_payload = JWT.decode(token, devise_jwt_secret_key).first
       current_user = User.find(jwt_payload["sub"])
     end
 
     if current_user
-      render(
-        json: { message: "Logged out successfully." },
-        status: :ok
-      )
+      render(json: { message: "Logged out successfully." }, status: :ok)
     else
       render(
-        json: { message: "Couldn't find an active session." },
-        status: :unauthorized
+        json: {
+          message: "Couldn't find an active session.",
+        },
+        status: :unauthorized,
       )
     end
   end

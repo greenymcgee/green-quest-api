@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'bf3a1003bbd5b7edff9af08a31bacce56f076b40e15c0571b6344ae493b988e09efa5a86b0e3b8cf9d621ccfac3662801c10cab10dfb20b366b143a8bc48cfc0'
+  # config.secret_key = '123'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -58,12 +58,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [ :email ]
+  config.case_insensitive_keys = [:email]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [ :email ]
+  config.strip_whitespace_keys = [:email]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -97,7 +97,7 @@ Devise.setup do |config|
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
   # passing skip: :sessions to `devise_for` in your config/routes.rb
-  config.skip_session_storage = [ :http_auth ]
+  config.skip_session_storage = [:http_auth]
 
   # By default, Devise cleans up the CSRF token on authentication to
   # avoid CSRF token fixation attacks. This means that, when using AJAX
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '8923832fb518cc4bb7dd26c4e4be87b359c9747a3a67b7c0ccdfda7f23ad30e150ef0c864cec644686a1804d7ce3928eee4f4ce7dffdecdcd579846a97d1cf97'
+  # config.pepper = '123'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -315,8 +315,8 @@ Devise.setup do |config|
   # devise-jwt
   config.jwt do |jwt|
     jwt.secret = Rails.application.credentials.devise_jwt_secret_key!
-    jwt.dispatch_requests = [ [ "POST", %r{^/login$} ] ]
-    jwt.revocation_requests = [ [ "DELETE", %r{^/logout$} ] ]
+    jwt.dispatch_requests = [["POST", %r{^/login$}]]
+    jwt.revocation_requests = [["DELETE", %r{^/logout$}]]
     jwt.expiration_time = 30.minutes.to_i
   end
 end

@@ -1,9 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-ned_flanders:
+basic_user:
   email: ned@flanders.com
   first_name: Ned
   jti: 1224abcd
   last_name: Flanders
   username: flanman
   roles: ["Basic"]
+
+admin_user:
+  email: bart@simpson.com
+  first_name: Bart
+  jti: aslfdjl
+  last_name: Simpson
+  username: eatmyshorts
+  roles: ["Admin"]

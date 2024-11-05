@@ -1,3 +1,5 @@
+USER_ROLES = { admin: "Admin", basic: "Basic" }
+
 class User < ApplicationRecord
   include Devise::JWT::RevocationStrategies::JTIMatcher
 
@@ -17,4 +19,8 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :roles, presence: true
   validates :username, presence: true
+
+  def admin?
+    roles.include? "Admin"
+  end
 end

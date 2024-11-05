@@ -4,23 +4,25 @@ class Identity::UsersController < ApplicationController
 
   def index
     @users = User.all
+    authorize @users
 
     render json: @users
   end
 
   def show
+    authorize @user
     render json: @user
   end
 
   def update
-    if @user.update(user_params)
-      render json: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+    authorize @user
+    return render json: @user if @user.update(user_params)
+
+    render json: @user.errors, status: :unprocessable_entity
   end
 
   def destroy
+    authorize @user
     @user.destroy!
   end
 

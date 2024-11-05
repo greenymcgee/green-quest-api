@@ -32,7 +32,7 @@ gem "devise", "~> 4.9"
 gem "devise-jwt"
 gem "jsonapi-serializer"
 gem "pry", "~> 0.14.2"
-gem "prettier", "~> 4.0"
+gem "pundit", "~> 2.4"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -43,4 +43,5 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem "prettier", "~> 4.0"
 end

@@ -2,7 +2,7 @@ require "test_helper"
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:ned_flanders)
+    @user = users(:basic_user)
     @auth_headers = set_auth_headers(@user)
   end
 

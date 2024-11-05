@@ -24,7 +24,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = "identity_service@greenquest.com"
+  config.mailer_sender = "identity-service@greenquest.com"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -315,8 +315,8 @@ Devise.setup do |config|
   # devise-jwt
   config.jwt do |jwt|
     jwt.secret = Rails.application.credentials.devise_jwt_secret_key!
-    jwt.dispatch_requests = [["POST", %r{^/login$}]]
-    jwt.revocation_requests = [["DELETE", %r{^/logout$}]]
+    jwt.dispatch_requests = [["POST", %r{^/api\/login$}]]
+    jwt.revocation_requests = [["DELETE", %r{^/api\/logout$}]]
     jwt.expiration_time = 30.minutes.to_i
   end
 end

@@ -8,13 +8,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  namespace :identity do
-    resources :users
-  end
-
   devise_for(
     :users,
-    path: "",
+    path: "/api",
     path_names: {
       sign_in: "login",
       sign_out: "logout",
@@ -25,4 +21,8 @@ Rails.application.routes.draw do
       registrations: "users/registrations",
     },
   )
+
+  namespace :api do
+    resources :users
+  end
 end

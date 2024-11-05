@@ -26,4 +26,14 @@ class UserTest < ActiveSupport::TestCase
     user = User.new()
     assert_not_nil user.errors[:username]
   end
+
+  test "admin? true" do
+    user = users(:admin_user)
+    assert user.admin?
+  end
+
+  test "admin? false" do
+    user = users(:basic_user)
+    assert_not user.admin?
+  end
 end

@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  include Pundit::Authorization
+
   respond_to :json
 
   before_action :configure_permitted_user_params, if: :devise_controller?

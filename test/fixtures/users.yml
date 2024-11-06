@@ -1,7 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+<% require 'bcrypt' %>
 
 basic_user:
   email: ned@flanders.com
+  encrypted_password: <%= BCrypt::Password.create('Test123!', cost: 5) %>
   first_name: Ned
   jti: 1224abcd
   last_name: Flanders
@@ -10,6 +12,7 @@ basic_user:
 
 admin_user:
   email: bart@simpson.com
+  encrypted_password: <%= BCrypt::Password.create('Test123!', cost: 5) %>
   first_name: Bart
   jti: aslfdjl
   last_name: Simpson

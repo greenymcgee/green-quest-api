@@ -6,6 +6,20 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     @auth_headers = set_auth_headers(@user)
   end
 
+  test "should return the expected json payload" do
+    post(
+      new_user_session_url,
+      as: :json,
+      params: {
+        user: {
+          email: @user.email,
+          password: "Test123!",
+        },
+      },
+    )
+    assert_matches_json_schema response, "users/show"
+  end
+
   test "should destroy a user's session" do
     delete destroy_user_session_url, as: :json, headers: @auth_headers
     assert_response :success

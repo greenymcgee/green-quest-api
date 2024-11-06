@@ -5,18 +5,17 @@ class Api::UsersController < ApplicationController
   def index
     @users = User.all
     authorize @users
-
-    render json: @users
+    render "api/users/index"
   end
 
   def show
     authorize @user
-    render json: @user
+    render "api/users/show"
   end
 
   def update
     authorize @user
-    return render json: @user if @user.update(user_params)
+    return render "api/users/show" if @user.update(user_params)
 
     render json: @user.errors, status: :unprocessable_entity
   end

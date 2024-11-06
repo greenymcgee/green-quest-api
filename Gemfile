@@ -7,7 +7,7 @@ gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-# gem "jbuilder"
+gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -30,7 +30,6 @@ gem "bootsnap", require: false
 gem "rack-cors", "~> 2.0"
 gem "devise", "~> 4.9"
 gem "devise-jwt"
-gem "jsonapi-serializer"
 gem "pry", "~> 0.14.2"
 gem "pundit", "~> 2.4"
 
@@ -44,4 +43,5 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
   gem "prettier", "~> 4.0"
+  gem "json_matchers"
 end

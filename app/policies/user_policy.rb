@@ -1,6 +1,6 @@
 class UserPolicy < AdminPolicy
   def show?
-    user.admin? || record.id === user.id
+    record.id === user.id
   end
 
   def update?

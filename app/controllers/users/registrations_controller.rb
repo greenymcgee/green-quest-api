@@ -24,12 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def render_valid_user_response(user)
-    render(json: { user: get_user_attributes(user) }, status: :ok)
-  end
-
-  def get_user_attributes(user)
-    user_serializer = UserSerializer.new(user)
-    user_serializer.serializable_hash[:data][:attributes]
+    render "api/users/show", status: :ok
   end
 
   # ##

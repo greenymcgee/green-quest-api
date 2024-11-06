@@ -10,13 +10,7 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def respond_with(current_user, _opts = {})
-    serializer = UserSerializer.new(current_user)
-    render(
-      json: {
-        user: serializer.serializable_hash[:data][:attributes],
-      },
-      status: :ok,
-    )
+    render "api/users/show", status: :ok
   end
 
   def respond_to_on_destroy

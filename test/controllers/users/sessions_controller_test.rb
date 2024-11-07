@@ -17,7 +17,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
         },
       },
     )
-    assert_matches_json_schema response, "users/show"
+    assert_matches_json_schema response, "users/sessions"
   end
 
   test "should destroy a user's session" do

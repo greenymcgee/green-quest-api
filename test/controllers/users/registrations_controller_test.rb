@@ -31,7 +31,7 @@ class ResgistrationsControllerTest < ActionDispatch::IntegrationTest
         },
       },
     )
-    assert_matches_json_schema response, "users/show"
+    assert_matches_json_schema response, "users/registrations"
   end
 
   test "should reject an invalid user" do

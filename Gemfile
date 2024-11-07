@@ -32,6 +32,7 @@ gem "devise", "~> 4.9"
 gem "devise-jwt"
 gem "pry", "~> 0.14.2"
 gem "pundit", "~> 2.4"
+gem "bullet"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

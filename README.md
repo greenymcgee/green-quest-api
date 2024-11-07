@@ -16,9 +16,15 @@ Things you may want to cover:
 
 - System dependencies
 
-* [Mail Catcher](https://mailcatcher.me/)
-* Must open the project with `code .` from terminal for VSCode Ruby Prettier
-* setup to work.
+- [Mail Catcher](https://mailcatcher.me/)
+- Must open the project with `code .` from terminal for VSCode Ruby Prettier
+setup to work.
+- [Devise JWT](https://github.com/waiting-for-dev/devise-jwt)
+- [Pundit](https://github.com/varvet/pundit)
+- [Bullet Warnings](https://github.com/flyerhzm/bullet)
+- [JSON Matchers](https://github.com/thoughtbot/json_matchers)
+- [Prettier Plugin Ruby](https://github.com/prettier/plugin-ruby)
+- [Jbuilder](https://github.com/rails/jbuilder)
 
 - Configuration
   `docker compose up --build`

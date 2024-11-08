@@ -7,7 +7,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
+  # 400, 422, 200
   def respond_with(user, _opts = {})
+    require_password_confirmation
     return render_invalid_user_response(user) unless resource.persisted?
 
     render_valid_user_response(user)
@@ -16,6 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def render_invalid_user_response(user)
     render(
       json: {
+        status: "422",
         message:
           "User couldn't be created successfully. #{user.errors.full_messages.to_sentence}",
       },
@@ -25,6 +28,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def render_valid_user_response(user)
     render "api/users/show", status: :ok
+  end
+
+  def require_password_confirmation
+    params.require(:user).require(:password_confirmation)
   end
 
   # ##

@@ -9,6 +9,7 @@ class ResgistrationsControllerTest < ActionDispatch::IntegrationTest
         user: {
           email: "test@test.com",
           password: "Test123!",
+          password_confirmation: "Test123!",
           roles: ["Basic"],
           username: "rubyjean",
         },
@@ -26,6 +27,7 @@ class ResgistrationsControllerTest < ActionDispatch::IntegrationTest
           email: "test@test.com",
           first_name: "Ruby",
           password: "Test123!",
+          password_confirmation: "Test123!",
           roles: ["Basic"],
           username: "rubyjean",
         },
@@ -41,11 +43,28 @@ class ResgistrationsControllerTest < ActionDispatch::IntegrationTest
       params: {
         user: {
           email: "test@test.com",
-          roles: ["Basic"],
+          password: "Test123!",
+          password_confirmation: "Test123!",
           username: "rubyjean",
         },
       },
     )
     assert_response :unprocessable_entity
+  end
+
+  test "should require a password_confirmation" do
+    post(
+      user_registration_url,
+      as: :json,
+      params: {
+        user: {
+          email: "test@test.com",
+          password: "123",
+          roles: ["Basic"],
+          username: "rubyjean",
+        },
+      },
+    )
+    assert_response :bad_request
   end
 end

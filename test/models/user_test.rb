@@ -14,17 +14,26 @@ class UserTest < ActiveSupport::TestCase
 
   test "invalid without email" do
     user = User.new()
-    assert_not_nil user.errors[:email]
+    user.valid?
+    assert user.errors[:email].include? "can't be blank"
   end
 
   test "invalid without roles" do
     user = User.new()
-    assert_not_nil user.errors[:roles]
+    user.valid?
+    assert user.errors[:roles].include? "can't be blank"
   end
 
   test "invalid without username" do
     user = User.new()
-    assert_not_nil user.errors[:username]
+    user.valid?
+    assert user.errors[:username].include? "can't be blank"
+  end
+
+  test "invalid without password complexity" do
+    user = User.new({ password: "bob" })
+    user.valid?
+    assert user.errors[:password].include? PASSWORD_COMPLEXITY_ERROR_MESSAGE
   end
 
   test "admin? true" do

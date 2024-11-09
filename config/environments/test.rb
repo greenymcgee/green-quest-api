@@ -16,6 +16,8 @@ Rails.application.configure do
     Bullet.raise = true
   end
 
+  config.front_end_host = "http://localhost:3001"
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # While tests run files are not watched, reloading is not necessary.

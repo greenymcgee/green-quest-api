@@ -24,5 +24,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :users
+
+    devise_scope :user do
+      resource :reset_password, only: %i[create update]
+    end
   end
 end

@@ -10,6 +10,8 @@ Rails.application.configure do
     Bullet.add_footer = true
   end
 
+  config.front_end_host = "http://localhost:3001"
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
@@ -53,8 +55,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   # Swap this out when not using docker compose.
-  # config.action_mailer.smtp_settings = { address: "127.0.0.1", port: 1025 }
-  config.action_mailer.smtp_settings = { address: "mailcatcher", port: 1025 }
+  config.action_mailer.smtp_settings = { address: "127.0.0.1", port: 1025 }
+  # config.action_mailer.smtp_settings = { address: "mailcatcher", port: 1025 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

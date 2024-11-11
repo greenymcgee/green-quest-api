@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://greenquestgames.com/games/index.json",
+  "description": "The GET /api/games payload",
+  "properties": {
+    "games": { "items": { "$ref": "file:/game.json#" }, "type": "array" }
+  },
+  "required": ["games"],
+  "type": "object"
+}

@@ -10,9 +10,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_04_140040) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_09_210238) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "games", force: :cascade do |t|
+    t.integer "age_rating_ids", default: [], array: true
+    t.integer "alternative_name_ids", default: [], array: true
+    t.integer "artwork_ids", default: [], array: true
+    t.integer "bundle_ids", default: [], array: true
+    t.string "category_enum", default: ""
+    t.string "checksum", default: ""
+    t.integer "collection_id", default: 0
+    t.integer "collection_ids", default: [], array: true
+    t.integer "cover_id", default: 0
+    t.integer "dlc_ids", default: [], array: true
+    t.integer "expanded_game_ids", default: [], array: true
+    t.integer "expansion_ids", default: [], array: true
+    t.integer "external_game_ids", default: [], array: true
+    t.datetime "first_release_date"
+    t.integer "fork_ids", default: [], array: true
+    t.integer "franchise_id", default: 0
+    t.integer "franchise_ids", default: [], array: true
+    t.integer "game_engine_ids", default: [], array: true
+    t.integer "game_localization_ids", default: [], array: true
+    t.integer "game_mode_ids", default: [], array: true
+    t.integer "genre_ids", default: [], array: true
+    t.integer "igdb_id"
+    t.string "igdb_url", default: ""
+    t.integer "involved_company_ids", default: [], array: true
+    t.integer "keyword_ids", default: [], array: true
+    t.integer "language_support_ids", default: [], array: true
+    t.integer "multiplayer_mode_ids", default: [], array: true
+    t.string "name", default: ""
+    t.integer "parent_game_id", default: 0
+    t.integer "platform_ids", default: [], array: true
+    t.integer "player_perspective_ids", default: [], array: true
+    t.integer "port_ids", default: [], array: true
+    t.float "rating", default: 0.0
+    t.integer "release_date_ids", default: [], array: true
+    t.integer "remake_ids", default: [], array: true
+    t.integer "remaster_ids", default: [], array: true
+    t.text "review", default: ""
+    t.integer "screenshot_ids", default: [], array: true
+    t.integer "similar_game_ids", default: [], array: true
+    t.string "slug", default: ""
+    t.integer "standalone_expansion_ids", default: [], array: true
+    t.string "status", default: ""
+    t.string "storyline", default: ""
+    t.string "summary", default: ""
+    t.integer "tag_ids", default: [], array: true
+    t.integer "theme_ids", default: [], array: true
+    t.integer "version_parent_id", default: 0
+    t.string "version_title", default: ""
+    t.integer "video_ids", default: [], array: true
+    t.integer "website_ids", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["igdb_id"], name: "index_games_on_igdb_id", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

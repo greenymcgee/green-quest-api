@@ -45,4 +45,5 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
   gem "prettier", "~> 4.0"
   gem "json_matchers"
+  gem "webmock"
 end

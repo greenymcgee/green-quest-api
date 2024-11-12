@@ -11,6 +11,8 @@ Rails.application.configure do
   end
 
   config.front_end_host = "http://localhost:3001"
+  config.igdb_oauth_url = "https://id.twitch.tv/oauth2/token"
+  config.igdb_api_url = "https://api.igdb.com/v4"
 
   # Settings specified here will take precedence over those in config/application.rb.
 

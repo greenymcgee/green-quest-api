@@ -17,6 +17,8 @@ Rails.application.configure do
   end
 
   config.front_end_host = "http://localhost:3001"
+  config.igdb_oauth_url = "https://getgreenquesttoken.com"
+  config.igdb_api_url = "http://test_green_quest_idgb_api.com/v4"
 
   # Settings specified here will take precedence over those in config/application.rb.
 

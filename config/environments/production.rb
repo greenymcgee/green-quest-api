@@ -4,6 +4,8 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   config.front_end_host = "https://greenquestgames.com"
+  config.igdb_oauth_url = "https://id.twitch.tv/oauth2/token"
+  config.igdb_api_url = "https://api.igdb.com/v4"
 
   # Code is not reloaded between requests.
   config.enable_reloading = false

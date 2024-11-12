@@ -4,6 +4,9 @@ require "rails/test_help"
 require "devise/jwt/test_helpers"
 require "minitest/autorun"
 require "json_matchers/minitest/assertions"
+require "webmock/minitest"
+# Require all of the test helpers
+Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
 
 JsonMatchers.schema_root = "test/support/api/schemas"
 Minitest::Test.include(JsonMatchers::Minitest::Assertions)

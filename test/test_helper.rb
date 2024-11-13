@@ -1,5 +1,6 @@
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
+require_relative "./support/mock_json_fixtures"
 require "rails/test_help"
 require "devise/jwt/test_helpers"
 require "minitest/autorun"
@@ -13,6 +14,8 @@ Minitest::Test.include(JsonMatchers::Minitest::Assertions)
 
 module ActiveSupport
   class TestCase
+    include MockJsonFixtures
+
     parallelize(workers: :number_of_processors)
     fixtures :all
 

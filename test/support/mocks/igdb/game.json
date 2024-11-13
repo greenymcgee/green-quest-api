@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1026,
+    "age_ratings": [49238, 82546, 90794, 112318, 189812],
+    "aggregated_rating": 100.0,
+    "aggregated_rating_count": 1,
+    "alternative_names": [3279, 71654, 71655, 71656, 99282, 119043, 137998],
+    "artworks": [
+      52607, 84535, 84536, 84537, 84538, 84539, 84540, 84541, 84542, 84543,
+      84544, 84545, 87522
+    ],
+    "bundles": [213363, 213594],
+    "category": 0,
+    "cover": 181427,
+    "created_at": 1326319522,
+    "external_games": [
+      57183, 147652, 221007, 245236, 1931513, 2594102, 2596113
+    ],
+    "first_release_date": 690681600,
+    "franchises": [596],
+    "game_modes": [1],
+    "genres": [9, 31],
+    "involved_companies": [101094, 162318, 162319, 224534, 224545, 226969],
+    "keywords": [
+      16, 147, 226, 394, 472, 558, 687, 701, 1033, 1181, 1193, 1289, 1320, 1379,
+      1381, 1422, 1705, 1898, 1986, 2066, 2071, 2109, 2111, 2199, 2324, 2472,
+      3203, 3486, 3831, 4007, 4031, 4138, 4170, 4269, 4285, 4310, 4353, 4388,
+      4392, 4396, 4412, 4484, 4522, 4587, 4613, 4699, 4725, 4760, 4776, 4787,
+      4843, 4852, 4879, 4903, 4918, 4991, 4999, 5000, 5004, 5100, 5105, 5210,
+      5323, 5329, 5449, 5587, 5594, 5599, 5659, 5818, 5840, 5901, 5938, 5971,
+      6062, 6152, 6296, 6539, 6541, 6746, 7080, 7215, 7226, 7305, 7423, 7454,
+      7653, 8669, 8866, 8896, 9373, 9404, 9529, 9843, 10006, 11531, 12042,
+      12763, 13117, 23933, 25264, 26191, 26906, 27629, 28869, 28966, 30367,
+      30490, 37362, 42805
+    ],
+    "name": "The Legend of Zelda: A Link to the Past",
+    "platforms": [5, 19, 41, 58, 137, 306],
+    "player_perspectives": [3],
+    "rating": 92.43807382880051,
+    "rating_count": 1438,
+    "release_dates": [
+      514962, 514963, 514964, 514965, 514967, 514968, 514969, 514970, 514971,
+      514972, 514973, 514974, 514975, 514976, 514977, 548274, 592184, 592185
+    ],
+    "screenshots": [176243, 176244, 176245, 176246, 176247, 176248, 176249],
+    "similar_games": [533, 832, 1025, 1029, 1032, 1034, 1035, 1036, 1041, 3349],
+    "slug": "the-legend-of-zelda-a-link-to-the-past",
+    "storyline": "The wizard Agahnim has been abducting descendants of the seven sages, intent on using their power to obliterate the barrier leading to the Dark World. One of the descendants happens to be Princess Zelda, who informs Link of her plight. Armed with a trusty sword and shield, Link begins a journey that will take him through treacherous territory.",
+    "summary": "The Legend of Zelda: A Link to the Past is a top-down action game with puzzle-solving elements similar to the original The Legend of Zelda. After the side-scrolling and RPG-like gameplay of Zelda II: The Adventure of Link, the game is a return to the top-down view and gameplay style of the first installment. It introduces major new items to the series such as the Master Sword and the concept of two different worlds, which was revisited to some extent in Ocarina of Time with two distinct time periods rather than dark and light worlds.",
+    "tags": [
+      1, 17, 268435465, 268435487, 536870928, 536871059, 536871138, 536871306,
+      536871384, 536871470, 536871599, 536871613, 536871945, 536872093,
+      536872105, 536872201, 536872232, 536872291, 536872293, 536872334,
+      536872617, 536872810, 536872898, 536872978, 536872983, 536873021,
+      536873023, 536873111, 536873236, 536873384, 536874115, 536874398,
+      536874743, 536874919, 536874943, 536875050, 536875082, 536875181,
+      536875197, 536875222, 536875265, 536875300, 536875304, 536875308,
+      536875324, 536875396, 536875434, 536875499, 536875525, 536875611,
+      536875637, 536875672, 536875688, 536875699, 536875755, 536875764,
+      536875791, 536875815, 536875830, 536875903, 536875911, 536875912,
+      536875916, 536876012, 536876017, 536876122, 536876235, 536876241,
+      536876361, 536876499, 536876506, 536876511, 536876571, 536876730,
+      536876752, 536876813, 536876850, 536876883, 536876974, 536877064,
+      536877208, 536877451, 536877453, 536877658, 536877992, 536878127,
+      536878138, 536878217, 536878335, 536878366, 536878565, 536879581,
+      536879778, 536879808, 536880285, 536880316, 536880441, 536880755,
+      536880918, 536882443, 536882954, 536883675, 536884029, 536894845,
+      536896176, 536897103, 536897818, 536898541, 536899781, 536899878,
+      536901279, 536901402, 536908274, 536913717
+    ],
+    "themes": [1, 17],
+    "total_rating": 96.21903691440025,
+    "total_rating_count": 1439,
+    "updated_at": 1731346429,
+    "url": "https://www.igdb.com/games/the-legend-of-zelda-a-link-to-the-past",
+    "videos": [715, 67036, 67037, 109510],
+    "websites": [53240, 243088, 512375, 575049],
+    "checksum": "2f5d7a1e-73a6-28de-b9e7-b7ac59f69721",
+    "expanded_games": [229416],
+    "language_supports": [
+      473322, 473323, 493577, 493578, 514870, 514871, 514872, 514873
+    ],
+    "game_localizations": [160, 25986],
+    "collections": [106, 9849]
+  }
+]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_09_210238) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_14_002458) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_09_210238) do
     t.integer "alternative_name_ids", default: [], array: true
     t.integer "artwork_ids", default: [], array: true
     t.integer "bundle_ids", default: [], array: true
-    t.string "category_enum", default: ""
     t.string "checksum", default: ""
     t.integer "collection_id", default: 0
     t.integer "collection_ids", default: [], array: true
@@ -67,6 +66,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_09_210238) do
     t.integer "website_ids", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category_enum"
     t.index ["igdb_id"], name: "index_games_on_igdb_id", unique: true
   end
 

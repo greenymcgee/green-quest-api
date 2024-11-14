@@ -1,38 +1,41 @@
 module IgdbApiTestHelper
-  def stub_successful_igdb_api_request(pathname, response_body)
-    params = igdb_request_params(pathname)
+  def stub_successful_igdb_api_request(pathname, response_body, bearer_token)
+    params = igdb_request_params(pathname, bearer_token)
     response = { body: response_body, status: 200 }
-    stub_request(:post, igdb_url(pathname)).with(params).to_return(response)
+    stub_request(:get, igdb_url(pathname)).with(params).to_return(response)
   end
 
   def stub_igdb_api_request_failure(pathname)
     params = igdb_request_params(pathname)
     response = { body: igdb_api_failure_response_body, status: 401 }
-    stub_request(:post, igdb_url(pathname)).with(params).to_return(response)
+    stub_request(:get, igdb_url(pathname)).with(params).to_return(response)
   end
+
+  private
 
   def igdb_api_failure_response_body
     { message: "Not authorized" }.to_json
   end
 
-  def twitch_oauth_bearer_token
-    "Bearer asdlfkj1234"
+  def igdb_api_error
+    StandardError.new(igdb_api_failure_response_body)
   end
 
-  private
-
-  def igdb_request_params(pathname)
-    {
+  def igdb_request_params(pathname, bearer_token = nil)
+    params = {
       headers: {
         Accept: "application/json",
-        Authorization: twitch_oauth_bearer_token,
         "Content-type": "application/json",
+        "Client-ID": Rails.application.credentials.igdb_client_id!,
       },
-      body: { fields: "*" }.to_json,
     }
+
+    return params unless bearer_token.present?
+
+    { **params, headers: { **params[:headers], Authorization: bearer_token } }
   end
 
   def igdb_url(pathname)
-    "#{Rails.configuration.igdb_api_url}/#{pathname}"
+    "#{Rails.configuration.igdb_api_url}/#{pathname}?fields=*"
   end
 end

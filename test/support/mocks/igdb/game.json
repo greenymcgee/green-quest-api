@@ -11,8 +11,11 @@
     ],
     "bundles": [213363, 213594],
     "category": 0,
+    "collections": [106, 9849],
+    "collection": 106,
     "cover": 181427,
     "created_at": 1326319522,
+    "dlcs": [5354, 54],
     "external_games": [
       57183, 147652, 221007, 245236, 1931513, 2594102, 2596113
     ],
@@ -80,7 +83,6 @@
     "language_supports": [
       473322, 473323, 493577, 493578, 514870, 514871, 514872, 514873
     ],
-    "game_localizations": [160, 25986],
-    "collections": [106, 9849]
+    "game_localizations": [160, 25986]
   }
 ]

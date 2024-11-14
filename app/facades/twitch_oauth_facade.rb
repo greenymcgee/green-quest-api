@@ -1,13 +1,7 @@
 class TwitchOauthFacade
   def self.get_twitch_oauth_token
+    request_bearer_token
     begin
-      set_uri
-      set_http
-      set_request
-      set_request_properties
-      set_response
-      set_access_token
-      set_bearer_token
       unless Net::HTTPSuccess === @@response
         raise StandardError.new @@response.body
       end
@@ -19,6 +13,16 @@ class TwitchOauthFacade
   end
 
   private
+
+  def self.request_bearer_token
+    set_uri
+    set_http
+    set_request
+    set_request_properties
+    set_response
+    set_access_token
+    set_bearer_token
+  end
 
   def self.set_request_properties
     @@request["Accept"] = "application/json"

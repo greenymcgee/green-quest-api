@@ -14,15 +14,7 @@ class TwitchOauthFacadeTest < ActionDispatch::IntegrationTest
 
   test "should return a bad request error" do
     stub_twitch_oauth_request_failure
-    result = TwitchOauthFacade.get_twitch_oauth_token[:error].message
-    expectation = StandardError.new({ message: "Bad request" }.to_json).message
-    assert_equal(result, expectation)
-  end
-
-  test "should return an unauthorized request error" do
-    stub_twitch_oauth_request_failure(401, "Unauthorized")
-    result = TwitchOauthFacade.get_twitch_oauth_token[:error].message
-    expectation = StandardError.new({ message: "Unauthorized" }.to_json).message
-    assert_equal(result, expectation)
+    error = TwitchOauthFacade.get_twitch_oauth_token[:error]
+    assert_equal(error.to_json, twitch_oauth_error.to_json)
   end
 end

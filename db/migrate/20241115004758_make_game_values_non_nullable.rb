@@ -1,0 +1,46 @@
+class MakeGameValuesNonNullable < ActiveRecord::Migration[7.2]
+  def change
+    change_column_null :games, :age_rating_ids, false
+    change_column_null :games, :alternative_name_ids, false
+    change_column_null :games, :artwork_ids, false
+    change_column_null :games, :bundle_ids, false
+    change_column_null :games, :checksum, false
+    change_column_null :games, :collection_ids, false
+    change_column_null :games, :dlc_ids, false
+    change_column_null :games, :expanded_game_ids, false
+    change_column_null :games, :expansion_ids, false
+    change_column_null :games, :external_game_ids, false
+    change_column_null :games, :fork_ids, false
+    change_column_null :games, :franchise_ids, false
+    change_column_null :games, :game_engine_ids, false
+    change_column_null :games, :game_localization_ids, false
+    change_column_null :games, :game_mode_ids, false
+    change_column_null :games, :genre_ids, false
+    change_column_null :games, :igdb_id, false
+    change_column_null :games, :igdb_url, false
+    change_column_null :games, :involved_company_ids, false
+    change_column_null :games, :keyword_ids, false
+    change_column_null :games, :language_support_ids, false
+    change_column_null :games, :multiplayer_mode_ids, false
+    change_column_null :games, :name, false
+    change_column_null :games, :platform_ids, false
+    change_column_null :games, :player_perspective_ids, false
+    change_column_null :games, :port_ids, false
+    change_column_null :games, :release_date_ids, false
+    change_column_null :games, :remake_ids, false
+    change_column_null :games, :remaster_ids, false
+    change_column_null :games, :review, false
+    change_column_null :games, :screenshot_ids, false
+    change_column_null :games, :similar_game_ids, false
+    change_column_null :games, :slug, false
+    change_column_null :games, :standalone_expansion_ids, false
+    change_column_null :games, :status, false
+    change_column_null :games, :storyline, false
+    change_column_null :games, :summary, false
+    change_column_null :games, :tag_ids, false
+    change_column_null :games, :theme_ids, false
+    change_column_null :games, :version_title, false
+    change_column_null :games, :video_ids, false
+    change_column_null :games, :website_ids, false
+  end
+end

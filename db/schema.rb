@@ -10,60 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_14_002458) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_15_004758) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "games", force: :cascade do |t|
-    t.integer "age_rating_ids", default: [], array: true
-    t.integer "alternative_name_ids", default: [], array: true
-    t.integer "artwork_ids", default: [], array: true
-    t.integer "bundle_ids", default: [], array: true
-    t.string "checksum", default: ""
+    t.integer "age_rating_ids", default: [], null: false, array: true
+    t.integer "alternative_name_ids", default: [], null: false, array: true
+    t.integer "artwork_ids", default: [], null: false, array: true
+    t.integer "bundle_ids", default: [], null: false, array: true
+    t.string "checksum", default: "", null: false
     t.integer "collection_id", default: 0
-    t.integer "collection_ids", default: [], array: true
+    t.integer "collection_ids", default: [], null: false, array: true
     t.integer "cover_id", default: 0
-    t.integer "dlc_ids", default: [], array: true
-    t.integer "expanded_game_ids", default: [], array: true
-    t.integer "expansion_ids", default: [], array: true
-    t.integer "external_game_ids", default: [], array: true
+    t.integer "dlc_ids", default: [], null: false, array: true
+    t.integer "expanded_game_ids", default: [], null: false, array: true
+    t.integer "expansion_ids", default: [], null: false, array: true
+    t.integer "external_game_ids", default: [], null: false, array: true
     t.datetime "first_release_date"
-    t.integer "fork_ids", default: [], array: true
+    t.integer "fork_ids", default: [], null: false, array: true
     t.integer "franchise_id", default: 0
-    t.integer "franchise_ids", default: [], array: true
-    t.integer "game_engine_ids", default: [], array: true
-    t.integer "game_localization_ids", default: [], array: true
-    t.integer "game_mode_ids", default: [], array: true
-    t.integer "genre_ids", default: [], array: true
-    t.integer "igdb_id"
-    t.string "igdb_url", default: ""
-    t.integer "involved_company_ids", default: [], array: true
-    t.integer "keyword_ids", default: [], array: true
-    t.integer "language_support_ids", default: [], array: true
-    t.integer "multiplayer_mode_ids", default: [], array: true
-    t.string "name", default: ""
+    t.integer "franchise_ids", default: [], null: false, array: true
+    t.integer "game_engine_ids", default: [], null: false, array: true
+    t.integer "game_localization_ids", default: [], null: false, array: true
+    t.integer "game_mode_ids", default: [], null: false, array: true
+    t.integer "genre_ids", default: [], null: false, array: true
+    t.integer "igdb_id", null: false
+    t.string "igdb_url", default: "", null: false
+    t.integer "involved_company_ids", default: [], null: false, array: true
+    t.integer "keyword_ids", default: [], null: false, array: true
+    t.integer "language_support_ids", default: [], null: false, array: true
+    t.integer "multiplayer_mode_ids", default: [], null: false, array: true
+    t.string "name", default: "", null: false
     t.integer "parent_game_id", default: 0
-    t.integer "platform_ids", default: [], array: true
-    t.integer "player_perspective_ids", default: [], array: true
-    t.integer "port_ids", default: [], array: true
+    t.integer "platform_ids", default: [], null: false, array: true
+    t.integer "player_perspective_ids", default: [], null: false, array: true
+    t.integer "port_ids", default: [], null: false, array: true
     t.float "rating", default: 0.0
-    t.integer "release_date_ids", default: [], array: true
-    t.integer "remake_ids", default: [], array: true
-    t.integer "remaster_ids", default: [], array: true
-    t.text "review", default: ""
-    t.integer "screenshot_ids", default: [], array: true
-    t.integer "similar_game_ids", default: [], array: true
-    t.string "slug", default: ""
-    t.integer "standalone_expansion_ids", default: [], array: true
-    t.string "status", default: ""
-    t.string "storyline", default: ""
-    t.string "summary", default: ""
-    t.integer "tag_ids", default: [], array: true
-    t.integer "theme_ids", default: [], array: true
+    t.integer "release_date_ids", default: [], null: false, array: true
+    t.integer "remake_ids", default: [], null: false, array: true
+    t.integer "remaster_ids", default: [], null: false, array: true
+    t.text "review", default: "", null: false
+    t.integer "screenshot_ids", default: [], null: false, array: true
+    t.integer "similar_game_ids", default: [], null: false, array: true
+    t.string "slug", default: "", null: false
+    t.integer "standalone_expansion_ids", default: [], null: false, array: true
+    t.string "status", default: "", null: false
+    t.string "storyline", default: "", null: false
+    t.string "summary", default: "", null: false
+    t.integer "tag_ids", default: [], null: false, array: true
+    t.integer "theme_ids", default: [], null: false, array: true
     t.integer "version_parent_id", default: 0
-    t.string "version_title", default: ""
-    t.integer "video_ids", default: [], array: true
-    t.integer "website_ids", default: [], array: true
+    t.string "version_title", default: "", null: false
+    t.integer "video_ids", default: [], null: false, array: true
+    t.integer "website_ids", default: [], null: false, array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_enum"

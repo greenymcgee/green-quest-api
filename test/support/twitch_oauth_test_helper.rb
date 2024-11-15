@@ -14,14 +14,22 @@ module TwitchOauthTestHelper
     )
   end
 
-  def stub_twitch_oauth_request_failure(status = 400, message = "Bad request")
+  def stub_twitch_oauth_request_failure
     stub_request(:post, oauth_url).with(oauth_request_params).to_return(
-      body: { message: message }.to_json,
-      status: status,
+      body: twitch_oauth_failure_response_body,
+      status: 400,
     )
   end
 
   private
+
+  def twitch_oauth_failure_response_body
+    { message: "Bad request" }.to_json
+  end
+
+  def twitch_oauth_error
+    StandardError.new(twitch_oauth_failure_response_body)
+  end
 
   def oauth_request_params
     {

@@ -2,7 +2,7 @@ require "test_helper"
 
 class GamesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @game = games(:zelda_snes)
+    @game = games(:super_metroid)
     @admin_user = users(:admin_user)
     @admin_auth_headers = set_auth_headers(@admin_user)
     @basic_user = users(:basic_user)

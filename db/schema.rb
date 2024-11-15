@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_15_004758) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_15_011357) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,16 +20,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_15_004758) do
     t.integer "artwork_ids", default: [], null: false, array: true
     t.integer "bundle_ids", default: [], null: false, array: true
     t.string "checksum", default: "", null: false
-    t.integer "collection_id", default: 0
+    t.integer "collection_id"
     t.integer "collection_ids", default: [], null: false, array: true
-    t.integer "cover_id", default: 0
+    t.integer "cover_id"
     t.integer "dlc_ids", default: [], null: false, array: true
     t.integer "expanded_game_ids", default: [], null: false, array: true
     t.integer "expansion_ids", default: [], null: false, array: true
     t.integer "external_game_ids", default: [], null: false, array: true
     t.datetime "first_release_date"
     t.integer "fork_ids", default: [], null: false, array: true
-    t.integer "franchise_id", default: 0
+    t.integer "franchise_id"
     t.integer "franchise_ids", default: [], null: false, array: true
     t.integer "game_engine_ids", default: [], null: false, array: true
     t.integer "game_localization_ids", default: [], null: false, array: true
@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_15_004758) do
     t.integer "language_support_ids", default: [], null: false, array: true
     t.integer "multiplayer_mode_ids", default: [], null: false, array: true
     t.string "name", default: "", null: false
-    t.integer "parent_game_id", default: 0
+    t.integer "parent_game_id"
     t.integer "platform_ids", default: [], null: false, array: true
     t.integer "player_perspective_ids", default: [], null: false, array: true
     t.integer "port_ids", default: [], null: false, array: true
@@ -60,7 +60,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_15_004758) do
     t.string "summary", default: "", null: false
     t.integer "tag_ids", default: [], null: false, array: true
     t.integer "theme_ids", default: [], null: false, array: true
-    t.integer "version_parent_id", default: 0
+    t.integer "version_parent_id"
     t.string "version_title", default: "", null: false
     t.integer "video_ids", default: [], null: false, array: true
     t.integer "website_ids", default: [], null: false, array: true
@@ -68,6 +68,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_15_004758) do
     t.datetime "updated_at", null: false
     t.integer "category_enum"
     t.index ["igdb_id"], name: "index_games_on_igdb_id", unique: true
+    t.index ["slug"], name: "index_games_on_slug"
   end
 
   create_table "users", force: :cascade do |t|

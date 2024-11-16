@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     end
 
     resources :games
+    resources :genres, only: %i[index show destroy]
     resources :users
   end
 end

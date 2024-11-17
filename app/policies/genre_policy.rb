@@ -1,0 +1,2 @@
+class GenrePolicy < AdminPolicy
+end

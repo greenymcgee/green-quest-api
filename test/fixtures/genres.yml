@@ -4,3 +4,10 @@ rpg:
   igdb_url: "http://www.igdbgenre.com/4"
   name: "RPG"
   slug: "rpg"
+
+puzzle:
+  checksum: f4afdd14-b8c5-e938-58a6-ff0a56514f8b
+  igdb_id: 9
+  igdb_url: https://www.igdb.com/genres/puzzle
+  name: Puzzle
+  slug: puzzle

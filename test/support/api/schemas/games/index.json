@@ -4,31 +4,7 @@
   "description": "The GET /api/games payload",
   "properties": {
     "games": {
-      "items": {
-        "properties": {
-          "createdAt": {
-            "description": "The datetime of the record's creation",
-            "type": "string"
-          },
-          "id": {
-            "description": "The unique identifier for a game.",
-            "type": "integer"
-          },
-          "name": {
-            "description": "The name of the game",
-            "type": "string"
-          },
-          "rating": {
-            "description": "Float: the rating for the game from 1 - 5.",
-            "type": "number"
-          },
-          "updatedAt": {
-            "description": "The datetime of the record's last update",
-            "type": "string"
-          }
-        },
-        "required": ["createdAt", "id", "name", "rating", "updatedAt"]
-      },
+      "items": { "$ref": "file:/game_without_resources.json#" },
       "type": "array"
     }
   },

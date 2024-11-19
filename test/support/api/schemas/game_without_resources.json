@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "file:/game_without_resources.json#",
+  "description": "A version of a game that doesn't include relational resources",
+  "properties": {
+    "createdAt": {
+      "description": "The datetime of the record's creation",
+      "type": "string"
+    },
+    "id": {
+      "description": "The unique identifier for a game.",
+      "type": "integer"
+    },
+    "igdbId": { "type": "integer" },
+    "name": {
+      "description": "The name of the game",
+      "type": "string"
+    },
+    "rating": {
+      "description": "Float: the rating for the game from 1 - 5.",
+      "type": "number"
+    },
+    "updatedAt": {
+      "description": "The datetime of the record's last update",
+      "type": "string"
+    }
+  },
+  "required": ["createdAt", "id", "igdbId", "name", "rating", "updatedAt"],
+  "type": "object"
+}

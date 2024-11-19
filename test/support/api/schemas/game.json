@@ -7,6 +7,10 @@
       "description": "The datetime of the record's creation",
       "type": "string"
     },
+    "errors": {
+      "description": "Any errors that might be present after fulfilling a game request",
+      "type": "array"
+    },
     "id": {
       "description": "The unique identifier for a game.",
       "type": "integer"

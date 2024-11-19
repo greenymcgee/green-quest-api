@@ -3,6 +3,7 @@ require "test_helper"
 class GamesControllerTest < ActionDispatch::IntegrationTest
   include IgdbApiTestHelper
   include TwitchOauthTestHelper
+  include GameCreateTestHelper
 
   setup do
     @game = games(:super_metroid)
@@ -10,7 +11,7 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
     @admin_auth_headers = set_auth_headers(@admin_user)
     @basic_user = users(:basic_user)
     @basic_auth_headers = set_auth_headers(@basic_user)
-    @igdb_game_data = json_mocks("igdb/game.json")
+    @game_json = json_mocks("igdb/game.json")
     @twitch_bearer_token = "Bearer #{twitch_oauth_access_token}"
   end
 
@@ -25,12 +26,7 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "#create should create game" do
-    stub_successful_twitch_oauth_request
-    stub_successful_igdb_api_request(
-      "games/40",
-      @igdb_game_data,
-      @twitch_bearer_token,
-    )
+    stub_successful_game_create_request(1026)
     assert_difference("Game.count") do
       post(
         api_games_url,
@@ -38,7 +34,7 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
         headers: @admin_auth_headers,
         params: {
           game: {
-            igdb_id: 40,
+            igdb_id: 1026,
             rating: 5,
             review: "<p>rich text</p>",
           },
@@ -48,13 +44,26 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
     assert_response :created
   end
 
+  test "#create should return multi status response with genre failures" do
+    stub_successful_game_create_request(1026, with_genre_failures: true)
+    assert_difference("Game.count") do
+      post(
+        api_games_url,
+        as: :json,
+        headers: @admin_auth_headers,
+        params: {
+          game: {
+            igdb_id: 1026,
+          },
+        },
+      )
+    end
+    assert_response :multi_status
+  end
+
   test "#create should return a game error" do
     stub_successful_twitch_oauth_request
-    stub_successful_igdb_api_request(
-      "games/",
-      @igdb_game_data,
-      @twitch_bearer_token,
-    )
+    stub_successful_igdb_api_request("games/", @game_json, @twitch_bearer_token)
     post(
       api_games_url,
       as: :json,
@@ -100,12 +109,6 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "#create should not create game for non-admin users" do
-    stub_successful_twitch_oauth_request
-    stub_successful_igdb_api_request(
-      "games/40",
-      @igdb_game_data,
-      @twitch_bearer_token,
-    )
     post(
       api_games_url,
       as: :json,
@@ -122,19 +125,14 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "#create should return the expected create json payload" do
-    stub_successful_twitch_oauth_request
-    stub_successful_igdb_api_request(
-      "games/40",
-      @igdb_game_data,
-      @twitch_bearer_token,
-    )
+    stub_successful_game_create_request(1026)
     post(
       api_games_url,
       as: :json,
       headers: @admin_auth_headers,
       params: {
         game: {
-          igdb_id: 40,
+          igdb_id: 1026,
           rating: 5,
           review: "<p>rich text</p>",
         },

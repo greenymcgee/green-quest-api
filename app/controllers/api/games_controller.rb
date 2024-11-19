@@ -10,7 +10,7 @@ class Api::GamesController < ApplicationController
   def show
   end
 
-  # 200, 400, 401, 403
+  # 200, 207, 400, 401, 403
   def create
     authenticate_user!
     @game = Game.new(game_params)
@@ -18,17 +18,16 @@ class Api::GamesController < ApplicationController
 
     request_igdb_game_data
 
-    if @igdb_game_request_error
-      return(
-        render json: @igdb_game_request_error, status: :unprocessable_entity
-      )
-    end
+    return render_igdb_game_request_failure if @igdb_game_request_error.present?
 
-    if @game.update(game_params) && populate_igdb_fields
-      return render_successful_show_response(:created)
-    end
+    return render_unprocessible_game unless game_saved?
 
-    render json: @game.errors, status: :unprocessable_entity
+    set_genre_response
+    add_genres_to_game
+    add_genre_errors_to_game
+    return render_successful_show_response(:multi_status) if errors_present?
+
+    render_successful_show_response(:created)
   end
 
   # 200, 400, 401, 403, 404
@@ -70,7 +69,42 @@ class Api::GamesController < ApplicationController
     params.require(:game).permit(:igdb_id, :rating, :review)
   end
 
+  def game_saved?
+    @game.update(game_params) && populate_igdb_fields
+  end
+
   def render_successful_show_response(status)
     render :show, status: status, location: api_game_url(@game)
+  end
+
+  def render_igdb_game_request_failure
+    render json: @igdb_game_request_error, status: :unprocessable_entity
+  end
+
+  def render_unprocessible_game
+    render json: @game.errors, status: :unprocessable_entity
+  end
+
+  def errors_present?
+    @game.errors.present?
+  end
+
+  def set_genre_response
+    facade =
+      Api::Genres::CreateFacade.new(
+        @igdb_game_data["genres"],
+        @twitch_bearer_token,
+      )
+    @genre_response = facade.find_or_create_genres
+  end
+
+  def add_genres_to_game
+    @genre_response[:genres].each { |genre| @game.genres << genre }
+  end
+
+  def add_genre_errors_to_game
+    return unless @genre_response[:errors].present?
+
+    @game.errors.add(:genres, @genre_response[:errors])
   end
 end

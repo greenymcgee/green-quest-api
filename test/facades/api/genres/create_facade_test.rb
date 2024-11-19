@@ -45,15 +45,16 @@ class Api::Genres::CreateFacadeTest < ActionDispatch::IntegrationTest
     assert_equal igdb_ids, @genre_ids
   end
 
-  test "should return errors for any failed igdb api request" do
+  test "should return errors for any failed igdb api requests" do
     @genre_ids.each do |genre_id|
       stub_igdb_api_request_failure("genres/#{genre_id}")
     end
     facade = Api::Genres::CreateFacade.new(@genre_ids, @twitch_oauth_token)
-    errors = facade.find_or_create_genres[:errors]
-    errors.each do |error|
-      assert_equal(JSON.parse(error.message), { "message" => "Not authorized" })
-    end
+    error, = facade.find_or_create_genres[:errors]
+    assert_equal(
+      error,
+      { @genre_ids.last => { "message" => "Not authorized" } },
+    )
   end
 
   test "should return errors for any failed genre creations" do

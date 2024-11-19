@@ -18,7 +18,7 @@ class Api::Genres::CreateFacade
 
         genre_request = set_genre_facade(genre_id).get_igdb_genre_data
         if genre_request[:error].present?
-          @@errors << genre_request[:error]
+          add_genre_error(genre_id, genre_request[:error])
           next
         end
 
@@ -27,6 +27,10 @@ class Api::Genres::CreateFacade
         genre.errors.each { |error| @@errors << error }
       end
     end
+  end
+
+  def add_genre_error(genre_id, error)
+    @@errors << { genre_id => JSON.parse(error.message) }
   end
 
   def set_genre_facade(genre_id)

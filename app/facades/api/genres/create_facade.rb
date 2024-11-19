@@ -34,7 +34,7 @@ class Api::Genres::CreateFacade
   end
 
   def set_genre_facade(genre_id)
-    Api::Genres::GenreRequestFacade.new(genre_id, @@twitch_bearer_token)
+    Api::Genres::IgdbRequestFacade.new(genre_id, @@twitch_bearer_token)
   end
 
   def set_genre_properties(genre, igdb_genre_data)

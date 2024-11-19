@@ -1,4 +1,4 @@
-class Api::Games::GameRequestFacade
+class Api::Games::IgdbRequestFacade
   def initialize(igdb_id)
     @@igdb_id = igdb_id
   end

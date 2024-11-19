@@ -1,4 +1,4 @@
-class Api::Genres::GenreRequestFacade
+class Api::Genres::IgdbRequestFacade
   def initialize(igdb_id, twitch_bearer_token)
     @@igdb_id = igdb_id
     @@bearer_token = twitch_bearer_token

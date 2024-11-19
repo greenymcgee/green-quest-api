@@ -54,7 +54,7 @@ class Api::GamesController < ApplicationController
   end
 
   def request_igdb_game_data
-    facade = Api::Games::GameRequestFacade.new(@game.igdb_id)
+    facade = Api::Games::IgdbRequestFacade.new(@game.igdb_id)
     game_request = facade.get_igdb_game_data
     @igdb_game_data = game_request[:igdb_game_data]
     @twitch_bearer_token = game_request[:twitch_bearer_token]

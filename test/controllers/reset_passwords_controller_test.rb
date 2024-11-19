@@ -8,7 +8,7 @@ class ResetPasswordsControllerTest < ActionDispatch::IntegrationTest
     assert_response :created
   end
 
-  test "should return an unproccessible entity status" do
+  test "should return an unprocessable entity status" do
     post(api_reset_password_url, as: :json)
     assert_response :unprocessable_entity
   end
@@ -33,7 +33,7 @@ class ResetPasswordsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should return an unproccessible entity response" do
+  test "should return an unprocessable entity response" do
     patch(
       api_reset_password_url(@reset_password),
       params: {

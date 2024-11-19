@@ -7,6 +7,10 @@
       "description": "The datetime of the record's creation",
       "type": "string"
     },
+    "games": {
+      "items": { "$ref": "file:/game_without_resources.json#" },
+      "type": "array"
+    },
     "id": {
       "description": "The unique identifier for a genre.",
       "type": "integer"
@@ -28,7 +32,15 @@
       "type": "string"
     }
   },
-  "required": ["createdAt", "id", "igdbId", "name", "slug", "updatedAt"],
+  "required": [
+    "createdAt",
+    "games",
+    "id",
+    "igdbId",
+    "name",
+    "slug",
+    "updatedAt"
+  ],
   "title": "Genre",
   "type": "object"
 }

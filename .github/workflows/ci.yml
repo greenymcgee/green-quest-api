@@ -38,6 +38,27 @@ jobs:
   #     - name: Scan for security vulnerabilities in JavaScript dependencies
   #       run: bin/importmap audit
 
+  Spellcheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install node@22.11.0
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.11.0
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Dependencies Audit
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Spellcheck
+        run: npm run spellcheck
+
   Rubocop:
     runs-on: ubuntu-latest
     steps:

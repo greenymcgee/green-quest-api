@@ -15,12 +15,12 @@ class Users::SessionsController < Devise::SessionsController
 
   def respond_to_on_destroy
     set_current_green_quest_user
-    return render_acitve_user_response if @current_green_quest_user.present?
+    return render_active_user_response if @current_green_quest_user.present?
 
     render_inactive_user_response
   end
 
-  def render_acitve_user_response
+  def render_active_user_response
     render(json: { message: "Logged out successfully." }, status: :ok)
   end
 

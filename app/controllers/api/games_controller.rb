@@ -20,11 +20,9 @@ class Api::GamesController < ApplicationController
 
     return render_igdb_game_request_failure if @igdb_game_request_error.present?
 
-    return render_unprocessible_game unless game_saved?
+    return render_unprocessable_game unless game_saved?
 
-    set_genre_response
-    add_genres_to_game
-    add_genre_errors_to_game
+    add_game_resources
     return render_successful_show_response(:multi_status) if errors_present?
 
     render_successful_show_response(:created)
@@ -81,7 +79,7 @@ class Api::GamesController < ApplicationController
     render json: @igdb_game_request_error, status: :unprocessable_entity
   end
 
-  def render_unprocessible_game
+  def render_unprocessable_game
     render json: @game.errors, status: :unprocessable_entity
   end
 
@@ -89,22 +87,11 @@ class Api::GamesController < ApplicationController
     @game.errors.present?
   end
 
-  def set_genre_response
-    facade =
-      Api::Genres::CreateFacade.new(
-        @igdb_game_data["genres"],
-        @twitch_bearer_token,
-      )
-    @genre_response = facade.find_or_create_genres
-  end
-
-  def add_genres_to_game
-    @genre_response[:genres].each { |genre| @game.genres << genre }
-  end
-
-  def add_genre_errors_to_game
-    return unless @genre_response[:errors].present?
-
-    @game.errors.add(:genres, @genre_response[:errors])
+  def add_game_resources
+    Api::Games::CreateFacade.new(
+      game: @game,
+      igdb_game_data: @igdb_game_data,
+      twitch_bearer_token: @twitch_bearer_token,
+    ).add_game_resources
   end
 end

@@ -10,9 +10,13 @@ module GameCreateTestHelper
     stub_successful_igdb_api_request(
       "games/#{game_id}",
       game_json,
-      twitch_bearer_token,
+      stubbed_twitch_bearer_token,
     )
     stub_genre_responses(with_genre_failures)
+  end
+
+  def stubbed_twitch_bearer_token
+    "Bearer #{twitch_oauth_access_token}"
   end
 
   private
@@ -34,7 +38,7 @@ module GameCreateTestHelper
       stub_successful_igdb_api_request(
         "genres/#{genre_id}",
         json_mocks("igdb/genres/#{genre_id}.json"),
-        twitch_bearer_token,
+        stubbed_twitch_bearer_token,
       )
     end
   end
@@ -45,9 +49,5 @@ module GameCreateTestHelper
 
   def igdb_game_data
     JSON.parse(game_json).first
-  end
-
-  def twitch_bearer_token
-    "Bearer #{twitch_oauth_access_token}"
   end
 end

@@ -12,7 +12,7 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
     @basic_user = users(:basic_user)
     @basic_auth_headers = set_auth_headers(@basic_user)
     @game_json = json_mocks("igdb/game.json")
-    @twitch_bearer_token = "Bearer #{twitch_oauth_access_token}"
+    @twitch_bearer_token = stubbed_twitch_bearer_token
   end
 
   test "#index should get index" do

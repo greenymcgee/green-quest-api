@@ -2,7 +2,11 @@
 # https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 super_metroid:
+  genres: [rpg, puzzle]
   igdb_id: 47
+  name: Super Metroid
 
 dark_souls:
+  genres: [rpg]
   igdb_id: 1
+  name: Dark Souls

@@ -3,7 +3,34 @@
   "$id": "https://greenquestgames.com/games/index.json",
   "description": "The GET /api/games payload",
   "properties": {
-    "games": { "items": { "$ref": "file:/game.json#" }, "type": "array" }
+    "games": {
+      "items": {
+        "properties": {
+          "createdAt": {
+            "description": "The datetime of the record's creation",
+            "type": "string"
+          },
+          "id": {
+            "description": "The unique identifier for a game.",
+            "type": "integer"
+          },
+          "name": {
+            "description": "The name of the game",
+            "type": "string"
+          },
+          "rating": {
+            "description": "Float: the rating for the game from 1 - 5.",
+            "type": "number"
+          },
+          "updatedAt": {
+            "description": "The datetime of the record's last update",
+            "type": "string"
+          }
+        },
+        "required": ["createdAt", "id", "name", "rating", "updatedAt"]
+      },
+      "type": "array"
+    }
   },
   "required": ["games"],
   "type": "object"

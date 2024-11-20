@@ -1,0 +1,19 @@
+[
+  {
+    "id": 19,
+    "abbreviation": "SNES",
+    "alternative_name": "SNES, Super Nintendo",
+    "category": 1,
+    "created_at": 1297941647,
+    "generation": 4,
+    "name": "Super Nintendo Entertainment System",
+    "platform_logo": 106,
+    "platform_family": 5,
+    "slug": "snes",
+    "updated_at": 1718027289,
+    "url": "https://www.igdb.com/platforms/snes",
+    "versions": [68, 95, 97, 139, 177],
+    "websites": [209],
+    "checksum": "9adfe6a8-0040-ef79-94ae-493e37c5125b"
+  }
+]

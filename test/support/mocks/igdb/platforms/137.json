@@ -1,0 +1,18 @@
+[
+  {
+    "id": 137,
+    "alternative_name": "n3DS",
+    "category": 5,
+    "created_at": 1504610734,
+    "generation": 8,
+    "name": "New Nintendo 3DS",
+    "platform_logo": 235,
+    "platform_family": 5,
+    "slug": "new-nintendo-3ds",
+    "updated_at": 1718027289,
+    "url": "https://www.igdb.com/platforms/new-nintendo-3ds",
+    "versions": [195, 677],
+    "websites": [17],
+    "checksum": "10d2d57e-e40a-94d2-842a-c1de7ddd2f29"
+  }
+]

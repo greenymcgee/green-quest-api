@@ -1,7 +1,13 @@
 snes:
-  igdb_id: 1
+  games: [super_metroid]
+  igdb_id: 19
   name: Super Nintendo Entertainment System
 
 sega:
   igdb_id: 2
   name: Sega
+
+xbox_360:
+  games: [dark_souls]
+  igdb_id: 12
+  name: Xbox 360

@@ -5,8 +5,10 @@ super_metroid:
   genres: [rpg, puzzle]
   igdb_id: 47
   name: Super Metroid
+  platforms: [snes]
 
 dark_souls:
   genres: [rpg]
   igdb_id: 1
   name: Dark Souls
+  platforms: [xbox_360]

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://greenquestgames.com/games/index.json",
+  "description": "The GET /api/platforms payload",
+  "properties": {
+    "platforms": {
+      "items": { "$ref": "file:/platform_without_resources.json#" },
+      "type": "array"
+    }
+  },
+  "required": ["platforms"],
+  "type": "object"
+}

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "id": "file:/platform_without_resources.json#",
-  "description": "A platform",
+  "description": "A platform that does not include resources",
   "properties": {
     "abbreviation": {
       "description": "An abbreviated name for the platform",

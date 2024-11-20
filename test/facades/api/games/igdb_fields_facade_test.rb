@@ -8,6 +8,57 @@ class Api::Games::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
     facade.populate_game_fields
   end
 
+  test "should populate the bundle_ids" do
+    assert_equal(@game.bundle_ids, @igdb_game_data["bundles"])
+  end
+
+  test "should populate the dlc_ids" do
+    assert_equal(@game.dlc_ids, @igdb_game_data["dlcs"])
+  end
+
+  test "should populate the expanded_game_ids" do
+    assert_equal(@game.expanded_game_ids, @igdb_game_data["expanded_games"])
+  end
+
+  test "should populate the expansion_ids" do
+    assert_equal(@game.expansion_ids, @igdb_game_data["expansions"])
+  end
+
+  test "should populate the fork_ids" do
+    assert_equal(@game.fork_ids, @igdb_game_data["forks"])
+  end
+
+  test "should populate the parent_game_id" do
+    assert_equal(@game.parent_game_id, @igdb_game_data["parent_game"])
+  end
+
+  test "should populate the port_ids" do
+    assert_equal(@game.port_ids, @igdb_game_data["ports"])
+  end
+
+  test "should populate the remake_ids" do
+    assert_equal(@game.remake_ids, @igdb_game_data["remakes"])
+  end
+
+  test "should populate the remaster_ids" do
+    assert_equal(@game.remaster_ids, @igdb_game_data["remasters"])
+  end
+
+  test "should populate the similar_game_ids" do
+    assert_equal(@game.similar_game_ids, @igdb_game_data["similar_games"])
+  end
+
+  test "should populate the standalone_expansion_ids" do
+    assert_equal(
+      @game.standalone_expansion_ids,
+      @igdb_game_data["standalone_expansions"],
+    )
+  end
+
+  test "should populate the version_parent_id" do
+    assert_equal(@game.version_parent_id, @igdb_game_data["version_parent"])
+  end
+
   test "should populate the category_enum" do
     assert_equal(@game.category_enum, @igdb_game_data["category"])
   end

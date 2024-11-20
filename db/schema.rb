@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_20_124830) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_20_161452) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_20_124830) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_enum"
+    t.integer "bundle_ids", default: [], null: false, array: true
+    t.integer "dlc_ids", default: [], null: false, array: true
+    t.integer "expanded_game_ids", default: [], null: false, array: true
+    t.integer "expansion_ids", default: [], null: false, array: true
+    t.integer "fork_ids", default: [], null: false, array: true
+    t.integer "parent_game_id"
+    t.integer "port_ids", default: [], null: false, array: true
+    t.integer "remake_ids", default: [], null: false, array: true
+    t.integer "remaster_ids", default: [], null: false, array: true
+    t.integer "similar_game_ids", default: [], null: false, array: true
+    t.integer "standalone_expansion_ids", default: [], null: false, array: true
+    t.integer "version_parent_id"
     t.index ["igdb_id"], name: "index_games_on_igdb_id", unique: true
     t.index ["slug"], name: "index_games_on_slug"
   end

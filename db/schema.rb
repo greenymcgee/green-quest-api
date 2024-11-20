@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_16_180345) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_19_220208) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,23 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_16_180345) do
     t.datetime "updated_at", null: false
     t.index ["igdb_id"], name: "index_genres_on_igdb_id", unique: true
     t.index ["slug"], name: "index_genres_on_slug"
+  end
+
+  create_table "platforms", force: :cascade do |t|
+    t.string "abbreviation", default: "", null: false
+    t.string "alternative_name", default: "", null: false
+    t.integer "category_enum"
+    t.string "checksum", default: "", null: false
+    t.integer "generation"
+    t.integer "igdb_id", null: false
+    t.string "igdb_url", default: "", null: false
+    t.string "name", default: "", null: false
+    t.string "slug", default: "", null: false
+    t.string "summary", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["igdb_id"], name: "index_platforms_on_igdb_id", unique: true
+    t.index ["slug"], name: "index_platforms_on_slug"
   end
 
   create_table "users", force: :cascade do |t|

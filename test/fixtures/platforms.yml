@@ -1,0 +1,7 @@
+snes:
+  igdb_id: 1
+  name: Super Nintendo Entertainment System
+
+sega:
+  igdb_id: 2
+  name: Sega

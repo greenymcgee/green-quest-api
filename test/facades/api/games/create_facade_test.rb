@@ -21,6 +21,13 @@ class Api::Games::CreateFacadeTest < ActionDispatch::IntegrationTest
     assert_equal(@game.genres.map(&:igdb_id), @igdb_game_data["genres"])
   end
 
+  test "should add platforms to the game" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @facade.add_game_resources
+    platform_ids = @game.platforms.map(&:igdb_id)
+    @igdb_game_data["platforms"].each { |id| assert platform_ids.include? id }
+  end
+
   test "should not add errors to game upon success" do
     stub_successful_game_create_request(@game.igdb_id)
     @facade.add_game_resources
@@ -37,5 +44,18 @@ class Api::Games::CreateFacadeTest < ActionDispatch::IntegrationTest
       @game.errors.messages,
       { genres: [[{ 31 => { "message" => "Not authorized" } }]] },
     )
+  end
+
+  test "should add errors to game upon platform failure" do
+    stub_successful_game_create_request(
+      @game.igdb_id,
+      with_platform_failures: true,
+    )
+    @facade.add_game_resources
+    platform_ids = @igdb_game_data["platforms"]
+    @game.errors[:platforms].first.each_with_index do |errors, index|
+      id = index > 0 ? platform_ids[index + 1] : platform_ids[index]
+      assert_equal(errors.first, [id, { "message" => "Not authorized" }])
+    end
   end
 end

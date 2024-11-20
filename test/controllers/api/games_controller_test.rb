@@ -61,6 +61,23 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
     assert_response :multi_status
   end
 
+  test "#create should return multi status response with platform failures" do
+    stub_successful_game_create_request(1026, with_platform_failures: true)
+    assert_difference("Game.count") do
+      post(
+        api_games_url,
+        as: :json,
+        headers: @admin_auth_headers,
+        params: {
+          game: {
+            igdb_id: 1026,
+          },
+        },
+      )
+    end
+    assert_response :multi_status
+  end
+
   test "#create should return a game error" do
     stub_successful_twitch_oauth_request
     stub_successful_igdb_api_request("games/", @game_json, @twitch_bearer_token)

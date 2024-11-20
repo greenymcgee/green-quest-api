@@ -8,20 +8,92 @@ class Api::Games::IgdbFieldsFacade
 
   def populate_game_fields
     @@game.update(
+      bundle_ids: bundle_ids,
+      dlc_ids: dlc_ids,
+      expanded_game_ids: expanded_game_ids,
+      expansion_ids: expansion_ids,
+      fork_ids: fork_ids,
       category_enum: category_enum,
       checksum: checksum,
       first_release_date: first_release_date,
       igdb_url: igdb_url,
       name: name,
+      parent_game_id: parent_game_id,
+      port_ids: port_ids,
+      remake_ids: remake_ids,
+      remaster_ids: remaster_ids,
+      similar_game_ids: similar_game_ids,
       slug: slug,
       status: status,
+      standalone_expansion_ids: standalone_expansion_ids,
       storyline: storyline,
       summary: summary,
+      version_parent_id: version_parent_id,
       version_title: version_title,
     )
   end
 
   private
+
+  def bundle_ids
+    get_present_value(@@game.bundle_ids, @@igdb_game_data["bundles"])
+  end
+
+  def dlc_ids
+    get_present_value(@@game.dlc_ids, @@igdb_game_data["dlcs"])
+  end
+
+  def expanded_game_ids
+    get_present_value(
+      @@game.expanded_game_ids,
+      @@igdb_game_data["expanded_games"],
+    )
+  end
+
+  def expansion_ids
+    get_present_value(@@game.expansion_ids, @@igdb_game_data["expansions"])
+  end
+
+  def fork_ids
+    get_present_value(@@game.fork_ids, @@igdb_game_data["forks"])
+  end
+
+  def parent_game_id
+    get_present_value(@@game.parent_game_id, @@igdb_game_data["parent_game"])
+  end
+
+  def port_ids
+    get_present_value(@@game.port_ids, @@igdb_game_data["ports"])
+  end
+
+  def remake_ids
+    get_present_value(@@game.remake_ids, @@igdb_game_data["remakes"])
+  end
+
+  def remaster_ids
+    get_present_value(@@game.remaster_ids, @@igdb_game_data["remasters"])
+  end
+
+  def similar_game_ids
+    get_present_value(
+      @@game.similar_game_ids,
+      @@igdb_game_data["similar_games"],
+    )
+  end
+
+  def standalone_expansion_ids
+    get_present_value(
+      @@game.standalone_expansion_ids,
+      @@igdb_game_data["standalone_expansions"],
+    )
+  end
+
+  def version_parent_id
+    get_present_value(
+      @@game.version_parent_id,
+      @@igdb_game_data["version_parent"],
+    )
+  end
 
   def category_enum
     get_present_value(@@game.category_enum, @@igdb_game_data["category"])

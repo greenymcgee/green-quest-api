@@ -25,6 +25,10 @@
       },
       "type": "array"
     },
+    "platforms": {
+      "items": { "$ref": "file:/platform_without_resources.json#" },
+      "type": "array"
+    },
     "id": {
       "description": "The unique identifier for a game.",
       "type": "integer"
@@ -50,7 +54,15 @@
       "type": "string"
     }
   },
-  "required": ["genres", "id", "igdbId", "name", "review", "rating"],
+  "required": [
+    "genres",
+    "id",
+    "igdbId",
+    "name",
+    "platforms",
+    "review",
+    "rating"
+  ],
   "title": "Game",
   "type": "object"
 }

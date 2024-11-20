@@ -6,7 +6,7 @@ class Api::Genres::IgdbRequestFacadeTest < ActionDispatch::IntegrationTest
   setup do
     @twitch_oauth_token = "Bearer asdlfkh"
     @genre_id = 2
-    @pathname = pathname = "genres/#{@genre_id}"
+    @pathname = "genres/#{@genre_id}"
     @genre_json = json_mocks("igdb/genres/9.json")
   end
 

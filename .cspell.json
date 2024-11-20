@@ -21,6 +21,7 @@
     "eatmyshorts",
     "encryptable",
     "encryptor",
+    "Famicom",
     "flanman",
     "gameplay",
     "greenquestgames",
@@ -49,14 +50,17 @@
     "Resgistrations",
     "Rubocop",
     "rubyjean",
+    "satellaview",
     "schickling",
     "sdlfkj",
     "sendfile",
+    "sfam",
     "sharedapp",
     "snes",
     "somedatabase",
     "timeoutable",
     "unlockable",
-    "validatable"
+    "validatable",
+    "wiiu"
   ]
 }

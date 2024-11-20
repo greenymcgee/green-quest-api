@@ -1,0 +1,18 @@
+[
+  {
+    "id": 58,
+    "abbreviation": "SFAM",
+    "alternative_name": "SFC",
+    "category": 1,
+    "created_at": 1351254496,
+    "generation": 4,
+    "name": "Super Famicom",
+    "platform_logo": 74,
+    "platform_family": 5,
+    "slug": "sfam",
+    "updated_at": 1718027289,
+    "url": "https://www.igdb.com/platforms/sfam",
+    "versions": [67, 98, 639],
+    "checksum": "2c90189e-fbde-d856-b2c7-a1522e8caed0"
+  }
+]

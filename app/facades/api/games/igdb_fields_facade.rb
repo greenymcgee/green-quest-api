@@ -42,6 +42,7 @@ class Api::Games::IgdbFieldsFacade
   def first_release_date
     get_present_value(@@game.first_release_date, first_release_date_to_datetime)
   end
+
   def igdb_url
     get_present_value(@@game.igdb_url, @@igdb_game_data["url"])
   end

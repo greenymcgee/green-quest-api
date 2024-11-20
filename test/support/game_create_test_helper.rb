@@ -5,7 +5,11 @@ module GameCreateTestHelper
   include TwitchOauthTestHelper
   include IgdbApiTestHelper
 
-  def stub_successful_game_create_request(game_id, with_genre_failures: false)
+  def stub_successful_game_create_request(
+    game_id,
+    with_genre_failures: false,
+    with_platform_failures: false
+  )
     stub_successful_twitch_oauth_request
     stub_successful_igdb_api_request(
       "games/#{game_id}",
@@ -13,6 +17,7 @@ module GameCreateTestHelper
       stubbed_twitch_bearer_token,
     )
     stub_genre_responses(with_genre_failures)
+    stub_platform_responses(with_platform_failures)
   end
 
   def stubbed_twitch_bearer_token
@@ -27,6 +32,12 @@ module GameCreateTestHelper
     stub_successful_genre_responses
   end
 
+  def stub_platform_responses(with_platform_failures)
+    return stub_platform_request_failures if with_platform_failures
+
+    stub_successful_platform_responses
+  end
+
   def stub_genre_request_failures
     igdb_game_data["genres"].each do |genre_id|
       stub_igdb_api_request_failure("genres/#{genre_id}")
@@ -38,6 +49,22 @@ module GameCreateTestHelper
       stub_successful_igdb_api_request(
         "genres/#{genre_id}",
         json_mocks("igdb/genres/#{genre_id}.json"),
+        stubbed_twitch_bearer_token,
+      )
+    end
+  end
+
+  def stub_platform_request_failures
+    igdb_game_data["platforms"].each do |id|
+      stub_igdb_api_request_failure("platforms/#{id}")
+    end
+  end
+
+  def stub_successful_platform_responses
+    igdb_game_data["platforms"].each do |id|
+      stub_successful_igdb_api_request(
+        "platforms/#{id}",
+        json_mocks("igdb/platforms/#{id}.json"),
         stubbed_twitch_bearer_token,
       )
     end

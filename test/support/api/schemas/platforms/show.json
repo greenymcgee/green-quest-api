@@ -2,9 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://greenquestgames.com/platforms/show.json",
   "description": "The GET /api/platforms/:id payload",
-  "properties": {
-    "platform": { "$ref": "file:/platform_without_resources.json#" }
-  },
+  "properties": { "platform": { "$ref": "file:/platform.json#" } },
   "required": ["platform"],
   "type": "object"
 }

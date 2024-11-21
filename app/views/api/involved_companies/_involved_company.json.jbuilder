@@ -1,0 +1,11 @@
+json.extract!(
+  involved_company,
+  :created_at,
+  :id,
+  :igdb_id,
+  :is_developer,
+  :is_porter,
+  :is_publisher,
+  :is_supporter,
+  :updated_at,
+)

@@ -5,3 +5,7 @@ sony:
 nintendo:
   igdb_id: 2
   name: "Nintendo"
+
+fromsoft:
+  igdb_id: 3
+  name: "Fromsoftware"

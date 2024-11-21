@@ -51,6 +51,6 @@
     "startDate",
     "updatedAt"
   ],
-  "title": "Platform",
+  "title": "Company",
   "type": "object"
 }

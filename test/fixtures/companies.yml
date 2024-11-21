@@ -1,0 +1,7 @@
+sony:
+  igdb_id: 1
+  name: "Sony"
+
+nintendo:
+  igdb_id: 2
+  name: "Nintendo"

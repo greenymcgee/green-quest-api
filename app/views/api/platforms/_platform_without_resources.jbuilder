@@ -1,0 +1,13 @@
+json.extract!(
+  platform,
+  :abbreviation,
+  :alternative_name,
+  :created_at,
+  :generation,
+  :id,
+  :igdb_id,
+  :name,
+  :slug,
+  :summary,
+  :updated_at,
+)

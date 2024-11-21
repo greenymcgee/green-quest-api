@@ -1,0 +1,10 @@
+json.extract!(
+  game,
+  :id,
+  :igdb_id,
+  :name,
+  :rating,
+  :review,
+  :created_at,
+  :updated_at,
+)

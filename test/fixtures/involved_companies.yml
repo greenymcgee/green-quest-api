@@ -1,0 +1,9 @@
+one:
+  company: nintendo
+  game: super_metroid
+  igdb_id: 1
+
+two:
+  company: fromsoft
+  game: dark_souls
+  igdb_id: 2

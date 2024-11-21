@@ -1,0 +1,2 @@
+class InvolvedCompanyPolicy < AdminPolicy
+end

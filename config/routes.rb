@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :companies
     resources :games
     resources :genres, only: %i[index show destroy]
+    resources :involved_companies, only: %i[index show destroy]
     resources :platforms, only: %i[index show destroy]
     resources :users
   end

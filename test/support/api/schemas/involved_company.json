@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "file:/involved_company.json#",
+  "description": "A company involved with a game",
+  "properties": {
+    "createdAt": {
+      "description": "The datetime of the record's creation",
+      "type": "string"
+    },
+    "id": {
+      "description": "The unique identifier for a platform.",
+      "type": "integer"
+    },
+    "igdbId": {
+      "description": "The id for the platform in the IGDB database.",
+      "type": "integer"
+    },
+    "isDeveloper": { "type": "boolean" },
+    "isPorter": { "type": "boolean" },
+    "isPublisher": { "type": "boolean" },
+    "isSupporter": { "type": "boolean" },
+    "updatedAt": {
+      "description": "The datetime of the record's last update",
+      "type": "string"
+    }
+  },
+  "required": [
+    "createdAt",
+    "id",
+    "igdbId",
+    "isDeveloper",
+    "isPorter",
+    "isPublisher",
+    "isSupporter",
+    "updatedAt"
+  ],
+  "title": "Involved Company",
+  "type": "object"
+}

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://greenquestgames.com/companies/show.json",
+  "description": "The GET /api/companies/:id payload",
+  "properties": { "company": { "$ref": "file:/company.json#" } },
+  "required": ["company"],
+  "type": "object"
+}

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       resource :reset_password, only: %i[create update]
     end
 
+    resources :companies
     resources :games
     resources :genres, only: %i[index show destroy]
     resources :platforms, only: %i[index show destroy]

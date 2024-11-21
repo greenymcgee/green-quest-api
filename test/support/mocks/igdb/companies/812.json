@@ -1,0 +1,40 @@
+[
+  {
+    "id": 812,
+    "change_date_category": 7,
+    "country": 76,
+    "created_at": 1345136444,
+    "description": "Gradiente is a Brazilian consumer electronics company founded in 1964 and based in São Paulo. The company designs and markets many product lines, including video (including televisions and DVD players), audio, home theatre, high-end acoustics, office and mobile stereo, and wireless.\n\nIn late 1983, via their subsidiary Polyvox, they launched the official Atari 2600 in Brazil (Vader model). At the time there were already clones or imported 2600s being sold.\n\nIn 1993 they founded Playtronic, a fully-owned subsidiary that licensed the manufacturing of Nintendo consoles in Brazil, and while publishing games for various systems they also did the Portuguese translations of some games (among them, South Park and Shadow Man for the Nintendo 64). They ceased partnership with Nintendo in 2003 due to the high price of the dollar at the time. Before 1993, they were unlicensed and sold the NES clone Phantom System, which resembles the Atari 7800.",
+    "logo": 9832,
+    "name": "Gradiente",
+    "published": [
+      154, 156, 163, 188, 360, 647, 699, 705, 718, 843, 1026, 1027, 1029, 1030,
+      1032, 1041, 1070, 1074, 1075, 1090, 1092, 1094, 1095, 1096, 1130, 1132,
+      1257, 1286, 1326, 1355, 1463, 1464, 1511, 1512, 1513, 1514, 1539, 1558,
+      1561, 1610, 1622, 1626, 1627, 1638, 1639, 1641, 1697, 1698, 1699, 2148,
+      2239, 2289, 2290, 2324, 2327, 2328, 2329, 2330, 2332, 2343, 2473, 2485,
+      2591, 2713, 2714, 2715, 2723, 2815, 2840, 2847, 2980, 3123, 3166, 3213,
+      3328, 3337, 3340, 3366, 3368, 3406, 3408, 3412, 3418, 3426, 3428, 3436,
+      3442, 3453, 3475, 3480, 3485, 3487, 3489, 3490, 3491, 3494, 3495, 3496,
+      3515, 3516, 3535, 3544, 3545, 3546, 3547, 3550, 3574, 3580, 3595, 3598,
+      3603, 3616, 3617, 3619, 3636, 3641, 3642, 3720, 3729, 3907, 4031, 4068,
+      4232, 4567, 5410, 5600, 6054, 6283, 6424, 6449, 6605, 6688, 7294, 8033,
+      8503, 8723, 9862, 10614, 10662, 12846, 16617, 22012, 27525, 36878, 42576,
+      42636, 43719, 44043, 44077, 44454, 45195, 47677, 48107, 48110, 48233,
+      48237, 48320, 48915, 49030, 49038, 49854, 49857, 49875, 49877, 49878,
+      49882, 49919, 49922, 49949, 49971, 53943, 74422, 77907, 81197, 84891,
+      85578, 86490, 93641, 115430, 116135, 118554, 118557, 128874, 144507,
+      146696, 152752, 153450, 165581, 192277, 200405, 200683, 201090, 204385,
+      204566, 204616, 205917, 209280, 210451, 210452, 228796, 229742, 229851,
+      229891, 229927, 240217, 248203, 249128, 249167, 259481, 259482, 259641,
+      259642, 259648, 266840, 267540, 270345, 270346, 300040
+    ],
+    "slug": "gradiente",
+    "start_date": -157852800,
+    "start_date_category": 2,
+    "updated_at": 1721781829,
+    "url": "https://www.igdb.com/companies/gradiente",
+    "websites": [8727],
+    "checksum": "c469be01-ff52-f9ab-d22e-43805a2f1bea"
+  }
+]

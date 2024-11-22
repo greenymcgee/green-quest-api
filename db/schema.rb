@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_21_105150) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_22_142844) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,16 +21,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_21_105150) do
     t.string "checksum", default: "", null: false
     t.integer "country_code"
     t.string "description", default: "", null: false
-    t.integer "developed_games", default: [], null: false, array: true
     t.integer "igdb_id", null: false
     t.string "igdb_url", default: "", null: false
     t.string "name", default: "", null: false
     t.integer "parent_id"
-    t.integer "published_games", default: [], null: false, array: true
     t.string "slug", default: "", null: false
     t.datetime "start_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "developed_game_ids", default: [], null: false, array: true
+    t.integer "published_game_ids", default: [], null: false, array: true
     t.index ["igdb_id"], name: "index_companies_on_igdb_id", unique: true
     t.index ["slug"], name: "index_companies_on_slug"
   end

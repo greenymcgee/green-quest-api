@@ -108,6 +108,8 @@ class Api::Games::IgdbFieldsFacade
   end
 
   def first_release_date_to_datetime
+    return unless first_release_date_unix_timestamp.present?
+
     Time.at(first_release_date_unix_timestamp).utc.to_datetime
   end
 

@@ -38,9 +38,7 @@ class Api::Genres::CreateFacade
   end
 
   def set_genre_properties(genre, igdb_genre_data)
-    genre.checksum = igdb_genre_data["checksum"]
-    genre.igdb_url = igdb_genre_data["url"]
-    genre.name = igdb_genre_data["name"]
-    genre.slug = igdb_genre_data["slug"]
+    facade = Api::Genres::IgdbFieldsFacade.new(genre, igdb_genre_data)
+    facade.populate_genre_fields
   end
 end

@@ -14,6 +14,7 @@
     "url": "https://www.igdb.com/platforms/snes",
     "versions": [68, 95, 97, 139, 177],
     "websites": [209],
-    "checksum": "9adfe6a8-0040-ef79-94ae-493e37c5125b"
+    "checksum": "9adfe6a8-0040-ef79-94ae-493e37c5125b",
+    "summary": "blah"
   }
 ]

@@ -8,4 +8,10 @@ module IgdbFieldsHelper
 
     current_value
   end
+
+  def get_present_boolean_value(current_bool, new_bool)
+    return new_bool if [true, false].include? new_bool
+
+    current_bool
+  end
 end

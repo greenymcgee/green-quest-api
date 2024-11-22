@@ -12,4 +12,14 @@ class IgdbFieldsHelperTest < ActionView::TestCase
     result = get_present_value(@game.name, nil)
     assert_equal result, @game.name
   end
+
+  test "#get_present_boolean_value should return the new_value when it is present" do
+    result = get_present_boolean_value(true, false)
+    assert_equal result, false
+  end
+
+  test "#get_present_boolean_value should return the current_value when is not a boolean" do
+    result = get_present_boolean_value(true, nil)
+    assert_equal result, true
+  end
 end

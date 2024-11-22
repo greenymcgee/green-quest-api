@@ -67,6 +67,14 @@ class Api::Games::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
     assert_equal(@game.checksum, @igdb_game_data["checksum"])
   end
 
+  test "should gracefully handle a null first_release_date" do
+    game = Game.new(igdb_id: 40)
+    igdb_data = { **@igdb_game_data, "first_release_date" => nil }
+    facade = Api::Games::IgdbFieldsFacade.new(game, igdb_data)
+    facade.populate_game_fields
+    assert_nil game.first_release_date
+  end
+
   test "should populate the first_release_date" do
     igdb_date = @igdb_game_data["first_release_date"]
     date = Time.at(igdb_date).utc.to_datetime

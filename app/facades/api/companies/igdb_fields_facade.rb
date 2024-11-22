@@ -31,6 +31,8 @@ class Api::Companies::IgdbFieldsFacade
   end
 
   def change_date_to_datetime
+    return unless change_date_unix_timestamp.present?
+
     Time.at(change_date_unix_timestamp).utc.to_datetime
   end
 
@@ -93,6 +95,8 @@ class Api::Companies::IgdbFieldsFacade
   end
 
   def start_date_to_datetime
+    return unless start_date_unix_timestamp.present?
+
     Time.at(start_date_unix_timestamp).utc.to_datetime
   end
 

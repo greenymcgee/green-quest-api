@@ -14,6 +14,14 @@ class Api::Companies::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
     assert_equal(@company.change_date, date)
   end
 
+  test "should gracefully handle a null change_date" do
+    company = Company.new(igdb_id: 40)
+    igdb_data = { **@igdb_data, "change_date" => nil }
+    facade = Api::Companies::IgdbFieldsFacade.new(company, igdb_data)
+    facade.populate_company_fields
+    assert_nil(company.change_date)
+  end
+
   test "should populate the change_date_category_enum" do
     assert_equal(
       @company.change_date_category_enum,
@@ -55,6 +63,14 @@ class Api::Companies::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
 
   test "should populate the slug" do
     assert_equal(@company.slug, @igdb_data["slug"])
+  end
+
+  test "should gracefully handle a null start_date" do
+    company = Company.new(igdb_id: 40)
+    igdb_data = { **@igdb_data, "start_date" => nil }
+    facade = Api::Companies::IgdbFieldsFacade.new(company, igdb_data)
+    facade.populate_company_fields
+    assert_nil company.start_date
   end
 
   test "should populate the start_date" do

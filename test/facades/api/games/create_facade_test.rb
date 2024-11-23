@@ -28,6 +28,15 @@ class Api::Games::CreateFacadeTest < ActionDispatch::IntegrationTest
     @igdb_game_data["platforms"].each { |id| assert platform_ids.include? id }
   end
 
+  test "should add involved companies to the game" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @facade.add_game_resources
+    involved_company_ids = @game.involved_companies.map(&:igdb_id)
+    @igdb_game_data["involved_companies"].each do |id|
+      assert involved_company_ids.include? id
+    end
+  end
+
   test "should not add errors to game upon success" do
     stub_successful_game_create_request(@game.igdb_id)
     @facade.add_game_resources

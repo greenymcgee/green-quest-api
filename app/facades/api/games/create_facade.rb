@@ -1,3 +1,5 @@
+require "./app/facades/api/games/involved_company_game_create_facade.rb"
+
 class Api::Games::CreateFacade
   def initialize(game:, igdb_game_data:, twitch_bearer_token:)
     @@game = game
@@ -8,6 +10,11 @@ class Api::Games::CreateFacade
   def add_game_resources
     add_genres_to_game
     add_platforms_to_game
+    Api::Games::InvolvedCompanyGameCreateFacade.new(
+      game: @@game,
+      igdb_game_data: @@igdb_game_data,
+      twitch_bearer_token: @@twitch_bearer_token,
+    ).add_involved_companies_to_game
   end
 
   private

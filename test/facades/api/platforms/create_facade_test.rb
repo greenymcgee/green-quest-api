@@ -8,7 +8,7 @@ class Api::Platforms::CreateFacadeTest < ActionDispatch::IntegrationTest
     @ids = JSON.parse(json_mocks("igdb/game.json")).first["platforms"]
   end
 
-  test "should create new genres" do
+  test "should create new platforms" do
     @ids.each do |id|
       stub_successful_igdb_api_request(
         "platforms/#{id}",

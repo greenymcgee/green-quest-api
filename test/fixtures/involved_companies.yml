@@ -2,8 +2,27 @@ one:
   company: nintendo
   game: super_metroid
   igdb_id: 1
+  is_developer: true
 
 two:
   company: fromsoft
   game: dark_souls
   igdb_id: 2
+
+super_metroid_porter:
+  company: super_metroid_porter
+  game: super_metroid
+  igdb_id: 4
+  is_porter: true
+
+super_metroid_publisher:
+  company: super_metroid_publisher
+  game: super_metroid
+  igdb_id: 3
+  is_publisher: true
+
+super_metroid_supporter:
+  company: super_metroid_supporter
+  game: super_metroid
+  igdb_id: 5
+  is_supporter: true

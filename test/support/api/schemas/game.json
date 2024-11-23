@@ -7,6 +7,10 @@
       "description": "The datetime of the record's creation",
       "type": "string"
     },
+    "developers": {
+      "items": { "$ref": "file:/company.json#" },
+      "type": "array"
+    },
     "errors": {
       "description": "Any errors that might be present after fulfilling a game request",
       "type": "array"
@@ -29,6 +33,14 @@
       "items": { "$ref": "file:/platform_without_resources.json#" },
       "type": "array"
     },
+    "porters": {
+      "items": { "$ref": "file:/company.json#" },
+      "type": "array"
+    },
+    "publishers": {
+      "items": { "$ref": "file:/company.json#" },
+      "type": "array"
+    },
     "id": {
       "description": "The unique identifier for a game.",
       "type": "integer"
@@ -49,12 +61,17 @@
       "description": "Float: the rating for the game from 1 - 5.",
       "type": "number"
     },
+    "supporters": {
+      "items": { "$ref": "file:/company.json#" },
+      "type": "array"
+    },
     "updatedAt": {
       "description": "The datetime of the record's last update",
       "type": "string"
     }
   },
   "required": [
+    "developers",
     "genres",
     "id",
     "igdbId",

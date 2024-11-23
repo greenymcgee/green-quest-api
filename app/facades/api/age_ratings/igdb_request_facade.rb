@@ -10,7 +10,7 @@ class Api::AgeRatings::IgdbRequestFacade
       raise StandardError.new(@@resource[:error]) if @@resource[:error].present?
 
       set_igdb_data
-      { igdb_age_rating_data: @@igdb_age_rating_data }
+      { igdb_data: @@igdb_data }
     rescue StandardError => error
       { error: error }
     end
@@ -33,6 +33,6 @@ class Api::AgeRatings::IgdbRequestFacade
   end
 
   def set_igdb_data
-    @@igdb_age_rating_data, = JSON.parse(@@igdb_response.body)
+    @@igdb_data, = JSON.parse(@@igdb_response.body)
   end
 end

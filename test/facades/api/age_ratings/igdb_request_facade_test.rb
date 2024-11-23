@@ -17,7 +17,7 @@ class Api::AgeRatings::IgdbRequestFacadeTest < ActionDispatch::IntegrationTest
       @twitch_oauth_token,
     )
     facade = Api::AgeRatings::IgdbRequestFacade.new(@id, @twitch_oauth_token)
-    age_rating = facade.get_igdb_data[:igdb_age_rating_data]
+    age_rating = facade.get_igdb_data[:igdb_data]
     assert_equal(age_rating, JSON.parse(@age_rating_json).first)
   end
 

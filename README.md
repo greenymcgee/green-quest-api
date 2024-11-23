@@ -17,7 +17,7 @@ Things you may want to cover:
 - System dependencies
 
 - [Mail Catcher](https://mailcatcher.me/)
-- Must open the project with `code .` from terminal for VSCode Ruby Prettier
+- Must open the project with `code .` from terminal for VSCode Ruby Prettier. I think this has to do with the system ruby version.
 setup to work.
 - [Devise JWT](https://github.com/waiting-for-dev/devise-jwt)
 - [Pundit](https://github.com/varvet/pundit)

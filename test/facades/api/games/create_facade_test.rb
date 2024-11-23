@@ -28,6 +28,15 @@ class Api::Games::CreateFacadeTest < ActionDispatch::IntegrationTest
     @igdb_game_data["platforms"].each { |id| assert platform_ids.include? id }
   end
 
+  test "should add involved companies to the game" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @facade.add_game_resources
+    involved_company_ids = @game.involved_companies.map(&:igdb_id)
+    @igdb_game_data["involved_companies"].each do |id|
+      assert involved_company_ids.include? id
+    end
+  end
+
   test "should not add errors to game upon success" do
     stub_successful_game_create_request(@game.igdb_id)
     @facade.add_game_resources
@@ -57,5 +66,32 @@ class Api::Games::CreateFacadeTest < ActionDispatch::IntegrationTest
       id = index > 0 ? platform_ids[index + 1] : platform_ids[index]
       assert_equal(errors.first, [id, { "message" => "Not authorized" }])
     end
+  end
+
+  test "should add errors to game upon involved company failure" do
+    stub_successful_game_create_request(
+      @game.igdb_id,
+      with_involved_company_failures: true,
+    )
+    @facade.add_game_resources
+    ids = @igdb_game_data["involved_companies"]
+    @game.errors[:involved_companies].first.each_with_index do |errors, index|
+      assert_equal(
+        errors.first,
+        [ids[index], { "message" => "Not authorized" }],
+      )
+    end
+  end
+
+  test "should add errors to game upon company failure" do
+    stub_successful_game_create_request(
+      @game.igdb_id,
+      with_company_failures: true,
+    )
+    @facade.add_game_resources
+    assert_equal(
+      @game.errors[:companies].first.count,
+      stubbed_company_ids.count,
+    )
   end
 end

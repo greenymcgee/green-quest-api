@@ -1,0 +1,2 @@
+class AgeRatingPolicy < AdminPolicy
+end

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://greenquestgames.com/age_ratings/index.json",
+  "description": "The GET /api/age_ratings payload",
+  "properties": {
+    "ageRatings": {
+      "items": {"$ref": "file:/age_rating.json#"},
+      "type": "array"
+    }
+  },
+  "required": ["ageRatings"],
+  "type": "object"
+}

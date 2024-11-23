@@ -9,3 +9,15 @@ nintendo:
 fromsoft:
   igdb_id: 3
   name: "Fromsoftware"
+
+super_metroid_publisher:
+  igdb_id: 4
+  name: Super Metroid Publisher
+
+super_metroid_porter:
+  igdb_id: 5
+  name: Super Metroid Porter
+
+super_metroid_supporter:
+  igdb_id: 6
+  name: Super Metroid Supporter

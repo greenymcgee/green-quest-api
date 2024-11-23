@@ -6,38 +6,38 @@ class Api::Companies::CreateFacadeTest < ActionDispatch::IntegrationTest
 
   setup do
     @twitch_oauth_token = "Bearer asdlfkh"
-    @ids = stubbed_company_ids
+    @id = stubbed_company_ids.first
   end
 
-  test "should create new companies" do
+  test "should create a new company" do
     stub_successful_company_requests(@twitch_oauth_token)
-    assert_difference("Company.count", +@ids.count) do
-      facade = Api::Companies::CreateFacade.new(@ids, @twitch_oauth_token)
-      facade.find_or_create_companies
+    assert_difference("Company.count", +1) do
+      facade = Api::Companies::CreateFacade.new(@id, @twitch_oauth_token)
+      facade.find_or_create_company
     end
   end
 
-  test "should not create companies when the igdb request fails" do
+  test "should not create a company when the igdb request fails" do
     stub_company_request_failures
     assert_difference("Company.count", +0) do
-      facade = Api::Companies::CreateFacade.new(@ids, @twitch_oauth_token)
-      facade.find_or_create_companies
+      facade = Api::Companies::CreateFacade.new(@id, @twitch_oauth_token)
+      facade.find_or_create_company
     end
   end
 
-  test "should return successfully found or created companies" do
+  test "should return a successfully found or created company" do
     stub_successful_company_requests(@twitch_oauth_token)
-    facade = Api::Companies::CreateFacade.new(@ids, @twitch_oauth_token)
-    igdb_ids = facade.find_or_create_companies[:companies].map(&:igdb_id)
-    assert_equal igdb_ids, @ids
+    facade = Api::Companies::CreateFacade.new(@id, @twitch_oauth_token)
+    igdb_id = facade.find_or_create_company[:company].igdb_id
+    assert_equal igdb_id, @id
   end
 
   test "should return errors for any failed igdb api requests" do
     stub_company_request_failures
-    facade = Api::Companies::CreateFacade.new(@ids, @twitch_oauth_token)
-    response = facade.find_or_create_companies
+    facade = Api::Companies::CreateFacade.new(@id, @twitch_oauth_token)
+    response = facade.find_or_create_company
     response[:errors].each_with_index do |error, index|
-      assert_equal(error, { @ids[index] => { "message" => "Not authorized" } })
+      assert_equal(error, { @id => { "message" => "Not authorized" } })
     end
   end
 
@@ -47,8 +47,8 @@ class Api::Companies::CreateFacadeTest < ActionDispatch::IntegrationTest
       json_mocks("igdb/companies/70.json"),
       @twitch_oauth_token,
     )
-    facade = Api::Companies::CreateFacade.new([nil], @twitch_oauth_token)
-    request = facade.find_or_create_companies
+    facade = Api::Companies::CreateFacade.new(nil, @twitch_oauth_token)
+    request = facade.find_or_create_company
     errors = request[:errors]
     errors.each { |error| assert_equal(error.message, "can't be blank") }
   end

@@ -39,16 +39,15 @@ class Api::InvolvedCompanies::CreateFacade
   end
 
   def find_or_create_company(id)
-    facade = Api::Companies::CreateFacade.new([id], @@twitch_bearer_token)
-    facade.find_or_create_companies
+    facade = Api::Companies::CreateFacade.new(id, @@twitch_bearer_token)
+    facade.find_or_create_company
   end
 
   def set_involved_company_company(involved_company, igdb_data)
     company_response = find_or_create_company(igdb_data["company"])
     return false if add_company_error(company_response[:errors].first)
 
-    company, = company_response[:companies]
-    involved_company.company = company
+    involved_company.company = company_response[:company]
   end
 
   def add_company_error(error)

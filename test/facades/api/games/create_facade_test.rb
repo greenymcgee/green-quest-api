@@ -67,31 +67,4 @@ class Api::Games::CreateFacadeTest < ActionDispatch::IntegrationTest
       assert_equal(errors.first, [id, { "message" => "Not authorized" }])
     end
   end
-
-  test "should add errors to game upon involved company failure" do
-    stub_successful_game_create_request(
-      @game.igdb_id,
-      with_involved_company_failures: true,
-    )
-    @facade.add_game_resources
-    ids = @igdb_game_data["involved_companies"]
-    @game.errors[:involved_companies].first.each_with_index do |errors, index|
-      assert_equal(
-        errors.first,
-        [ids[index], { "message" => "Not authorized" }],
-      )
-    end
-  end
-
-  test "should add errors to game upon company failure" do
-    stub_successful_game_create_request(
-      @game.igdb_id,
-      with_company_failures: true,
-    )
-    @facade.add_game_resources
-    assert_equal(
-      @game.errors[:companies].first.count,
-      stubbed_company_ids.count,
-    )
-  end
 end

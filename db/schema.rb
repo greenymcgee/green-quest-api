@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_22_142844) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_23_161323) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "age_ratings", force: :cascade do |t|
+    t.integer "category_enum"
+    t.string "checksum", default: "", null: false
+    t.integer "igdb_id", null: false
+    t.integer "rating_enum"
+    t.string "rating_cover_url", default: "", null: false
+    t.string "synopsis", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["igdb_id"], name: "index_age_ratings_on_igdb_id", unique: true
+  end
 
   create_table "companies", force: :cascade do |t|
     t.datetime "change_date"

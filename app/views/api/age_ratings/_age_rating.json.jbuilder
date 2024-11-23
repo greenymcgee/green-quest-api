@@ -1,0 +1,9 @@
+json.extract!(
+  age_rating,
+  :created_at,
+  :id,
+  :igdb_id,
+  :rating_cover_url,
+  :synopsis,
+  :updated_at,
+)

@@ -30,7 +30,8 @@
           "type": "string"
         }
       },
-      "required": ["createdAt", "id", "igdbId", "name", "slug", "updatedAt"]
+      "required": ["createdAt", "id", "igdbId", "name", "slug", "updatedAt"],
+      "type": "array"
     }
   },
   "required": ["genres"],

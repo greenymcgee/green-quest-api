@@ -42,6 +42,9 @@ end
 json.publishers game.publishers do |company|
   json.partial! "api/companies/company", company: company
 end
+json.screenshots game.screenshots do |screenshot|
+  json.partial! "api/screenshots/screenshot", screenshot: screenshot
+end
 json.supporters game.supporters do |company|
   json.partial! "api/companies/company", company: company
 end

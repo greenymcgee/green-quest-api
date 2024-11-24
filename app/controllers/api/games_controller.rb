@@ -13,14 +13,12 @@ class Api::GamesController < ApplicationController
   # 200, 207, 400, 401, 403
   def create
     authenticate_user!
-    @game = Game.new(game_params)
+    @game = Game.new(game_create_params)
     authorize @game
-
     request_igdb_game_data
-
     return render_igdb_game_request_failure if @igdb_game_request_error.present?
 
-    return render_unprocessable_game unless game_saved?
+    return render_unprocessable_game unless populate_igdb_fields
 
     add_game_resources
     return render_successful_show_response(:multi_status) if errors_present?
@@ -32,7 +30,9 @@ class Api::GamesController < ApplicationController
   def update
     authenticate_user!
     authorize @game
-    return render_successful_show_response(:ok) if @game.update(game_params)
+    if @game.update(game_update_params)
+      return render_successful_show_response(:ok)
+    end
 
     render json: @game.errors, status: :unprocessable_entity
   end
@@ -63,12 +63,12 @@ class Api::GamesController < ApplicationController
     @game = Game.find(params[:id])
   end
 
-  def game_params
-    params.require(:game).permit(:igdb_id, :rating, :review)
+  def game_update_params
+    params.require(:game).permit(:rating, :review)
   end
 
-  def game_saved?
-    @game.update(game_params) && populate_igdb_fields
+  def game_create_params
+    params.require(:game).permit(:igdb_id, :rating, :review)
   end
 
   def render_successful_show_response(status)

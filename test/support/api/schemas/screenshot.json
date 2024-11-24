@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "id": "file:/artwork.json#",
-  "description": "An artwork",
+  "id": "file:/screenshot.json#",
+  "description": "A screenshot",
   "properties": {
     "animated": { "type": "boolean" },
     "createdAt": {
@@ -34,6 +34,6 @@
     "url",
     "width"
   ],
-  "title": "Artwork",
+  "title": "Screenshot",
   "type": "object"
 }

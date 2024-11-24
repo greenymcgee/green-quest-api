@@ -1,0 +1,2 @@
+class ScreenshotPolicy < AdminPolicy
+end

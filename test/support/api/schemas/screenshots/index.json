@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://greenquestgames.com/screenshots/index.json",
+  "description": "The GET /api/screenshots payload",
+  "properties": {
+    "screenshots": {
+      "items": { "$ref": "file:/screenshot.json#" },
+      "type": "array"
+    }
+  },
+  "required": ["screenshots"],
+  "type": "object"
+}

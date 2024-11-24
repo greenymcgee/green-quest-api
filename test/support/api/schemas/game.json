@@ -3,6 +3,10 @@
   "id": "file:/game.json#",
   "description": "A game",
   "properties": {
+    "ageRatings": {
+      "items": { "$ref": "file:/age_rating.json#" },
+      "type": "array"
+    },
     "createdAt": {
       "description": "The datetime of the record's creation",
       "type": "string"

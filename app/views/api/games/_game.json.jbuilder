@@ -1,4 +1,7 @@
 json.errors game.errors if game.errors.present?
+json.age_ratings game.age_ratings do |age_rating|
+  json.partial! "api/age_ratings/age_rating", age_rating: age_rating
+end
 json.extract!(
   game,
   :id,

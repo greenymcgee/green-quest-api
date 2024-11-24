@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_23_161323) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_24_001828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_23_161323) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["igdb_id"], name: "index_age_ratings_on_igdb_id", unique: true
+  end
+
+  create_table "age_ratings_games", force: :cascade do |t|
+    t.bigint "age_rating_id"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["age_rating_id"], name: "index_age_ratings_games_on_age_rating_id"
+    t.index ["game_id"], name: "index_age_ratings_games_on_game_id"
   end
 
   create_table "companies", force: :cascade do |t|

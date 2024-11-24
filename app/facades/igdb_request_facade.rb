@@ -1,7 +1,8 @@
-class Api::AgeRatings::IgdbRequestFacade
-  def initialize(igdb_id, twitch_bearer_token)
+class IgdbRequestFacade
+  def initialize(igdb_id:, pathname:, twitch_bearer_token:)
     @@igdb_id = igdb_id
     @@bearer_token = twitch_bearer_token
+    @@pathname = pathname
   end
 
   def get_igdb_data
@@ -24,7 +25,7 @@ class Api::AgeRatings::IgdbRequestFacade
   end
 
   def set_resource
-    facade = IgdbApiFacade.new("age_ratings/#{@@igdb_id}", @@bearer_token)
+    facade = IgdbApiFacade.new("#{@@pathname}/#{@@igdb_id}", @@bearer_token)
     @@resource = facade.get_igdb_api_resource
   end
 

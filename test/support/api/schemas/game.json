@@ -69,6 +69,10 @@
       "description": "Float: the rating for the game from 1 - 5.",
       "type": "number"
     },
+    "screenshots": {
+      "items": { "$ref": "file:/screenshot.json#" },
+      "type": "array"
+    },
     "supporters": {
       "items": { "$ref": "file:/company.json#" },
       "type": "array"
@@ -87,6 +91,10 @@
     "igdbId",
     "name",
     "platforms",
+    "porters",
+    "publishers",
+    "screenshots",
+    "supporters",
     "review",
     "rating"
   ],

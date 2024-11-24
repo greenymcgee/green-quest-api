@@ -11,6 +11,7 @@ module GameCreateTestHelper
 
   def stub_successful_game_create_request(
     game_id,
+    with_age_rating_failures: false,
     with_genre_failures: false,
     with_platform_failures: false,
     with_company_failures: false,
@@ -22,6 +23,7 @@ module GameCreateTestHelper
       game_json,
       stubbed_twitch_bearer_token,
     )
+    stub_age_rating_responses(with_age_rating_failures)
     stub_genre_responses(with_genre_failures)
     stub_platform_responses(with_platform_failures)
     stub_involved_company_responses(with_involved_company_failures)
@@ -33,6 +35,12 @@ module GameCreateTestHelper
   end
 
   private
+
+  def stub_age_rating_responses(with_age_rating_failures)
+    return stub_age_rating_request_failures if with_age_rating_failures
+
+    stub_successful_age_rating_responses
+  end
 
   def stub_genre_responses(with_genre_failures)
     return stub_genre_request_failures if with_genre_failures
@@ -58,6 +66,22 @@ module GameCreateTestHelper
     return stub_company_request_failures if with_company_failures
 
     stub_successful_company_responses
+  end
+
+  def stub_successful_age_rating_responses
+    igdb_game_data["age_ratings"].each do |id|
+      stub_successful_igdb_api_request(
+        "age_ratings/#{id}",
+        json_mocks("igdb/age_ratings/#{id}.json"),
+        stubbed_twitch_bearer_token,
+      )
+    end
+  end
+
+  def stub_age_rating_request_failures
+    igdb_game_data["age_ratings"].each do |id|
+      stub_igdb_api_request_failure("age_ratings/#{id}")
+    end
   end
 
   def stub_genre_request_failures

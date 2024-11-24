@@ -15,6 +15,15 @@ class Api::Games::CreateFacadeTest < ActionDispatch::IntegrationTest
       )
   end
 
+  test "should add age ratings to the game" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @facade.add_game_resources
+    age_rating_ids = @game.age_ratings.map(&:igdb_id)
+    @igdb_game_data["age_ratings"].each do |id|
+      assert age_rating_ids.include? id
+    end
+  end
+
   test "should add genres to the game" do
     stub_successful_game_create_request(@game.igdb_id)
     @facade.add_game_resources

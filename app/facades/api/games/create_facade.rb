@@ -15,6 +15,11 @@ class Api::Games::CreateFacade
       igdb_game_data: @@igdb_game_data,
       twitch_bearer_token: @@twitch_bearer_token,
     ).add_involved_companies_to_game
+    Api::Games::AgeRatingGameCreateFacade.new(
+      game: @@game,
+      igdb_game_data: @@igdb_game_data,
+      twitch_bearer_token: @@twitch_bearer_token,
+    ).add_age_ratings_to_game
   end
 
   private

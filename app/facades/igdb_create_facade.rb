@@ -2,7 +2,7 @@ class IgdbCreateFacade
   def initialize(fields_facade:, ids:, model:, twitch_bearer_token:)
     @@errors = []
     @@fields_facade = fields_facade
-    @@ids = ids
+    @@ids = ids || []
     @@model = model
     @@twitch_bearer_token = twitch_bearer_token
   end

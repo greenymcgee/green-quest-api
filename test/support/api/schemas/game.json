@@ -7,6 +7,10 @@
       "items": { "$ref": "file:/age_rating.json#" },
       "type": "array"
     },
+    "artWorks": {
+      "items": { "$ref": "file:/artwork.json#" },
+      "type": "array"
+    },
     "createdAt": {
       "description": "The datetime of the record's creation",
       "type": "string"
@@ -75,6 +79,8 @@
     }
   },
   "required": [
+    "ageRatings",
+    "artworks",
     "developers",
     "genres",
     "id",

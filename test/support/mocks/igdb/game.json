@@ -5,10 +5,7 @@
     "aggregated_rating": 100.0,
     "aggregated_rating_count": 1,
     "alternative_names": [3279, 71654, 71655, 71656, 99282, 119043, 137998],
-    "artworks": [
-      52607, 84535, 84536, 84537, 84538, 84539, 84540, 84541, 84542, 84543,
-      84544, 84545, 87522
-    ],
+    "artworks": [52607, 84535, 84536],
     "bundles": [213363, 213594],
     "category": 0,
     "collection": 106,
@@ -53,11 +50,11 @@
       514972, 514973, 514974, 514975, 514976, 514977, 548274, 592184, 592185
     ],
     "remakes": [2, 3],
-    "remasters": [7,8],
+    "remasters": [7, 8],
     "screenshots": [176243, 176244, 176245, 176246, 176247, 176248, 176249],
     "similar_games": [533, 832, 1025, 1029, 1032, 1034, 1035, 1036, 1041, 3349],
     "slug": "the-legend-of-zelda-a-link-to-the-past",
-    "standalone_expansions": [4,5,6],
+    "standalone_expansions": [4, 5, 6],
     "status": "released",
     "storyline": "The wizard Agahnim has been abducting descendants of the seven sages, intent on using their power to obliterate the barrier leading to the Dark World. One of the descendants happens to be Princess Zelda, who informs Link of her plight. Armed with a trusty sword and shield, Link begins a journey that will take him through treacherous territory.",
     "summary": "The Legend of Zelda: A Link to the Past is a top-down action game with puzzle-solving elements similar to the original The Legend of Zelda. After the side-scrolling and RPG-like gameplay of Zelda II: The Adventure of Link, the game is a return to the top-down view and gameplay style of the first installment. It introduces major new items to the series such as the Master Sword and the concept of two different worlds, which was revisited to some extent in Ocarina of Time with two distinct time periods rather than dark and light worlds.",

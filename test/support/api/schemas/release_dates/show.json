@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://greenquestgames.com/release_dates/show.json",
+  "description": "The GET /api/release_dates/:id payload",
+  "properties": { "releaseDate": { "$ref": "file:/release_date.json#" } },
+  "required": ["releaseDate"],
+  "type": "object"
+}

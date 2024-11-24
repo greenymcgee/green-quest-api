@@ -1,0 +1,2 @@
+class ArtworkPolicy < AdminPolicy
+end

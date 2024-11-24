@@ -1,7 +1,6 @@
 require "test_helper"
 
 class AgeRatingsControllerTest < ActionDispatch::IntegrationTest
-  setup {}
   setup do
     @age_rating = age_ratings(:one)
     @admin_user = users(:admin_user)
@@ -41,7 +40,7 @@ class AgeRatingsControllerTest < ActionDispatch::IntegrationTest
     assert_response :no_content
   end
 
-  test "#destroy should not age_rating company for non-admin users" do
+  test "#destroy should not destroy age_rating company for non-admin users" do
     delete(
       api_age_rating_url(@age_rating),
       as: :json,

@@ -184,6 +184,20 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "#update should not update igdb_id" do
+    patch(
+      api_game_url(@game),
+      as: :json,
+      headers: @admin_auth_headers,
+      params: {
+        game: {
+          igdb_id: 989,
+        },
+      },
+    )
+    assert_equal @game.igdb_id, 47
+  end
+
   test "#update should return an error" do
     patch(
       api_game_url(@game),

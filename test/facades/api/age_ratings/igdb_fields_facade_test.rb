@@ -5,7 +5,7 @@ class Api::AgeRatings::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
     @age_rating = AgeRating.new(igdb_id: 1026)
     @igdb_data, = JSON.parse(json_mocks("igdb/age_ratings/49238.json"))
     facade = Api::AgeRatings::IgdbFieldsFacade.new(@age_rating, @igdb_data)
-    facade.populate_age_rating_fields
+    facade.populate_fields
   end
 
   test "should populate the category_enum" do

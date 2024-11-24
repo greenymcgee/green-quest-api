@@ -6,7 +6,7 @@ class Api::AgeRatings::IgdbFieldsFacade
     @@igdb_data = igdb_data
   end
 
-  def populate_age_rating_fields
+  def populate_fields
     @@age_rating.update(
       category_enum: category_enum,
       checksum: checksum,

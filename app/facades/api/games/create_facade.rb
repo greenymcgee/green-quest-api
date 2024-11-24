@@ -5,26 +5,28 @@ class Api::Games::CreateFacade
     @@game = game
     @@igdb_game_data = igdb_game_data
     @@twitch_bearer_token = twitch_bearer_token
+    @@create_facade_params = {
+      game: @@game,
+      igdb_game_data: @@igdb_game_data,
+      twitch_bearer_token: @@twitch_bearer_token,
+    }
   end
 
   def add_game_resources
     add_genres_to_game
     add_platforms_to_game
     Api::Games::InvolvedCompanyGameCreateFacade.new(
-      game: @@game,
-      igdb_game_data: @@igdb_game_data,
-      twitch_bearer_token: @@twitch_bearer_token,
+      **@@create_facade_params,
     ).add_involved_companies_to_game
     Api::Games::AgeRatingGameCreateFacade.new(
-      game: @@game,
-      igdb_game_data: @@igdb_game_data,
-      twitch_bearer_token: @@twitch_bearer_token,
+      **@@create_facade_params,
     ).add_age_ratings_to_game
     Api::Games::ArtworkGameCreateFacade.new(
-      game: @@game,
-      igdb_game_data: @@igdb_game_data,
-      twitch_bearer_token: @@twitch_bearer_token,
+      **@@create_facade_params,
     ).add_artworks_to_game
+    Api::Games::ScreenshotGameCreateFacade.new(
+      **@@create_facade_params,
+    ).add_screenshots_to_game
   end
 
   private

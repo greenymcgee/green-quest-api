@@ -35,7 +35,7 @@ class Api::ArtworksControllerTest < ActionDispatch::IntegrationTest
     assert_response :no_content
   end
 
-  test "#destroy should not destroy artwork company for non-admin users" do
+  test "#destroy should not destroy artwork for non-admin users" do
     delete(api_artwork_url(@artwork), as: :json, headers: @basic_auth_headers)
     assert_response :forbidden
   end

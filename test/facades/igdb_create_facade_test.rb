@@ -101,4 +101,21 @@ class IgdbCreateFacadeTest < ActionDispatch::IntegrationTest
     errors = request[:errors]
     errors.each { |error| assert_equal(error.message, "can't be blank") }
   end
+
+  test "should handle undefined ids gracefully" do
+    stub_successful_igdb_api_request(
+      "#{@snake_cased_model_name}/#{nil}",
+      json_mocks("igdb/#{@snake_cased_model_name}/49238.json"),
+      @twitch_oauth_token,
+    )
+    facade =
+      IgdbCreateFacade.new(
+        fields_facade: @fields_facade,
+        ids: nil,
+        model: @model,
+        twitch_bearer_token: @twitch_oauth_token,
+      )
+    request = facade.find_or_create_resources
+    assert_equal request[:resources], []
+  end
 end

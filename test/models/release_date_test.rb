@@ -2,7 +2,7 @@ require "test_helper"
 
 class ReleaseDateTest < ActiveSupport::TestCase
   test "valid release_date" do
-    release_date = ReleaseDate.new(igdb_id: 10)
+    release_date = ReleaseDate.new(igdb_id: 10, platform: platforms(:snes))
     assert release_date.valid?
   end
 

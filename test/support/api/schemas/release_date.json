@@ -27,6 +27,7 @@
       "description": "The month as an integer starting at 1 (January)",
       "type": ["integer", "null"]
     },
+    "platformName": { "type": "string" },
     "updatedAt": {
       "description": "The datetime of the record's last update",
       "type": "string"
@@ -43,6 +44,7 @@
     "id",
     "igdbId",
     "month",
+    "platformName",
     "updatedAt",
     "year"
   ],

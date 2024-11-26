@@ -3,7 +3,7 @@ class Api::ReleaseDatesController < ApplicationController
 
   # 200
   def index
-    @release_dates = ReleaseDate.all
+    @release_dates = ReleaseDate.all.includes([:platform])
   end
 
   # 200, 404

@@ -6,6 +6,7 @@ json.extract!(
   :id,
   :igdb_id,
   :month,
+  :platform_name,
   :updated_at,
   :year,
 )

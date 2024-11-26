@@ -16,4 +16,9 @@ class ReleaseDateTest < ActiveSupport::TestCase
     release_date.valid?
     assert release_date.errors[:igdb_id].include? "can't be blank"
   end
+
+  test "delegate platform name" do
+    release_date = release_dates(:one)
+    assert_equal(release_date.platform_name, release_date.platform.name)
+  end
 end

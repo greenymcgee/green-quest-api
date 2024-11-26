@@ -13,6 +13,7 @@ module GameCreateTestHelper
     game_id,
     with_age_rating_failures: false,
     with_artwork_failures: false,
+    with_cover_failure: false,
     with_genre_failures: false,
     with_platform_failures: false,
     with_company_failures: false,
@@ -28,6 +29,7 @@ module GameCreateTestHelper
     )
     stub_age_rating_responses(with_age_rating_failures)
     stub_artwork_responses(with_artwork_failures)
+    stub_cover_responses(with_cover_failure)
     stub_genre_responses(with_genre_failures)
     stub_platform_responses(with_platform_failures)
     stub_involved_company_responses(with_involved_company_failures)
@@ -52,6 +54,12 @@ module GameCreateTestHelper
     return stub_age_rating_request_failures if with_age_rating_failures
 
     stub_successful_age_rating_responses
+  end
+
+  def stub_cover_responses(with_cover_failure)
+    return stub_cover_request_failures if with_cover_failure
+
+    stub_successful_cover_responses
   end
 
   def stub_genre_responses(with_genre_failures)
@@ -122,6 +130,18 @@ module GameCreateTestHelper
     igdb_game_data["artworks"].each do |id|
       stub_igdb_api_request_failure("artworks/#{id}")
     end
+  end
+
+  def stub_successful_cover_responses
+    stub_successful_igdb_api_request(
+      "covers/#{igdb_game_data["cover"]}",
+      json_mocks("igdb/covers/#{igdb_game_data["cover"]}.json"),
+      stubbed_twitch_bearer_token,
+    )
+  end
+
+  def stub_cover_request_failures
+    stub_igdb_api_request_failure("covers/#{igdb_game_data["cover"]}")
   end
 
   def stub_genre_request_failures

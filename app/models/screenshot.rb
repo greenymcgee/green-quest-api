@@ -1,5 +1,5 @@
 class Screenshot < ApplicationRecord
-  has_and_belongs_to_many :games
+  belongs_to :game
 
   validates :igdb_id, presence: true
 end

@@ -8,9 +8,6 @@ class Api::Games::ScreenshotGameCreateFacade
   def add_screenshots_to_game
     set_screenshots_response
     add_screenshots_errors_to_game
-    @@screenshots_response[:resources].each do |screenshot|
-      @@game.screenshots << screenshot
-    end
   end
 
   private
@@ -23,7 +20,12 @@ class Api::Games::ScreenshotGameCreateFacade
         model: Screenshot,
         twitch_bearer_token: @@twitch_bearer_token,
       )
-    @@screenshots_response = facade.find_or_create_resources
+    @@screenshots_response =
+      facade.find_or_create_resources(update_screenshot_game)
+  end
+
+  def update_screenshot_game
+    ->(screenshot) { screenshot.game = @@game }
   end
 
   def add_screenshots_errors_to_game

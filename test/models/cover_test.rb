@@ -2,7 +2,7 @@ require "test_helper"
 
 class CoverTest < ActiveSupport::TestCase
   test "valid cover" do
-    cover = Cover.new(igdb_id: 10)
+    cover = Cover.new(game: games(:super_metroid), igdb_id: 10)
     assert cover.valid?
   end
 

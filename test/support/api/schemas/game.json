@@ -11,6 +11,7 @@
       "items": { "$ref": "file:/artwork.json#" },
       "type": "array"
     },
+    "cover": { "$ref": "file:/cover.json#" },
     "createdAt": {
       "description": "The datetime of the record's creation",
       "type": "string"
@@ -89,6 +90,7 @@
   "required": [
     "ageRatings",
     "artworks",
+    "cover",
     "developers",
     "genres",
     "id",

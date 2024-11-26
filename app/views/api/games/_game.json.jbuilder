@@ -15,6 +15,7 @@ end
 json.artworks game.artworks do |artwork|
   json.partial! "api/artworks/artwork", artwork: artwork
 end
+json.cover { json.partial! "api/covers/cover", cover: @game.cover }
 json.developers game.developers do |company|
   json.partial! "api/companies/company", company: company
 end

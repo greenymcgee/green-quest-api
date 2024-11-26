@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://greenquestgames.com/covers/show.json",
+  "description": "The GET /api/covers/:id payload",
+  "properties": { "cover": { "$ref": "file:/cover.json#" } },
+  "required": ["cover"],
+  "type": "object"
+}

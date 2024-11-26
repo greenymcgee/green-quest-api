@@ -28,6 +28,13 @@ class Api::ReleaseDates::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
     assert_equal(@release_date.month, @igdb_data["month"])
   end
 
+  test "should populate the platform" do
+    assert_equal(
+      @release_date.platform,
+      Platform.find_by(igdb_id: @igdb_data["platform"]),
+    )
+  end
+
   test "should populate the region_enum" do
     assert_equal(@release_date.region_enum, @igdb_data["region"])
   end

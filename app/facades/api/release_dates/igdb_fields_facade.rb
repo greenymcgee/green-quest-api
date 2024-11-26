@@ -13,6 +13,8 @@ class Api::ReleaseDates::IgdbFieldsFacade
       date: date,
       human_readable: human_readable,
       month: month,
+      platform: platform,
+      region_enum: region_enum,
       year: year,
     )
   end
@@ -37,6 +39,14 @@ class Api::ReleaseDates::IgdbFieldsFacade
 
   def month
     get_present_value(@@release_date.month, @@igdb_data["month"])
+  end
+
+  def platform
+    Platform.find_by(igdb_id: @@igdb_data["platform"])
+  end
+
+  def region_enum
+    @@igdb_data["region"]
   end
 
   def year

@@ -27,6 +27,7 @@ class Api::Games::CreateFacade
     Api::Games::ScreenshotGameCreateFacade.new(
       **@@create_facade_params,
     ).add_screenshots_to_game
+    add_release_dates_to_game
   end
 
   private
@@ -73,5 +74,11 @@ class Api::Games::CreateFacade
     @@platforms_response[:platforms].each do |platform|
       @@game.platforms << platform
     end
+  end
+
+  def add_release_dates_to_game
+    Api::Games::ReleaseDateGameCreateFacade.new(
+      **@@create_facade_params,
+    ).add_release_dates_to_game
   end
 end

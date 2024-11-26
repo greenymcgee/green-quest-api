@@ -17,6 +17,7 @@ module GameCreateTestHelper
     with_platform_failures: false,
     with_company_failures: false,
     with_involved_company_failures: false,
+    with_release_date_failures: false,
     with_screenshot_failures: false
   )
     stub_successful_twitch_oauth_request
@@ -32,6 +33,7 @@ module GameCreateTestHelper
     stub_involved_company_responses(with_involved_company_failures)
     stub_company_responses(with_company_failures)
     stub_screenshot_responses(with_screenshot_failures)
+    stub_release_date_responses(with_release_date_failures)
   end
 
   def stubbed_twitch_bearer_token
@@ -70,6 +72,12 @@ module GameCreateTestHelper
     end
 
     stub_successful_involved_company_responses
+  end
+
+  def stub_release_date_responses(with_release_date_failures)
+    return stub_release_date_request_failures if with_release_date_failures
+
+    stub_successful_release_date_responses
   end
 
   def stub_company_responses(with_company_failures)
@@ -177,6 +185,22 @@ module GameCreateTestHelper
         json_mocks("igdb/companies/#{id}.json"),
         stubbed_twitch_bearer_token,
       )
+    end
+  end
+
+  def stub_successful_release_date_responses
+    igdb_game_data["release_dates"].each do |id|
+      stub_successful_igdb_api_request(
+        "release_dates/#{id}",
+        json_mocks("igdb/release_dates/#{id}.json"),
+        stubbed_twitch_bearer_token,
+      )
+    end
+  end
+
+  def stub_release_date_request_failures
+    igdb_game_data["release_dates"].each do |id|
+      stub_igdb_api_request_failure("release_dates/#{id}")
     end
   end
 

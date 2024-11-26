@@ -8,9 +8,6 @@ class Api::Games::ArtworkGameCreateFacade
   def add_artworks_to_game
     set_artworks_response
     add_artworks_errors_to_game
-    @@artworks_response[:resources].each do |artwork|
-      @@game.artworks << artwork
-    end
   end
 
   private

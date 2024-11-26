@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_25_124735) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_26_014937) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -122,15 +122,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_25_124735) do
     t.index ["platform_id"], name: "index_games_platforms_on_platform_id"
   end
 
-  create_table "games_screenshots", force: :cascade do |t|
-    t.bigint "game_id"
-    t.bigint "screenshot_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_games_screenshots_on_game_id"
-    t.index ["screenshot_id"], name: "index_games_screenshots_on_screenshot_id"
-  end
-
   create_table "genres", force: :cascade do |t|
     t.string "checksum", default: "", null: false
     t.integer "igdb_id", null: false
@@ -203,6 +194,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_25_124735) do
     t.integer "width"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "game_id"
+    t.index ["game_id"], name: "index_screenshots_on_game_id"
     t.index ["igdb_id"], name: "index_screenshots_on_igdb_id", unique: true
   end
 

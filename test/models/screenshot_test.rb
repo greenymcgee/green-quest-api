@@ -2,7 +2,7 @@ require "test_helper"
 
 class ScreenshotTest < ActiveSupport::TestCase
   test "valid screenshot" do
-    screenshot = Screenshot.new(igdb_id: 10)
+    screenshot = Screenshot.new(game: games(:super_metroid), igdb_id: 10)
     assert screenshot.valid?
   end
 

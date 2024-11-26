@@ -1,0 +1,2 @@
+class CoverPolicy < AdminPolicy
+end

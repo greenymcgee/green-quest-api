@@ -29,15 +29,16 @@ Rails.application.routes.draw do
       resource :reset_password, only: %i[create update]
     end
 
-    resources :age_ratings
-    resources :artworks
-    resources :companies
+    resources :age_ratings, only: %i[index show destroy]
+    resources :artworks, only: %i[index show destroy]
+    resources :companies, only: %i[index show destroy]
+    resources :covers, only: %i[index show destroy]
     resources :games
     resources :genres, only: %i[index show destroy]
     resources :involved_companies, only: %i[index show destroy]
     resources :platforms, only: %i[index show destroy]
-    resources :release_dates
-    resources :screenshots
+    resources :release_dates, only: %i[index show destroy]
+    resources :screenshots, only: %i[index show destroy]
     resources :users
   end
 end

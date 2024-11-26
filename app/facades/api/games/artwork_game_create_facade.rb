@@ -23,7 +23,8 @@ class Api::Games::ArtworkGameCreateFacade
         model: Artwork,
         twitch_bearer_token: @@twitch_bearer_token,
       )
-    @@artworks_response = facade.find_or_create_resources
+    @@artworks_response =
+      facade.find_or_create_resources(->(artwork) { artwork.game = @@game })
   end
 
   def add_artworks_errors_to_game

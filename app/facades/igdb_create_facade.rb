@@ -7,27 +7,28 @@ class IgdbCreateFacade
     @@twitch_bearer_token = twitch_bearer_token
   end
 
-  def find_or_create_resources
-    { errors: @@errors, resources: resources }
+  def find_or_create_resources(callback = nil)
+    { errors: @@errors, resources: resources(callback) }
   end
 
   private
 
-  def resources
+  def resources(callback)
     @@ids.map do |id|
       @@model.find_or_initialize_by(igdb_id: id) do |resource|
         next if resource.id.present?
 
         igdb_request = get_igdb_data(id)
-        next if add_resource_error(id, igdb_request[:error])
+        next if add_igdb_error(id, igdb_request[:error])
 
+        callback.call(resource) if callback.present?
         populate_resource_fields(resource, igdb_request[:igdb_data])
         resource.errors.each { |error| @@errors << error }
       end
     end
   end
 
-  def add_resource_error(id, error)
+  def add_igdb_error(id, error)
     return false unless error.present?
 
     @@errors << { id => JSON.parse(error.message) }
@@ -44,7 +45,6 @@ class IgdbCreateFacade
   end
 
   def populate_resource_fields(resource, igdb_data)
-    facade = @@fields_facade.new(resource, igdb_data)
-    facade.populate_fields
+    @@fields_facade.new(resource, igdb_data).populate_fields
   end
 end

@@ -5,7 +5,8 @@ class IgdbCreateFacadeTest < ActionDispatch::IntegrationTest
 
   setup do
     @fields_facade = Api::AgeRatings::IgdbFieldsFacade
-    @ids = JSON.parse(json_mocks("igdb/game.json")).first["age_ratings"]
+    @game_igdb_data = JSON.parse(json_mocks("igdb/game.json")).first
+    @ids = @game_igdb_data["age_ratings"]
     @model = AgeRating
     @model_name = @model.name
     @snake_cased_model_name = @model_name.pluralize.underscore
@@ -117,5 +118,26 @@ class IgdbCreateFacadeTest < ActionDispatch::IntegrationTest
       )
     request = facade.find_or_create_resources
     assert_equal request[:resources], []
+  end
+
+  test "should take an optional callback" do
+    @game_igdb_data["artworks"].each do |id|
+      stub_successful_igdb_api_request(
+        "artworks/#{id}",
+        json_mocks("igdb/artworks/#{id}.json"),
+        @twitch_oauth_token,
+      )
+    end
+    game = games(:super_metroid)
+    facade =
+      IgdbCreateFacade.new(
+        fields_facade: Api::Artworks::IgdbFieldsFacade,
+        ids: @game_igdb_data["artworks"],
+        model: Artwork,
+        twitch_bearer_token: @twitch_oauth_token,
+      )
+    request =
+      facade.find_or_create_resources(->(resource) { resource.game = game })
+    assert_equal request[:resources], game.artworks
   end
 end

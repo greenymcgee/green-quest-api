@@ -2,7 +2,7 @@ require "test_helper"
 
 class ArtworkTest < ActiveSupport::TestCase
   test "valid artwork" do
-    artwork = Artwork.new(igdb_id: 10)
+    artwork = Artwork.new(game: games(:super_metroid), igdb_id: 10)
     assert artwork.valid?
   end
 

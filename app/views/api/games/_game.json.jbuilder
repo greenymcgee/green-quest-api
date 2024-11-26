@@ -42,6 +42,9 @@ end
 json.publishers game.publishers do |company|
   json.partial! "api/companies/company", company: company
 end
+json.release_dates game.release_dates.includes([:platform]) do |release_date|
+  json.partial! "api/release_dates/release_date", release_date: release_date
+end
 json.screenshots game.screenshots do |screenshot|
   json.partial! "api/screenshots/screenshot", screenshot: screenshot
 end

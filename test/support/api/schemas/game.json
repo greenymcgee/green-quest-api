@@ -69,6 +69,10 @@
       "description": "Float: the rating for the game from 1 - 5.",
       "type": "number"
     },
+    "releaseDates": {
+      "items": { "$ref": "file:/release_date.json#" },
+      "type": "array"
+    },
     "screenshots": {
       "items": { "$ref": "file:/screenshot.json#" },
       "type": "array"
@@ -93,10 +97,11 @@
     "platforms",
     "porters",
     "publishers",
-    "screenshots",
-    "supporters",
+    "rating",
+    "releaseDates",
     "review",
-    "rating"
+    "screenshots",
+    "supporters"
   ],
   "title": "Game",
   "type": "object"

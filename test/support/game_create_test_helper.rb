@@ -20,7 +20,8 @@ module GameCreateTestHelper
     with_company_failures: false,
     with_involved_company_failures: false,
     with_release_date_failures: false,
-    with_screenshot_failures: false
+    with_screenshot_failures: false,
+    with_website_failures: false
   )
     stub_successful_twitch_oauth_request
     stub_successful_igdb_api_request(
@@ -38,6 +39,7 @@ module GameCreateTestHelper
     stub_company_responses(with_company_failures)
     stub_screenshot_responses(with_screenshot_failures)
     stub_release_date_responses(with_release_date_failures)
+    stub_website_responses(with_website_failures)
   end
 
   def stubbed_twitch_bearer_token
@@ -106,6 +108,12 @@ module GameCreateTestHelper
     return stub_screenshot_request_failures if with_screenshot_failures
 
     stub_successful_screenshot_responses
+  end
+
+  def stub_website_responses(with_website_failures)
+    return stub_website_request_failures if with_website_failures
+
+    stub_successful_website_responses
   end
 
   def stub_successful_age_rating_responses
@@ -261,6 +269,22 @@ module GameCreateTestHelper
   def stub_screenshot_request_failures
     igdb_game_data["screenshots"].each do |id|
       stub_igdb_api_request_failure("screenshots/#{id}")
+    end
+  end
+
+  def stub_successful_website_responses
+    igdb_game_data["websites"].each do |id|
+      stub_successful_igdb_api_request(
+        "websites/#{id}",
+        json_mocks("igdb/websites/#{id}.json"),
+        stubbed_twitch_bearer_token,
+      )
+    end
+  end
+
+  def stub_website_request_failures
+    igdb_game_data["websites"].each do |id|
+      stub_igdb_api_request_failure("websites/#{id}")
     end
   end
 

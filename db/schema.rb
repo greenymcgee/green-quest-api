@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_27_132013) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_27_134129) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -269,6 +269,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_27_132013) do
     t.string "url", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "game_id"
+    t.index ["game_id"], name: "index_websites_on_game_id"
     t.index ["igdb_id"], name: "index_websites_on_igdb_id", unique: true
   end
 end

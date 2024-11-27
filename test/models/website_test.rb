@@ -2,7 +2,7 @@ require "test_helper"
 
 class WebsiteTest < ActiveSupport::TestCase
   test "valid website" do
-    website = Website.new(igdb_id: 10)
+    website = Website.new(game: games(:super_metroid), igdb_id: 10)
     assert website.valid?
   end
 

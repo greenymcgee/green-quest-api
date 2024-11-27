@@ -131,7 +131,7 @@ class IgdbCreateFacadeTest < ActionDispatch::IntegrationTest
     game = games(:super_metroid)
     facade =
       IgdbCreateFacade.new(
-        fields_facade: Api::Artworks::IgdbFieldsFacade,
+        fields_facade: Igdb::ImageFieldsFacade,
         ids: @game_igdb_data["artworks"],
         model: Artwork,
         twitch_bearer_token: @twitch_oauth_token,

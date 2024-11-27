@@ -15,7 +15,7 @@ class Api::Games::ArtworkGameCreateFacade
   def set_artworks_response
     facade =
       IgdbCreateFacade.new(
-        fields_facade: Api::Artworks::IgdbFieldsFacade,
+        fields_facade: Igdb::ImageFieldsFacade,
         ids: @@igdb_game_data["artworks"],
         model: Artwork,
         twitch_bearer_token: @@twitch_bearer_token,

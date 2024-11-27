@@ -15,7 +15,7 @@ class Api::Games::ScreenshotGameCreateFacade
   def set_screenshots_response
     facade =
       IgdbCreateFacade.new(
-        fields_facade: Api::Screenshots::IgdbFieldsFacade,
+        fields_facade: Igdb::ImageFieldsFacade,
         ids: @@igdb_game_data["screenshots"],
         model: Screenshot,
         twitch_bearer_token: @@twitch_bearer_token,

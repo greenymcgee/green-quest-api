@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://greenquestgames.com/game_modes/index.json",
+  "description": "The GET /api/game_modes payload",
+  "properties": {
+    "gameModes": {
+      "items": { "$ref": "file:/game_mode.json#" },
+      "type": "array"
+    }
+  },
+  "required": ["gameModes"],
+  "type": "object"
+}

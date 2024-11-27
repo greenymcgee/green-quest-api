@@ -1,0 +1,2 @@
+class GameModePolicy < AdminPolicy
+end

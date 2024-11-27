@@ -42,10 +42,6 @@ module GameCreateTestHelper
     stub_website_responses(with_website_failures)
   end
 
-  def stubbed_twitch_bearer_token
-    "Bearer #{twitch_oauth_access_token}"
-  end
-
   private
 
   def stub_artwork_responses(with_artwork_failures)
@@ -96,12 +92,6 @@ module GameCreateTestHelper
     return stub_release_date_request_failures if with_release_date_failures
 
     stub_successful_release_date_responses
-  end
-
-  def stub_company_responses(with_company_failures)
-    return stub_company_request_failures if with_company_failures
-
-    stub_successful_company_responses
   end
 
   def stub_screenshot_responses(with_screenshot_failures)
@@ -224,22 +214,6 @@ module GameCreateTestHelper
     end
   end
 
-  def stub_company_request_failures
-    stubbed_company_ids.each do |id|
-      stub_igdb_api_request_failure("companies/#{id}")
-    end
-  end
-
-  def stub_successful_company_responses
-    stubbed_company_ids.each do |id|
-      stub_successful_igdb_api_request(
-        "companies/#{id}",
-        json_mocks("igdb/companies/#{id}.json"),
-        stubbed_twitch_bearer_token,
-      )
-    end
-  end
-
   def stub_successful_release_date_responses
     igdb_game_data["release_dates"].each do |id|
       stub_successful_igdb_api_request(
@@ -286,13 +260,5 @@ module GameCreateTestHelper
     igdb_game_data["websites"].each do |id|
       stub_igdb_api_request_failure("websites/#{id}")
     end
-  end
-
-  def game_json
-    json_mocks("igdb/game.json")
-  end
-
-  def igdb_game_data
-    JSON.parse(game_json).first
   end
 end

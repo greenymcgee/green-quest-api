@@ -1,16 +1,17 @@
 require "test_helper"
 
 class Api::Companies::CreateFacadeTest < ActionDispatch::IntegrationTest
+  include TwitchOauthTestHelper
   include IgdbApiTestHelper
   include CompanyCreateTestHelper
 
   setup do
-    @twitch_oauth_token = "Bearer asdlfkh"
+    @twitch_oauth_token = stubbed_twitch_bearer_token
     @id = stubbed_company_ids.first
   end
 
   test "should create a new company" do
-    stub_successful_company_requests(@twitch_oauth_token)
+    stub_successful_company_responses
     assert_difference("Company.count", +1) do
       facade = Api::Companies::CreateFacade.new(@id, @twitch_oauth_token)
       facade.find_or_create_company
@@ -26,7 +27,7 @@ class Api::Companies::CreateFacadeTest < ActionDispatch::IntegrationTest
   end
 
   test "should return a successfully found or created company" do
-    stub_successful_company_requests(@twitch_oauth_token)
+    stub_successful_company_responses
     facade = Api::Companies::CreateFacade.new(@id, @twitch_oauth_token)
     igdb_id = facade.find_or_create_company[:company].igdb_id
     assert_equal igdb_id, @id

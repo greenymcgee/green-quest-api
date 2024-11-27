@@ -11,6 +11,14 @@ module IgdbApiTestHelper
     stub_request(:get, igdb_url(pathname)).with(params).to_return(response)
   end
 
+  def game_json
+    json_mocks("igdb/game.json")
+  end
+
+  def igdb_game_data
+    JSON.parse(game_json).first
+  end
+
   private
 
   def igdb_api_failure_response_body

@@ -41,5 +41,6 @@ Rails.application.routes.draw do
     resources :release_dates, only: %i[index show destroy]
     resources :screenshots, only: %i[index show destroy]
     resources :users
+    resources :websites, only: %i[index show destroy]
   end
 end

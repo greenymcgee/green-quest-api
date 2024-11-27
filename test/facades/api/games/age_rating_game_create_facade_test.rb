@@ -5,13 +5,11 @@ class Api::Games::AgeRatingGameCreateFacadeTest < ActionDispatch::IntegrationTes
 
   setup do
     @game = Game.create(igdb_id: 1026)
-    @igdb_game_data = JSON.parse(json_mocks("igdb/game.json")).first
-    @twitch_bearer_token = stubbed_twitch_bearer_token
     @facade =
       Api::Games::AgeRatingGameCreateFacade.new(
         game: @game,
-        igdb_game_data: @igdb_game_data,
-        twitch_bearer_token: @twitch_bearer_token,
+        igdb_game_data: igdb_game_data,
+        twitch_bearer_token: stubbed_twitch_bearer_token,
       )
   end
 
@@ -19,7 +17,7 @@ class Api::Games::AgeRatingGameCreateFacadeTest < ActionDispatch::IntegrationTes
     stub_successful_game_create_request(@game.igdb_id)
     @facade.add_age_ratings_to_game
     age_rating_ids = @game.age_ratings.map(&:igdb_id)
-    @igdb_game_data["age_ratings"].each do |id|
+    igdb_game_data["age_ratings"].each do |id|
       assert age_rating_ids.include? id
     end
   end
@@ -36,7 +34,7 @@ class Api::Games::AgeRatingGameCreateFacadeTest < ActionDispatch::IntegrationTes
       with_age_rating_failures: true,
     )
     @facade.add_age_ratings_to_game
-    ids = @igdb_game_data["age_ratings"]
+    ids = igdb_game_data["age_ratings"]
     @game.errors[:age_ratings].first.each_with_index do |errors, index|
       assert_equal(
         errors.first,

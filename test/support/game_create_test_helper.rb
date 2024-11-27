@@ -2,6 +2,7 @@ require "./test/support/igdb_api_test_helper.rb"
 require "./test/support/twitch_oauth_test_helper.rb"
 require "./test/support/company_create_test_helper.rb"
 require "./test/support/involved_company_create_test_helper.rb"
+require "./test/support/api/age_ratings/create_test_helper.rb"
 require "./test/support/api/genres/create_test_helper.rb"
 
 module GameCreateTestHelper
@@ -9,6 +10,7 @@ module GameCreateTestHelper
   include IgdbApiTestHelper
   include CompanyCreateTestHelper
   include InvolvedCompanyCreateTestHelper
+  include Api::AgeRatings::CreateTestHelper
   include Api::Genres::CreateTestHelper
 
   def stub_successful_game_create_request(
@@ -52,12 +54,6 @@ module GameCreateTestHelper
     stub_successful_artwork_responses
   end
 
-  def stub_age_rating_responses(with_age_rating_failures)
-    return stub_age_rating_request_failures if with_age_rating_failures
-
-    stub_successful_age_rating_responses
-  end
-
   def stub_cover_responses(with_cover_failure)
     return stub_cover_request_failures if with_cover_failure
 
@@ -92,22 +88,6 @@ module GameCreateTestHelper
     return stub_website_request_failures if with_website_failures
 
     stub_successful_website_responses
-  end
-
-  def stub_successful_age_rating_responses
-    igdb_game_data["age_ratings"].each do |id|
-      stub_successful_igdb_api_request(
-        "age_ratings/#{id}",
-        json_mocks("igdb/age_ratings/#{id}.json"),
-        stubbed_twitch_bearer_token,
-      )
-    end
-  end
-
-  def stub_age_rating_request_failures
-    igdb_game_data["age_ratings"].each do |id|
-      stub_igdb_api_request_failure("age_ratings/#{id}")
-    end
   end
 
   def stub_successful_artwork_responses

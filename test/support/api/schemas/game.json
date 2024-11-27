@@ -24,6 +24,10 @@
       "description": "Any errors that might be present after fulfilling a game request",
       "type": "array"
     },
+    "gameModes": {
+      "items": { "$ref": "file:/game_mode.json#" },
+      "type": "array"
+    },
     "genres": {
       "items": {
         "properties": {
@@ -92,6 +96,7 @@
     "artworks",
     "cover",
     "developers",
+    "gameModes",
     "genres",
     "id",
     "igdbId",

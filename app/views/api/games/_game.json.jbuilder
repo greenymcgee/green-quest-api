@@ -19,6 +19,9 @@ json.cover { json.partial! "api/covers/cover", cover: @game.cover }
 json.developers game.developers do |company|
   json.partial! "api/companies/company", company: company
 end
+json.game_modes game.game_modes do |game_mode|
+  json.partial! "api/game_modes/game_mode", game_mode: game_mode
+end
 json.genres game.genres do |genre|
   json.extract! genre, :id, :igdb_id, :name, :slug, :created_at, :updated_at
 end

@@ -7,12 +7,12 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
 
   setup do
     @game = Game.new(igdb_id: 1026)
-    @ids = JSON.parse(json_mocks("igdb/game.json")).first["involved_companies"]
+    @ids = igdb_game_data["involved_companies"]
   end
 
   test "should create new involved_companies" do
     stub_successful_company_responses
-    stub_successful_involved_company_requests(@ids, stubbed_twitch_bearer_token)
+    stub_successful_involved_company_responses
     assert_difference("InvolvedCompany.count", +@ids.count) do
       facade =
         Api::InvolvedCompanies::CreateFacade.new(
@@ -25,7 +25,7 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
   end
 
   test "should not create involved_companies when the igdb request fails" do
-    stub_involved_company_request_failures(@ids)
+    stub_involved_company_request_failures
     assert_difference("InvolvedCompany.count", +0) do
       facade =
         Api::InvolvedCompanies::CreateFacade.new(
@@ -39,7 +39,7 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
 
   test "should not create involved_companies when the igdb request for companies fails" do
     stub_company_request_failures
-    stub_successful_involved_company_requests(@ids, stubbed_twitch_bearer_token)
+    stub_successful_involved_company_responses
     assert_difference("InvolvedCompany.count", +0) do
       facade =
         Api::InvolvedCompanies::CreateFacade.new(
@@ -53,7 +53,7 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
 
   test "should return successfully found or created involved_companies" do
     stub_successful_company_responses
-    stub_successful_involved_company_requests(@ids, stubbed_twitch_bearer_token)
+    stub_successful_involved_company_responses
     facade =
       Api::InvolvedCompanies::CreateFacade.new(
         game: @game,
@@ -68,7 +68,7 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
   end
 
   test "should return errors for any failed involved company igdb api requests" do
-    stub_involved_company_request_failures(@ids)
+    stub_involved_company_request_failures
     facade =
       Api::InvolvedCompanies::CreateFacade.new(
         game: @game,
@@ -83,7 +83,7 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
 
   test "should return errors for any failed company igdb api requests" do
     stub_company_request_failures
-    stub_successful_involved_company_requests(@ids, stubbed_twitch_bearer_token)
+    stub_successful_involved_company_responses
     facade =
       Api::InvolvedCompanies::CreateFacade.new(
         game: @game,

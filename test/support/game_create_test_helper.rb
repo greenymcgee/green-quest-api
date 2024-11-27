@@ -80,14 +80,6 @@ module GameCreateTestHelper
     stub_successful_platform_responses
   end
 
-  def stub_involved_company_responses(with_involved_company_failures)
-    if with_involved_company_failures
-      return stub_involved_company_request_failures
-    end
-
-    stub_successful_involved_company_responses
-  end
-
   def stub_release_date_responses(with_release_date_failures)
     return stub_release_date_request_failures if with_release_date_failures
 
@@ -193,22 +185,6 @@ module GameCreateTestHelper
       stub_successful_igdb_api_request(
         "platforms/#{id}",
         json_mocks("igdb/platforms/#{id}.json"),
-        stubbed_twitch_bearer_token,
-      )
-    end
-  end
-
-  def stub_involved_company_request_failures
-    igdb_game_data["involved_companies"].each do |id|
-      stub_igdb_api_request_failure("involved_companies/#{id}")
-    end
-  end
-
-  def stub_successful_involved_company_responses
-    igdb_game_data["involved_companies"].each do |id|
-      stub_successful_igdb_api_request(
-        "involved_companies/#{id}",
-        json_mocks("igdb/involved_companies/#{id}.json"),
         stubbed_twitch_bearer_token,
       )
     end

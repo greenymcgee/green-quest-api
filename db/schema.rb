@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_27_030248) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_27_132013) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -259,5 +259,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_27_030248) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["jti"], name: "index_users_on_jti", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "websites", force: :cascade do |t|
+    t.integer "category_enum"
+    t.string "checksum", default: "", null: false
+    t.integer "igdb_id", null: false
+    t.boolean "trusted", default: false, null: false
+    t.string "url", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["igdb_id"], name: "index_websites_on_igdb_id", unique: true
   end
 end

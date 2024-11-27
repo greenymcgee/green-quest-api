@@ -1,0 +1,2 @@
+class WebsitePolicy < AdminPolicy
+end

@@ -1,0 +1,9 @@
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://greenquestgames.com/websites/show.json",
+  "description": "The GET /api/websites/:id payload",
+  "properties": { "website": { "$ref": "file:/website.json#" } },
+  "required": ["website"],
+  "type": "object"
+}

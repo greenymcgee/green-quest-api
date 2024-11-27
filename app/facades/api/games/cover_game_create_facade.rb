@@ -15,7 +15,7 @@ class Api::Games::CoverGameCreateFacade
   def set_cover_response
     facade =
       IgdbCreateFacade.new(
-        fields_facade: Api::Covers::IgdbFieldsFacade,
+        fields_facade: Igdb::ImageFieldsFacade,
         ids: [@@igdb_game_data["cover"]],
         model: Cover,
         twitch_bearer_token: @@twitch_bearer_token,

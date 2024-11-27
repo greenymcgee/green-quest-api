@@ -13,6 +13,7 @@ class Api::Games::CreateFacade
   end
 
   def add_game_resources
+    add_cover_to_game
     add_genres_to_game
     add_platforms_to_game
     Api::Games::InvolvedCompanyGameCreateFacade.new(
@@ -31,6 +32,12 @@ class Api::Games::CreateFacade
   end
 
   private
+
+  def add_cover_to_game
+    Api::Games::CoverGameCreateFacade.new(
+      **@@create_facade_params,
+    ).add_cover_to_game
+  end
 
   def set_genre_response
     facade =

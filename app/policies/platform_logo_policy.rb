@@ -1,0 +1,2 @@
+class PlatformLogoPolicy < AdminPolicy
+end

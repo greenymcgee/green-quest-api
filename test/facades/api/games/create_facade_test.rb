@@ -37,6 +37,12 @@ class Api::Games::CreateFacadeTest < ActionDispatch::IntegrationTest
     assert_equal @game.cover.igdb_id, @igdb_game_data["cover"]
   end
 
+  test "should add game_modes to the game" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @facade.add_game_resources
+    assert_equal(@game.game_modes.map(&:igdb_id), @igdb_game_data["game_modes"])
+  end
+
   test "should add genres to the game" do
     stub_successful_game_create_request(@game.igdb_id)
     @facade.add_game_resources

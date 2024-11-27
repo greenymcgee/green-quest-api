@@ -6,20 +6,19 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
   include InvolvedCompanyCreateTestHelper
 
   setup do
-    @twitch_oauth_token = "Bearer asdlfkh"
     @game = Game.new(igdb_id: 1026)
     @ids = JSON.parse(json_mocks("igdb/game.json")).first["involved_companies"]
   end
 
   test "should create new involved_companies" do
-    stub_successful_company_requests(@twitch_oauth_token)
-    stub_successful_involved_company_requests(@ids, @twitch_oauth_token)
+    stub_successful_company_responses
+    stub_successful_involved_company_requests(@ids, stubbed_twitch_bearer_token)
     assert_difference("InvolvedCompany.count", +@ids.count) do
       facade =
         Api::InvolvedCompanies::CreateFacade.new(
           game: @game,
           ids: @ids,
-          twitch_bearer_token: @twitch_oauth_token,
+          twitch_bearer_token: stubbed_twitch_bearer_token,
         )
       facade.find_or_create_involved_companies
     end
@@ -32,7 +31,7 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
         Api::InvolvedCompanies::CreateFacade.new(
           game: @game,
           ids: @ids,
-          twitch_bearer_token: @twitch_oauth_token,
+          twitch_bearer_token: stubbed_twitch_bearer_token,
         )
       facade.find_or_create_involved_companies
     end
@@ -40,26 +39,26 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
 
   test "should not create involved_companies when the igdb request for companies fails" do
     stub_company_request_failures
-    stub_successful_involved_company_requests(@ids, @twitch_oauth_token)
+    stub_successful_involved_company_requests(@ids, stubbed_twitch_bearer_token)
     assert_difference("InvolvedCompany.count", +0) do
       facade =
         Api::InvolvedCompanies::CreateFacade.new(
           game: @game,
           ids: @ids,
-          twitch_bearer_token: @twitch_oauth_token,
+          twitch_bearer_token: stubbed_twitch_bearer_token,
         )
       facade.find_or_create_involved_companies
     end
   end
 
   test "should return successfully found or created involved_companies" do
-    stub_successful_company_requests(@twitch_oauth_token)
-    stub_successful_involved_company_requests(@ids, @twitch_oauth_token)
+    stub_successful_company_responses
+    stub_successful_involved_company_requests(@ids, stubbed_twitch_bearer_token)
     facade =
       Api::InvolvedCompanies::CreateFacade.new(
         game: @game,
         ids: @ids,
-        twitch_bearer_token: @twitch_oauth_token,
+        twitch_bearer_token: stubbed_twitch_bearer_token,
       )
     igdb_ids =
       facade.find_or_create_involved_companies[:involved_companies].map(
@@ -74,7 +73,7 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
       Api::InvolvedCompanies::CreateFacade.new(
         game: @game,
         ids: @ids,
-        twitch_bearer_token: @twitch_oauth_token,
+        twitch_bearer_token: stubbed_twitch_bearer_token,
       )
     response = facade.find_or_create_involved_companies
     response[:errors][:involved_companies].each_with_index do |error, index|
@@ -84,29 +83,29 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
 
   test "should return errors for any failed company igdb api requests" do
     stub_company_request_failures
-    stub_successful_involved_company_requests(@ids, @twitch_oauth_token)
+    stub_successful_involved_company_requests(@ids, stubbed_twitch_bearer_token)
     facade =
       Api::InvolvedCompanies::CreateFacade.new(
         game: @game,
         ids: @ids,
-        twitch_bearer_token: @twitch_oauth_token,
+        twitch_bearer_token: stubbed_twitch_bearer_token,
       )
     response = facade.find_or_create_involved_companies
     assert_equal response[:errors][:companies].count, stubbed_company_ids.count
   end
 
   test "should return errors for any failed involved_company creations" do
-    stub_successful_company_requests(@twitch_oauth_token)
+    stub_successful_company_responses
     stub_successful_igdb_api_request(
       "involved_companies/#{nil}",
       json_mocks("igdb/involved_companies/101094.json"),
-      @twitch_oauth_token,
+      stubbed_twitch_bearer_token,
     )
     facade =
       Api::InvolvedCompanies::CreateFacade.new(
         game: @game,
         ids: [nil],
-        twitch_bearer_token: @twitch_oauth_token,
+        twitch_bearer_token: stubbed_twitch_bearer_token,
       )
     request = facade.find_or_create_involved_companies
     errors = request[:errors][:involved_companies]

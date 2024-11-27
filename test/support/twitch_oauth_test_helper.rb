@@ -21,6 +21,10 @@ module TwitchOauthTestHelper
     )
   end
 
+  def stubbed_twitch_bearer_token
+    "Bearer #{twitch_oauth_access_token}"
+  end
+
   private
 
   def twitch_oauth_failure_response_body

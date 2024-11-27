@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resources :genres, only: %i[index show destroy]
     resources :involved_companies, only: %i[index show destroy]
     resources :platforms, only: %i[index show destroy]
+    resources :platform_logos, only: %i[index show destroy]
     resources :release_dates, only: %i[index show destroy]
     resources :screenshots, only: %i[index show destroy]
     resources :users

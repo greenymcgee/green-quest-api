@@ -2,12 +2,14 @@ require "./test/support/igdb_api_test_helper.rb"
 require "./test/support/twitch_oauth_test_helper.rb"
 require "./test/support/company_create_test_helper.rb"
 require "./test/support/involved_company_create_test_helper.rb"
+require "./test/support/api/genres/create_test_helper.rb"
 
 module GameCreateTestHelper
   include TwitchOauthTestHelper
   include IgdbApiTestHelper
   include CompanyCreateTestHelper
   include InvolvedCompanyCreateTestHelper
+  include Api::Genres::CreateTestHelper
 
   def stub_successful_game_create_request(
     game_id,
@@ -66,12 +68,6 @@ module GameCreateTestHelper
     return stub_game_mode_request_failures if with_game_mode_failures
 
     stub_successful_game_mode_responses
-  end
-
-  def stub_genre_responses(with_genre_failures)
-    return stub_genre_request_failures if with_genre_failures
-
-    stub_successful_genre_responses
   end
 
   def stub_platform_responses(with_platform_failures)
@@ -153,22 +149,6 @@ module GameCreateTestHelper
       stub_successful_igdb_api_request(
         "game_modes/#{id}",
         json_mocks("igdb/game_modes/#{id}.json"),
-        stubbed_twitch_bearer_token,
-      )
-    end
-  end
-
-  def stub_genre_request_failures
-    igdb_game_data["genres"].each do |genre_id|
-      stub_igdb_api_request_failure("genres/#{genre_id}")
-    end
-  end
-
-  def stub_successful_genre_responses
-    igdb_game_data["genres"].each do |genre_id|
-      stub_successful_igdb_api_request(
-        "genres/#{genre_id}",
-        json_mocks("igdb/genres/#{genre_id}.json"),
         stubbed_twitch_bearer_token,
       )
     end

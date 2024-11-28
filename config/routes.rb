@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :age_ratings, only: %i[index show destroy]
     resources :artworks, only: %i[index show destroy]
     resources :companies, only: %i[index show destroy]
+    resources :company_logos, only: %i[index show destroy]
     resources :covers, only: %i[index show destroy]
     resources :games
     resources :game_modes, only: %i[index show destroy]

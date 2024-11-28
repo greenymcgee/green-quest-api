@@ -2,7 +2,7 @@ require "test_helper"
 
 class PlatformLogoTest < ActiveSupport::TestCase
   test "valid platform_logo" do
-    platform_logo = PlatformLogo.new(igdb_id: 10)
+    platform_logo = PlatformLogo.new(igdb_id: 10, platform: platforms(:snes))
     assert platform_logo.valid?
   end
 

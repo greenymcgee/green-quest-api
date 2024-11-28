@@ -4,6 +4,7 @@ require "./test/support/company_create_test_helper.rb"
 require "./test/support/involved_company_create_test_helper.rb"
 require "./test/support/age_rating_create_test_helper.rb"
 require "./test/support/artwork_create_test_helper.rb"
+require "./test/support/cover_create_test_helper.rb"
 require "./test/support/genre_create_test_helper.rb"
 
 module GameCreateTestHelper
@@ -11,6 +12,7 @@ module GameCreateTestHelper
   include IgdbApiTestHelper
   include AgeRatingCreateTestHelper
   include ArtworkCreateTestHelper
+  include CoverCreateTestHelper
   include CompanyCreateTestHelper
   include GenreCreateTestHelper
   include InvolvedCompanyCreateTestHelper
@@ -37,7 +39,7 @@ module GameCreateTestHelper
     )
     stub_age_rating_responses(with_age_rating_failures)
     stub_artwork_responses(with_artwork_failures)
-    stub_cover_responses(with_cover_failure)
+    stub_cover_response(with_cover_failure)
     stub_game_mode_responses(with_game_mode_failures)
     stub_genre_responses(with_genre_failures)
     stub_platform_responses(with_platform_failures)
@@ -49,12 +51,6 @@ module GameCreateTestHelper
   end
 
   private
-
-  def stub_cover_responses(with_cover_failure)
-    return stub_cover_request_failures if with_cover_failure
-
-    stub_successful_cover_responses
-  end
 
   def stub_game_mode_responses(with_game_mode_failures)
     return stub_game_mode_request_failures if with_game_mode_failures
@@ -84,18 +80,6 @@ module GameCreateTestHelper
     return stub_website_request_failures if with_website_failures
 
     stub_successful_website_responses
-  end
-
-  def stub_successful_cover_responses
-    stub_successful_igdb_api_request(
-      "covers/#{igdb_game_data["cover"]}",
-      json_mocks("igdb/covers/#{igdb_game_data["cover"]}.json"),
-      stubbed_twitch_bearer_token,
-    )
-  end
-
-  def stub_cover_request_failures
-    stub_igdb_api_request_failure("covers/#{igdb_game_data["cover"]}")
   end
 
   def stub_game_mode_request_failures

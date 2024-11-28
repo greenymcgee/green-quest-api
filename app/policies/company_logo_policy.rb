@@ -1,0 +1,2 @@
+class CompanyLogoPolicy < AdminPolicy
+end

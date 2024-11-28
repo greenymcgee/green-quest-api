@@ -112,8 +112,10 @@ class Api::Games::CreateFacadeTest < ActionDispatch::IntegrationTest
     @facade.add_game_resources
     platform_ids = @igdb_game_data["platforms"]
     @game.errors[:platforms].first.each_with_index do |errors, index|
-      id = index > 0 ? platform_ids[index + 1] : platform_ids[index]
-      assert_equal(errors.first, [id, { "message" => "Not authorized" }])
+      assert_equal(
+        errors.first,
+        [platform_ids[index], { "message" => "Not authorized" }],
+      )
     end
   end
 end

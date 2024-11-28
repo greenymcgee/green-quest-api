@@ -68,27 +68,10 @@ class Api::Games::CreateFacade
     @@genre_response[:genres].each { |genre| @@game.genres << genre }
   end
 
-  def set_platforms_response
-    facade =
-      Api::Platforms::CreateFacade.new(
-        @@igdb_game_data["platforms"],
-        @@twitch_bearer_token,
-      )
-    @@platforms_response = facade.find_or_create_platforms
-  end
-
-  def add_platforms_errors_to_game
-    return unless @@platforms_response[:errors].present?
-
-    @@game.errors.add(:platforms, @@platforms_response[:errors])
-  end
-
   def add_platforms_to_game
-    set_platforms_response
-    add_platforms_errors_to_game
-    @@platforms_response[:platforms].each do |platform|
-      @@game.platforms << platform
-    end
+    Api::Games::PlatformGameCreateFacade.new(
+      **@@create_facade_params,
+    ).add_platforms_to_game
   end
 
   def add_release_dates_to_game

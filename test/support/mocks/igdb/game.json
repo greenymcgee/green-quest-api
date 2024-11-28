@@ -40,7 +40,7 @@
     "multiplayer_modes": [1],
     "name": "The Legend of Zelda: A Link to the Past",
     "parent_game": 1,
-    "platforms": [5, 19, 41, 58, 137, 306],
+    "platforms": [19, 137, 306],
     "player_perspectives": [3],
     "ports": [2, 3],
     "rating": 92.43807382880051,

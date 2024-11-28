@@ -37,7 +37,7 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "should not create involved_companies when the igdb request for companies fails" do
+  test "should not create involved_companies when the igdb request for company fails" do
     stub_company_request_failures
     stub_successful_involved_company_responses
     assert_difference("InvolvedCompany.count", +0) do

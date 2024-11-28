@@ -37,13 +37,11 @@ class Api::Platforms::CreateFacade
   end
 
   def get_platform_igdb_data(id)
-    facade =
-      IgdbRequestFacade.new(
-        igdb_id: id,
-        pathname: "platforms",
-        twitch_bearer_token: @@twitch_bearer_token,
-      )
-    facade.get_igdb_data
+    IgdbRequestFacade.new(
+      igdb_id: id,
+      pathname: "platforms",
+      twitch_bearer_token: @@twitch_bearer_token,
+    ).get_igdb_data
   end
 
   def populate_platform_fields(platform, igdb_platform_data)
@@ -52,16 +50,16 @@ class Api::Platforms::CreateFacade
   end
 
   def create_platform_logo(id, platform)
-    facade =
-      IgdbCreateFacade.new(
-        fields_facade: Igdb::ImageFieldsFacade,
-        ids: [id],
-        model: PlatformLogo,
-        twitch_bearer_token: @@twitch_bearer_token,
-      )
-    facade.find_or_create_resources(
-      ->(platform_logo) { platform.platform_logo = platform_logo },
-    )
+    IgdbCreateFacade.new(
+      fields_facade: Igdb::ImageFieldsFacade,
+      ids: [id],
+      model: PlatformLogo,
+      twitch_bearer_token: @@twitch_bearer_token,
+    ).find_or_create_resources(platform_logo_callback(platform))
+  end
+
+  def platform_logo_callback(platform)
+    ->(platform_logo) { platform.platform_logo = platform_logo }
   end
 
   def set_platform_platform_logo(platform, igdb_data)
@@ -70,12 +68,6 @@ class Api::Platforms::CreateFacade
   end
 
   def add_platform_logo_error(error)
-    return false unless error.present?
-
-    @@errors[:platform_logos] << error
-  end
-
-  def add_platform_company_error(error)
     return false unless error.present?
 
     @@errors[:platform_logos] << error

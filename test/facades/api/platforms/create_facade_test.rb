@@ -57,11 +57,16 @@ class Api::Platforms::CreateFacadeTest < ActionDispatch::IntegrationTest
   end
 
   test "should return errors for any failed platform creations" do
-    stub_igdb_api_request_failure("platforms/#{nil}")
+    stub_successful_platform_logo_responses
+    stub_successful_igdb_api_request(
+      "platforms/#{nil}",
+      json_mocks("igdb/platforms/19.json"),
+      stubbed_twitch_bearer_token,
+    )
     facade = Api::Platforms::CreateFacade.new([nil], @twitch_bearer_token)
     request = facade.find_or_create_platforms
     errors = request[:errors][:platforms]
-    assert_equal errors.count, 1
+    errors.each { |error| assert_equal(error.message, "can't be blank") }
   end
 
   test "should return errors for any failed platform_logo igdb api requests" do

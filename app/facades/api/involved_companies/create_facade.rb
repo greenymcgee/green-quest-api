@@ -19,10 +19,10 @@ class Api::InvolvedCompanies::CreateFacade
       InvolvedCompany.find_or_initialize_by(igdb_id: id) do |involved_company|
         next if involved_company.id.present?
 
-        igdb_data_request = get_igdb_data(id)
-        next if add_involved_company_error(id, igdb_data_request[:error])
+        igdb_data_response = get_igdb_data(id)
+        next if add_involved_company_error(id, igdb_data_response[:error])
 
-        igdb_data = igdb_data_request[:igdb_involved_company_data]
+        igdb_data = igdb_data_response[:igdb_data]
         next unless set_involved_company_company(involved_company, igdb_data)
 
         involved_company.game = @@game
@@ -39,15 +39,21 @@ class Api::InvolvedCompanies::CreateFacade
   end
 
   def find_or_create_company(id)
-    facade = Api::Companies::CreateFacade.new(id, @@twitch_bearer_token)
-    facade.find_or_create_company
+    facade =
+      IgdbCreateFacade.new(
+        fields_facade: Api::Companies::IgdbFieldsFacade,
+        ids: [id],
+        model: Company,
+        twitch_bearer_token: @@twitch_bearer_token,
+      )
+    facade.find_or_create_resources
   end
 
   def set_involved_company_company(involved_company, igdb_data)
     company_response = find_or_create_company(igdb_data["company"])
     return false if add_company_error(company_response[:errors].first)
 
-    involved_company.company = company_response[:company]
+    involved_company.company = company_response[:resources].first
   end
 
   def add_company_error(error)
@@ -64,8 +70,12 @@ class Api::InvolvedCompanies::CreateFacade
 
   def get_igdb_data(id)
     facade =
-      Api::InvolvedCompanies::IgdbRequestFacade.new(id, @@twitch_bearer_token)
-    facade.get_igdb_involved_company_data
+      IgdbRequestFacade.new(
+        igdb_id: id,
+        pathname: "involved_companies",
+        twitch_bearer_token: @@twitch_bearer_token,
+      )
+    facade.get_igdb_data
   end
 
   def populate_involved_company_fields(involved_company, data)

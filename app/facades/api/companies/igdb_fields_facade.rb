@@ -6,7 +6,7 @@ class Api::Companies::IgdbFieldsFacade
     @@igdb_data = igdb_data
   end
 
-  def populate_company_fields
+  def populate_fields
     @@company.update(
       change_date: change_date,
       change_date_category_enum: change_date_category_enum,

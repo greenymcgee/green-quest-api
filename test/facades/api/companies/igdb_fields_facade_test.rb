@@ -5,7 +5,7 @@ class Api::Companies::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
     @company = Company.new(igdb_id: 1026)
     @igdb_data, = JSON.parse(json_mocks("igdb/companies/421.json"))
     facade = Api::Companies::IgdbFieldsFacade.new(@company, @igdb_data)
-    facade.populate_company_fields
+    facade.populate_fields
   end
 
   test "should populate the change_date" do
@@ -18,7 +18,7 @@ class Api::Companies::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
     company = Company.new(igdb_id: 40)
     igdb_data = { **@igdb_data, "change_date" => nil }
     facade = Api::Companies::IgdbFieldsFacade.new(company, igdb_data)
-    facade.populate_company_fields
+    facade.populate_fields
     assert_nil(company.change_date)
   end
 
@@ -69,7 +69,7 @@ class Api::Companies::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
     company = Company.new(igdb_id: 40)
     igdb_data = { **@igdb_data, "start_date" => nil }
     facade = Api::Companies::IgdbFieldsFacade.new(company, igdb_data)
-    facade.populate_company_fields
+    facade.populate_fields
     assert_nil company.start_date
   end
 

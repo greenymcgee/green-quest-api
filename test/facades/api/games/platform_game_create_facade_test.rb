@@ -5,13 +5,11 @@ class Api::Games::PlatformGameCreateFacadeTest < ActionDispatch::IntegrationTest
 
   setup do
     @game = Game.create(igdb_id: 1026)
-    @igdb_game_data = JSON.parse(json_mocks("igdb/game.json")).first
-    @twitch_bearer_token = stubbed_twitch_bearer_token
     @facade =
       Api::Games::PlatformGameCreateFacade.new(
         game: @game,
-        igdb_game_data: @igdb_game_data,
-        twitch_bearer_token: @twitch_bearer_token,
+        igdb_game_data: igdb_game_data,
+        twitch_bearer_token: stubbed_twitch_bearer_token,
       )
   end
 
@@ -19,7 +17,7 @@ class Api::Games::PlatformGameCreateFacadeTest < ActionDispatch::IntegrationTest
     stub_successful_game_create_request(@game.igdb_id)
     @facade.add_platforms_to_game
     platform_ids = @game.platforms.map(&:igdb_id)
-    @igdb_game_data["platforms"].each { |id| assert platform_ids.include? id }
+    igdb_game_data["platforms"].each { |id| assert platform_ids.include? id }
   end
 
   test "should not add errors to game upon success" do
@@ -34,7 +32,7 @@ class Api::Games::PlatformGameCreateFacadeTest < ActionDispatch::IntegrationTest
       with_platform_failures: true,
     )
     @facade.add_platforms_to_game
-    ids = @igdb_game_data["platforms"]
+    ids = igdb_game_data["platforms"]
     @game.errors[:platforms].first.each_with_index do |errors, index|
       assert_equal(
         errors.first,

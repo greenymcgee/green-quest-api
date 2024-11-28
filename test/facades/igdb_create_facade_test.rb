@@ -120,7 +120,7 @@ class IgdbCreateFacadeTest < ActionDispatch::IntegrationTest
     assert_equal request[:resources], []
   end
 
-  test "should take an optional callback" do
+  test "should take an optional callback for belongs_to relationships" do
     igdb_game_data["artworks"].each do |id|
       stub_successful_igdb_api_request(
         "artworks/#{id}",
@@ -139,5 +139,27 @@ class IgdbCreateFacadeTest < ActionDispatch::IntegrationTest
     request =
       facade.find_or_create_resources(->(resource) { resource.game = game })
     assert_equal request[:resources], game.artworks
+  end
+
+  test "should populate resource fields" do
+    resource_id = @ids.first
+    stub_successful_igdb_api_request(
+      "#{@snake_cased_model_name}/#{resource_id}",
+      json_mocks("igdb/#{@snake_cased_model_name}/#{resource_id}.json"),
+      @twitch_bearer_token,
+    )
+    IgdbCreateFacade.new(
+      fields_facade: @fields_facade,
+      ids: [resource_id],
+      model: @model,
+      twitch_bearer_token: @twitch_bearer_token,
+    ).find_or_create_resources
+    resource_json =
+      json_mocks("igdb/#{@snake_cased_model_name}/#{resource_id}.json")
+    resource_data = JSON.parse(resource_json).first
+    assert_equal(
+      resource_data["rating_cover_url"],
+      @model.last.rating_cover_url,
+    )
   end
 end

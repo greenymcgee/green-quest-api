@@ -22,9 +22,9 @@ class Api::Platforms::CreateFacade
         next if add_platform_error(id, igdb_data_response[:error])
 
         igdb_data = igdb_data_response[:igdb_data]
-        next unless set_platform_platform_logo(platform, igdb_data)
 
         populate_platform_fields(platform, igdb_data)
+        set_platform_platform_logo(platform, igdb_data)
         platform.errors.each { |error| @@errors[:platforms] << error }
       end
     end

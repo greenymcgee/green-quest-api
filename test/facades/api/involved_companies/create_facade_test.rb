@@ -24,6 +24,27 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should populate involved_company fields" do
+    stub_successful_company_responses
+    stub_successful_involved_company_responses
+    involved_company_id = @ids.first
+    facade =
+      Api::InvolvedCompanies::CreateFacade.new(
+        game: @game,
+        ids: @ids,
+        twitch_bearer_token: stubbed_twitch_bearer_token,
+      )
+    facade.find_or_create_involved_companies
+    involved_company_json =
+      JSON.parse(
+        json_mocks("igdb/involved_companies/#{involved_company_id}.json"),
+      ).first
+    assert_equal(
+      involved_company_json["publisher"],
+      InvolvedCompany.last.is_publisher,
+    )
+  end
+
   test "should not create involved_companies when the igdb request fails" do
     stub_involved_company_request_failures
     assert_difference("InvolvedCompany.count", +0) do

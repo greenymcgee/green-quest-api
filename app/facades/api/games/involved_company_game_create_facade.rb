@@ -9,6 +9,7 @@ class Api::Games::InvolvedCompanyGameCreateFacade
     set_involved_companies_response
     add_involved_companies_errors_to_game
     add_companies_errors_to_game
+    add_company_logos_errors_to_game
     @@involved_companies_response[
       :involved_companies
     ].each { |involved_company| @@game.involved_companies << involved_company }
@@ -43,6 +44,17 @@ class Api::Games::InvolvedCompanyGameCreateFacade
     @@game.errors.add(
       :companies,
       @@involved_companies_response[:errors][:companies],
+    )
+  end
+
+  def add_company_logos_errors_to_game
+    unless @@involved_companies_response[:errors][:company_logos].present?
+      return
+    end
+
+    @@game.errors.add(
+      :company_logos,
+      @@involved_companies_response[:errors][:company_logos],
     )
   end
 end

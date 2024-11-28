@@ -63,6 +63,8 @@ class Api::Platforms::CreateFacade
   end
 
   def set_platform_platform_logo(platform, igdb_data)
+    return false unless igdb_data["platform_logo"].present?
+
     logo_response = create_platform_logo(igdb_data["platform_logo"], platform)
     add_platform_logo_error(logo_response[:errors].first)
   end

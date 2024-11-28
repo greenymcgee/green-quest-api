@@ -5,7 +5,7 @@ class Api::InvolvedCompanies::CreateFacade
     @@twitch_bearer_token = twitch_bearer_token
     @@game = game
     @@ids = ids || []
-    @@errors = { companies: [], involved_companies: [] }
+    @@errors = { companies: [], company_logos: [], involved_companies: [] }
   end
 
   def find_or_create_involved_companies
@@ -39,27 +39,31 @@ class Api::InvolvedCompanies::CreateFacade
   end
 
   def find_or_create_company(id)
-    facade =
-      IgdbCreateFacade.new(
-        fields_facade: Api::Companies::IgdbFieldsFacade,
-        ids: [id],
-        model: Company,
-        twitch_bearer_token: @@twitch_bearer_token,
-      )
-    facade.find_or_create_resources
+    Api::Companies::CreateFacade.new(
+      id,
+      @@twitch_bearer_token,
+    ).find_or_create_company
   end
 
   def set_involved_company_company(involved_company, igdb_data)
     company_response = find_or_create_company(igdb_data["company"])
-    return false if add_company_error(company_response[:errors].first)
+    errors = company_response[:errors]
+    return false if add_company_error(errors[:companies].first)
 
-    involved_company.company = company_response[:resources].first
+    add_company_logo_error(errors[:company_logos].first)
+    involved_company.company = company_response[:company]
   end
 
   def add_company_error(error)
     return false unless error.present?
 
     @@errors[:companies] << error
+  end
+
+  def add_company_logo_error(error)
+    return false unless error.present?
+
+    @@errors[:company_logos] << error
   end
 
   def add_involved_company_error(id, error)

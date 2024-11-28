@@ -3,6 +3,7 @@ require "test_helper"
 class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
   include IgdbApiTestHelper
   include CompanyCreateTestHelper
+  include CompanyLogoCreateTestHelper
   include InvolvedCompanyCreateTestHelper
 
   setup do
@@ -11,6 +12,7 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
   end
 
   test "should create new involved_companies" do
+    stub_successful_company_logo_responses
     stub_successful_company_responses
     stub_successful_involved_company_responses
     assert_difference("InvolvedCompany.count", +@ids.count) do
@@ -25,6 +27,7 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
   end
 
   test "should populate involved_company fields" do
+    stub_successful_company_logo_responses
     stub_successful_company_responses
     stub_successful_involved_company_responses
     involved_company_id = @ids.first
@@ -74,6 +77,7 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
 
   test "should return successfully found or created involved_companies" do
     stub_successful_company_responses
+    stub_successful_company_logo_responses
     stub_successful_involved_company_responses
     facade =
       Api::InvolvedCompanies::CreateFacade.new(
@@ -115,8 +119,26 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
     assert_equal response[:errors][:companies].count, stubbed_company_ids.count
   end
 
+  test "should return errors for any failed company logo igdb api requests" do
+    stub_successful_company_responses
+    stub_successful_involved_company_responses
+    stub_company_logo_request_failures
+    facade =
+      Api::InvolvedCompanies::CreateFacade.new(
+        game: @game,
+        ids: @ids,
+        twitch_bearer_token: stubbed_twitch_bearer_token,
+      )
+    response = facade.find_or_create_involved_companies
+    assert_equal(
+      response[:errors][:company_logos].count,
+      stubbed_company_logo_ids.count,
+    )
+  end
+
   test "should return errors for any failed involved_company creations" do
     stub_successful_company_responses
+    stub_successful_company_logo_responses
     stub_successful_igdb_api_request(
       "involved_companies/#{nil}",
       json_mocks("igdb/involved_companies/101094.json"),

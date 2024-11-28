@@ -1,5 +1,7 @@
 one:
   igdb_id: 1
+  platform: snes
 
 two:
   igdb_id: 2
+  platform: xbox_360

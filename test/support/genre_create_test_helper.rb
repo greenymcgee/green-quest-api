@@ -1,7 +1,7 @@
 require "./test/support/igdb_api_test_helper.rb"
 require "./test/support/twitch_oauth_test_helper.rb"
 
-module Api::Genres::CreateTestHelper
+module GenreCreateTestHelper
   include IgdbApiTestHelper
   include TwitchOauthTestHelper
 

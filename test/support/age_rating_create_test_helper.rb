@@ -1,7 +1,7 @@
 require "./test/support/igdb_api_test_helper.rb"
 require "./test/support/twitch_oauth_test_helper.rb"
 
-module Api::AgeRatings::CreateTestHelper
+module AgeRatingCreateTestHelper
   include IgdbApiTestHelper
   include TwitchOauthTestHelper
 

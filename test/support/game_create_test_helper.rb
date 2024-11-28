@@ -2,16 +2,18 @@ require "./test/support/igdb_api_test_helper.rb"
 require "./test/support/twitch_oauth_test_helper.rb"
 require "./test/support/company_create_test_helper.rb"
 require "./test/support/involved_company_create_test_helper.rb"
-require "./test/support/api/age_ratings/create_test_helper.rb"
-require "./test/support/api/genres/create_test_helper.rb"
+require "./test/support/age_rating_create_test_helper.rb"
+require "./test/support/artwork_create_test_helper.rb"
+require "./test/support/genre_create_test_helper.rb"
 
 module GameCreateTestHelper
   include TwitchOauthTestHelper
   include IgdbApiTestHelper
+  include AgeRatingCreateTestHelper
+  include ArtworkCreateTestHelper
   include CompanyCreateTestHelper
+  include GenreCreateTestHelper
   include InvolvedCompanyCreateTestHelper
-  include Api::AgeRatings::CreateTestHelper
-  include Api::Genres::CreateTestHelper
 
   def stub_successful_game_create_request(
     game_id,
@@ -48,12 +50,6 @@ module GameCreateTestHelper
 
   private
 
-  def stub_artwork_responses(with_artwork_failures)
-    return stub_artwork_request_failures if with_artwork_failures
-
-    stub_successful_artwork_responses
-  end
-
   def stub_cover_responses(with_cover_failure)
     return stub_cover_request_failures if with_cover_failure
 
@@ -88,22 +84,6 @@ module GameCreateTestHelper
     return stub_website_request_failures if with_website_failures
 
     stub_successful_website_responses
-  end
-
-  def stub_successful_artwork_responses
-    igdb_game_data["artworks"].each do |id|
-      stub_successful_igdb_api_request(
-        "artworks/#{id}",
-        json_mocks("igdb/artworks/#{id}.json"),
-        stubbed_twitch_bearer_token,
-      )
-    end
-  end
-
-  def stub_artwork_request_failures
-    igdb_game_data["artworks"].each do |id|
-      stub_igdb_api_request_failure("artworks/#{id}")
-    end
   end
 
   def stub_successful_cover_responses

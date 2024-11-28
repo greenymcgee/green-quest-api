@@ -3,7 +3,7 @@ require "test_helper"
 class Api::Genres::CreateFacadeTest < ActionDispatch::IntegrationTest
   include IgdbApiTestHelper
   include TwitchOauthTestHelper
-  include Api::Genres::CreateTestHelper
+  include GenreCreateTestHelper
 
   setup do
     @genre_ids = igdb_game_data["genres"]

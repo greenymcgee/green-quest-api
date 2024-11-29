@@ -24,6 +24,10 @@
       "description": "Any errors that might be present after fulfilling a game request",
       "type": "array"
     },
+    "gameEngines": {
+      "items": { "$ref": "file:/game_engine.json#" },
+      "type": "array"
+    },
     "gameModes": {
       "items": { "$ref": "file:/game_mode.json#" },
       "type": "array"
@@ -100,6 +104,7 @@
     "artworks",
     "cover",
     "developers",
+    "gameEngines",
     "gameModes",
     "genres",
     "id",

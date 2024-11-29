@@ -5,7 +5,7 @@ class Api::Franchises::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
     @franchise = Franchise.new(igdb_id: 1026)
     @igdb_data, = JSON.parse(json_mocks("igdb/franchises/596.json"))
     facade = Api::Franchises::IgdbFieldsFacade.new(@franchise, @igdb_data)
-    facade.populate_franchise_fields
+    facade.populate_fields
   end
 
   test "should populate the checksum" do

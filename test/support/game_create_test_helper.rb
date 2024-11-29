@@ -1,31 +1,33 @@
-require "./test/support/igdb_api_test_helper.rb"
-require "./test/support/twitch_oauth_test_helper.rb"
+require "./test/support/age_rating_create_test_helper.rb"
+require "./test/support/artwork_create_test_helper.rb"
 require "./test/support/company_create_test_helper.rb"
 require "./test/support/company_logo_create_test_helper.rb"
+require "./test/support/cover_create_test_helper.rb"
+require "./test/support/franchise_create_test_helper.rb"
+require "./test/support/game_engine_create_test_helper.rb"
+require "./test/support/game_engine_logo_create_test_helper.rb"
+require "./test/support/genre_create_test_helper.rb"
+require "./test/support/igdb_api_test_helper.rb"
 require "./test/support/involved_company_create_test_helper.rb"
 require "./test/support/platform_create_test_helper.rb"
 require "./test/support/platform_logo_create_test_helper.rb"
-require "./test/support/age_rating_create_test_helper.rb"
-require "./test/support/artwork_create_test_helper.rb"
-require "./test/support/cover_create_test_helper.rb"
-require "./test/support/genre_create_test_helper.rb"
-require "./test/support/game_engine_create_test_helper.rb"
-require "./test/support/game_engine_logo_create_test_helper.rb"
+require "./test/support/twitch_oauth_test_helper.rb"
 
 module GameCreateTestHelper
-  include TwitchOauthTestHelper
-  include IgdbApiTestHelper
   include AgeRatingCreateTestHelper
   include ArtworkCreateTestHelper
   include CoverCreateTestHelper
   include CompanyCreateTestHelper
   include CompanyLogoCreateTestHelper
+  include FranchiseCreateTestHelper
   include GameEngineCreateTestHelper
   include GameEngineLogoCreateTestHelper
   include GenreCreateTestHelper
+  include IgdbApiTestHelper
   include InvolvedCompanyCreateTestHelper
   include PlatformCreateTestHelper
   include PlatformLogoCreateTestHelper
+  include TwitchOauthTestHelper
 
   def stub_successful_game_create_request(
     game_id,
@@ -34,6 +36,7 @@ module GameCreateTestHelper
     with_company_failures: false,
     with_company_logo_failures: false,
     with_cover_failure: false,
+    with_franchise_failures: false,
     with_game_mode_failures: false,
     with_game_engine_failures: false,
     with_game_engine_logo_failures: false,
@@ -56,6 +59,7 @@ module GameCreateTestHelper
     stub_company_responses(with_company_failures)
     stub_company_logo_responses(with_company_logo_failures)
     stub_cover_response(with_cover_failure)
+    stub_franchise_responses(with_franchise_failures)
     stub_game_engine_responses(with_game_engine_failures)
     stub_game_engine_logo_responses(with_game_engine_logo_failures)
     stub_game_mode_responses(with_game_mode_failures)

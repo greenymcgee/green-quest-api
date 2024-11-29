@@ -154,4 +154,21 @@ class Api::InvolvedCompanies::CreateFacadeTest < ActionDispatch::IntegrationTest
     errors = request[:errors][:involved_companies]
     errors.each { |error| assert_equal(error.message, "can't be blank") }
   end
+
+  test "should not attempt to create when the igdb_data is blank" do
+    @ids.each do |id|
+      stub_successful_igdb_api_request(
+        "involved_companies/#{id}",
+        [].to_json,
+        @twitch_bearer_token,
+      )
+    end
+    assert_difference("InvolvedCompany.count", +0) do
+      Api::InvolvedCompanies::CreateFacade.new(
+        game: @game,
+        ids: @ids,
+        twitch_bearer_token: stubbed_twitch_bearer_token,
+      ).find_or_create_involved_companies
+    end
+  end
 end

@@ -16,15 +16,20 @@ class Api::GameEngines::CreateFacade
   def game_engines
     @@ids.map do |id|
       GameEngine.find_or_initialize_by(igdb_id: id) do |game_engine|
-        igdb_data_response = get_game_engine_igdb_data(id)
-        next if add_game_engine_igdb_error(id, igdb_data_response[:error])
+        igdb_response = get_game_engine_igdb_data(id)
+        igdb_data = igdb_response[:igdb_data]
+        igdb_error = igdb_response[:error]
+        next if unprocessable_igdb_response?(id, igdb_data, igdb_error)
 
-        igdb_data = igdb_data_response[:igdb_data]
         populate_game_engine_fields(game_engine, igdb_data)
         set_game_engine_game_engine_logo(game_engine, igdb_data)
         game_engine.errors.each { |error| @@errors[:game_engines] << error }
       end
     end
+  end
+
+  def unprocessable_igdb_response?(id, igdb_data, igdb_error)
+    add_game_engine_igdb_error(id, igdb_error) || igdb_data.blank?
   end
 
   def add_game_engine_igdb_error(id, error)

@@ -17,12 +17,11 @@ class Api::InvolvedCompanies::CreateFacade
   def involved_companies
     @@ids.map do |id|
       InvolvedCompany.find_or_initialize_by(igdb_id: id) do |involved_company|
-        next if involved_company.id.present?
+        igdb_response = get_igdb_data(id)
+        igdb_data = igdb_response[:igdb_data]
+        igdb_error = igdb_response[:error]
+        next if unprocessable_igdb_response?(id, igdb_data, igdb_error)
 
-        igdb_data_response = get_igdb_data(id)
-        next if add_involved_company_error(id, igdb_data_response[:error])
-
-        igdb_data = igdb_data_response[:igdb_data]
         next unless set_involved_company_company(involved_company, igdb_data)
 
         involved_company.game = @@game
@@ -30,6 +29,10 @@ class Api::InvolvedCompanies::CreateFacade
         set_involved_company_errors(involved_company)
       end
     end
+  end
+
+  def unprocessable_igdb_response?(id, data, error)
+    add_involved_company_error(id, error) || data.blank?
   end
 
   def set_involved_company_errors(involved_company)

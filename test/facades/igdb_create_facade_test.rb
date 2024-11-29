@@ -162,4 +162,22 @@ class IgdbCreateFacadeTest < ActionDispatch::IntegrationTest
       @model.last.rating_cover_url,
     )
   end
+
+  test "should not attempt to create when the igdb_data is blank" do
+    @ids.each do |id|
+      stub_successful_igdb_api_request(
+        "#{@snake_cased_model_name}/#{id}",
+        [].to_json,
+        @twitch_bearer_token,
+      )
+    end
+    assert_difference("#{@model_name}.count", +0) do
+      IgdbCreateFacade.new(
+        fields_facade: @fields_facade,
+        ids: @ids,
+        model: @model,
+        twitch_bearer_token: @twitch_bearer_token,
+      ).find_or_create_resources
+    end
+  end
 end

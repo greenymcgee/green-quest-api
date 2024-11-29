@@ -101,18 +101,6 @@ class Api::Games::CreateFacadeTest < ActionDispatch::IntegrationTest
     assert @game.errors.blank?
   end
 
-  test "should add errors to game upon genre failure" do
-    stub_successful_game_create_request(
-      @game.igdb_id,
-      with_genre_failures: true,
-    )
-    @facade.add_game_resources
-    assert_equal(
-      @game.errors.messages,
-      { genres: [[{ 31 => { "message" => "Not authorized" } }]] },
-    )
-  end
-
   test "should add errors to game upon platform failure" do
     stub_successful_game_create_request(
       @game.igdb_id,

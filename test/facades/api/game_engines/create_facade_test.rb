@@ -75,4 +75,20 @@ class Api::GameEngines::CreateFacadeTest < ActionDispatch::IntegrationTest
     response = facade.find_or_create_game_engines
     assert_equal(@ids.count, response[:errors][:game_engine_logos].count)
   end
+
+  test "should not attempt to create when the igdb_data is blank" do
+    @ids.each do |id|
+      stub_successful_igdb_api_request(
+        "game_engines/#{id}",
+        [].to_json,
+        @twitch_bearer_token,
+      )
+    end
+    assert_difference("GameEngine.count", +0) do
+      Api::GameEngines::CreateFacade.new(
+        @ids,
+        @twitch_bearer_token,
+      ).find_or_create_game_engines
+    end
+  end
 end

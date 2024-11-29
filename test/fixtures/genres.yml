@@ -9,7 +9,7 @@ rpg:
 puzzle:
   checksum: f4afdd14-b8c5-e938-58a6-ff0a56514f8b
   games: [super_metroid]
-  igdb_id: 9
+  igdb_id: 84
   igdb_url: https://www.igdb.com/genres/puzzle
   name: Puzzle
   slug: puzzle

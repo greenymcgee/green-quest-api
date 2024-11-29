@@ -16,18 +16,20 @@ class Api::Platforms::CreateFacade
   def platforms
     @@ids.map do |id|
       Platform.find_or_initialize_by(igdb_id: id) do |platform|
-        next if platform.id.present?
-
-        igdb_data_response = get_platform_igdb_data(id)
-        next if add_platform_error(id, igdb_data_response[:error])
-
-        igdb_data = igdb_data_response[:igdb_data]
+        igdb_response = get_platform_igdb_data(id)
+        igdb_data = igdb_response[:igdb_data]
+        igdb_error = igdb_response[:error]
+        next if unprocessable_igdb_response?(id, igdb_data, igdb_error)
 
         populate_platform_fields(platform, igdb_data)
         set_platform_platform_logo(platform, igdb_data)
         platform.errors.each { |error| @@errors[:platforms] << error }
       end
     end
+  end
+
+  def unprocessable_igdb_response?(id, data, error)
+    add_platform_error(id, error) || data.blank?
   end
 
   def add_platform_error(id, error)

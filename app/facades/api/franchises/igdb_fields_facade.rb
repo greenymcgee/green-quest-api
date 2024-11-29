@@ -6,7 +6,7 @@ class Api::Franchises::IgdbFieldsFacade
     @@igdb_data = igdb_data
   end
 
-  def populate_franchise_fields
+  def populate_fields
     @@franchise.update(
       checksum: checksum,
       igdb_url: igdb_url,

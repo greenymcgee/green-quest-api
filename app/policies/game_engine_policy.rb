@@ -1,0 +1,2 @@
+class GameEnginePolicy < AdminPolicy
+end

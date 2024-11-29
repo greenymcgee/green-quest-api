@@ -1,0 +1,10 @@
+json.extract!(
+  game_engine,
+  :created_at,
+  :description,
+  :id,
+  :igdb_id,
+  :name,
+  :slug,
+  :updated_at,
+)

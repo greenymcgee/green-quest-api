@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://greenquestgames.com/game_engines/show.json",
+  "description": "The GET /api/game_engines/:id payload",
+  "properties": { "gameEngine": { "$ref": "file:/game_engine.json#" } },
+  "required": ["gameEngine"],
+  "type": "object"
+}

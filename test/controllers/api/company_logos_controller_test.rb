@@ -24,6 +24,11 @@ class Api::CompanyLogosControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "#show should return the expected show json payload" do
+    get api_company_logo_url(@company_logo), as: :json
+    assert_matches_json_schema response, "company_logos/show"
+  end
+
   test "#destroy should destroy company_logo" do
     assert_difference("CompanyLogo.count", -1) do
       delete(

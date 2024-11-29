@@ -14,6 +14,7 @@ class Api::Games::CreateFacade
 
   def add_game_resources
     add_cover_to_game
+    add_game_engines_to_game
     add_game_modes_to_game
     add_genres_to_game
     add_platforms_to_game
@@ -39,6 +40,12 @@ class Api::Games::CreateFacade
     Api::Games::CoverGameCreateFacade.new(
       **@@create_facade_params,
     ).add_cover_to_game
+  end
+
+  def add_game_engines_to_game
+    Api::Games::GameEngineGameCreateFacade.new(
+      **@@create_facade_params,
+    ).add_game_engines_to_game
   end
 
   def add_game_modes_to_game

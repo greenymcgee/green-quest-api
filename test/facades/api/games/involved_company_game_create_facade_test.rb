@@ -56,4 +56,16 @@ class Api::Games::InvolvedCompanyGameCreateFacadeTest < ActionDispatch::Integrat
       stubbed_company_ids.count,
     )
   end
+
+  test "should add errors to game upon company logo failure" do
+    stub_successful_game_create_request(
+      @game.igdb_id,
+      with_company_logo_failures: true,
+    )
+    @facade.add_involved_companies_to_game
+    assert_equal(
+      @game.errors[:company_logos].first.count,
+      stubbed_company_logo_ids.count,
+    )
+  end
 end

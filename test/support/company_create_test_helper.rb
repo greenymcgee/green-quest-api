@@ -6,7 +6,7 @@ module CompanyCreateTestHelper
   include IgdbApiTestHelper
 
   def stubbed_company_ids
-    [70, 421, 812, 25_230, 32_350, 33_804]
+    [25_230, 421, 70]
   end
 
   def stub_successful_company_responses

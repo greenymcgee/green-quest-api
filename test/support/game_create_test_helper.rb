@@ -1,6 +1,7 @@
 require "./test/support/igdb_api_test_helper.rb"
 require "./test/support/twitch_oauth_test_helper.rb"
 require "./test/support/company_create_test_helper.rb"
+require "./test/support/company_logo_create_test_helper.rb"
 require "./test/support/involved_company_create_test_helper.rb"
 require "./test/support/platform_create_test_helper.rb"
 require "./test/support/platform_logo_create_test_helper.rb"
@@ -16,6 +17,7 @@ module GameCreateTestHelper
   include ArtworkCreateTestHelper
   include CoverCreateTestHelper
   include CompanyCreateTestHelper
+  include CompanyLogoCreateTestHelper
   include GenreCreateTestHelper
   include InvolvedCompanyCreateTestHelper
   include PlatformCreateTestHelper
@@ -25,12 +27,13 @@ module GameCreateTestHelper
     game_id,
     with_age_rating_failures: false,
     with_artwork_failures: false,
+    with_company_failures: false,
+    with_company_logo_failures: false,
     with_cover_failure: false,
     with_game_mode_failures: false,
     with_genre_failures: false,
     with_platform_failures: false,
     with_platform_logo_failures: false,
-    with_company_failures: false,
     with_involved_company_failures: false,
     with_release_date_failures: false,
     with_screenshot_failures: false,
@@ -44,13 +47,14 @@ module GameCreateTestHelper
     )
     stub_age_rating_responses(with_age_rating_failures)
     stub_artwork_responses(with_artwork_failures)
+    stub_company_responses(with_company_failures)
+    stub_company_logo_responses(with_company_logo_failures)
     stub_cover_response(with_cover_failure)
     stub_game_mode_responses(with_game_mode_failures)
     stub_genre_responses(with_genre_failures)
     stub_platform_responses(with_platform_failures)
     stub_platform_logo_responses(with_platform_logo_failures)
     stub_involved_company_responses(with_involved_company_failures)
-    stub_company_responses(with_company_failures)
     stub_screenshot_responses(with_screenshot_failures)
     stub_release_date_responses(with_release_date_failures)
     stub_website_responses(with_website_failures)

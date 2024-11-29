@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_28_184929) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_29_011414) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -102,6 +102,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_28_184929) do
     t.bigint "game_id"
     t.index ["game_id"], name: "index_covers_on_game_id"
     t.index ["igdb_id"], name: "index_covers_on_igdb_id", unique: true
+  end
+
+  create_table "game_engines", force: :cascade do |t|
+    t.string "checksum", default: "", null: false
+    t.integer "igdb_id", null: false
+    t.string "igdb_url", default: "", null: false
+    t.string "description", default: "", null: false
+    t.string "name", default: "", null: false
+    t.string "slug", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["igdb_id"], name: "index_game_engines_on_igdb_id", unique: true
   end
 
   create_table "game_modes", force: :cascade do |t|

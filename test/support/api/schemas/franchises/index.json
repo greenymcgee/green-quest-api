@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://greenquestgames.com/franchises/index.json",
+  "description": "The GET /api/franchises payload",
+  "properties": {
+    "franchises": {
+      "items": { "$ref": "file:/franchise.json#" },
+      "type": "array"
+    }
+  },
+  "required": ["franchises"],
+  "type": "object"
+}

@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     resources :companies, only: %i[index show destroy]
     resources :company_logos, only: %i[index show destroy]
     resources :covers, only: %i[index show destroy]
+    resources :franchises, only: %i[index show destroy]
     resources :games
     resources :game_engines, only: %i[index show destroy]
     resources :game_engine_logos, only: %i[index show destroy]

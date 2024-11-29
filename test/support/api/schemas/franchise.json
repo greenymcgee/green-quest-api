@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "file:/franchise.json#",
+  "description": "A franchise",
+  "properties": {
+    "createdAt": {
+      "description": "The datetime of the record's creation",
+      "type": "string"
+    },
+    "id": {
+      "description": "The unique identifier for a platform.",
+      "type": "integer"
+    },
+    "igdbId": {
+      "description": "The id for the platform in the IGDB database.",
+      "type": "integer"
+    },
+    "name": {
+      "description": "The name of the platform",
+      "type": "string"
+    },
+    "slug": {
+      "description": "The slug of the platform",
+      "type": "string"
+    },
+    "updatedAt": {
+      "description": "The datetime of the record's last update",
+      "type": "string"
+    }
+  },
+  "required": [
+    "createdAt",
+    "id",
+    "igdbId",
+    "name",
+    "slug",
+    "updatedAt"
+  ],
+  "title": "Franchise",
+  "type": "object"
+}

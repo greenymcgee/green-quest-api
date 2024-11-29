@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_29_132056) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_29_224905) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -102,6 +102,27 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_29_132056) do
     t.bigint "game_id"
     t.index ["game_id"], name: "index_covers_on_game_id"
     t.index ["igdb_id"], name: "index_covers_on_igdb_id", unique: true
+  end
+
+  create_table "franchises", force: :cascade do |t|
+    t.string "checksum", default: "", null: false
+    t.integer "igdb_id", null: false
+    t.string "igdb_url", default: "", null: false
+    t.boolean "main", default: false, null: false
+    t.string "name", default: "", null: false
+    t.string "slug", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["igdb_id"], name: "index_franchises_on_igdb_id", unique: true
+  end
+
+  create_table "franchises_games", force: :cascade do |t|
+    t.bigint "franchise_id"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["franchise_id"], name: "index_franchises_games_on_franchise_id"
+    t.index ["game_id"], name: "index_franchises_games_on_game_id"
   end
 
   create_table "game_engine_logos", force: :cascade do |t|

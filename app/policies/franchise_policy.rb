@@ -1,0 +1,2 @@
+class FranchisePolicy < AdminPolicy
+end

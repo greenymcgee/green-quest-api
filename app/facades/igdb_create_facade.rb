@@ -16,13 +16,12 @@ class IgdbCreateFacade
   def resources(callback)
     @@ids.map do |id|
       @@model.find_or_initialize_by(igdb_id: id) do |resource|
-        next if resource.id.present?
-
-        igdb_request = get_igdb_data(id)
-        next if add_igdb_error(id, igdb_request[:error])
+        igdb_response = get_igdb_data(id)
+        igdb_data = igdb_response[:igdb_data]
+        next if add_igdb_error(id, igdb_response[:error]) || igdb_data.blank?
 
         callback.call(resource) if callback.present?
-        populate_resource_fields(resource, igdb_request[:igdb_data])
+        populate_resource_fields(resource, igdb_data)
         resource.errors.each { |error| @@errors << error }
       end
     end

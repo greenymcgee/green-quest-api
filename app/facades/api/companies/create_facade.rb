@@ -17,25 +17,25 @@ class Api::Companies::CreateFacade
     Company.find_or_initialize_by(igdb_id: @@id) do |company|
       next if company.id.present?
 
-      igdb_response = get_company_igdb_data(@@id)
-      next if add_company_igdb_error(@@id, igdb_response[:error])
-
+      igdb_response = get_company_igdb_data
       igdb_data = igdb_response[:igdb_data]
+      next if add_company_igdb_error(igdb_response[:error]) || igdb_data.blank?
+
       populate_company_fields(company, igdb_data)
       set_company_company_logo(company, igdb_data)
       company.errors.each { |error| @@errors[:companies] << error }
     end
   end
 
-  def add_company_igdb_error(id, error)
+  def add_company_igdb_error(error)
     return false unless error.present?
 
-    @@errors[:companies] << { id => JSON.parse(error.message) }
+    @@errors[:companies] << { @@id => JSON.parse(error.message) }
   end
 
-  def get_company_igdb_data(id)
+  def get_company_igdb_data
     IgdbRequestFacade.new(
-      igdb_id: id,
+      igdb_id: @@id,
       pathname: "companies",
       twitch_bearer_token: @@twitch_bearer_token,
     ).get_igdb_data

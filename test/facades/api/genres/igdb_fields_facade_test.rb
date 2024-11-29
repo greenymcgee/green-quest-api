@@ -5,7 +5,7 @@ class Api::Genres::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
     @genre = Genre.new(igdb_id: 1026)
     @igdb_data, = JSON.parse(json_mocks("igdb/genres/9.json"))
     facade = Api::Genres::IgdbFieldsFacade.new(@genre, @igdb_data)
-    facade.populate_genre_fields
+    facade.populate_fields
   end
 
   test "should populate the checksum" do

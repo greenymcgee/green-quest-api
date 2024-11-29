@@ -79,4 +79,20 @@ class Api::Platforms::CreateFacadeTest < ActionDispatch::IntegrationTest
       stubbed_platform_logo_ids.count,
     )
   end
+
+  test "should not attempt to create when the igdb_data is blank" do
+    @ids.each do |id|
+      stub_successful_igdb_api_request(
+        "platforms/#{id}",
+        [].to_json,
+        @twitch_bearer_token,
+      )
+    end
+    assert_difference("Platform.count", +0) do
+      Api::Platforms::CreateFacade.new(
+        @ids,
+        @twitch_bearer_token,
+      ).find_or_create_platforms
+    end
+  end
 end

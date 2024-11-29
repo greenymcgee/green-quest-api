@@ -6,7 +6,7 @@ class Api::Genres::IgdbFieldsFacade
     @@igdb_data = igdb_data
   end
 
-  def populate_genre_fields
+  def populate_fields
     @@genre.update(
       checksum: checksum,
       igdb_url: igdb_url,

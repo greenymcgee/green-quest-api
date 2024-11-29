@@ -75,4 +75,18 @@ class Api::Companies::CreateFacadeTest < ActionDispatch::IntegrationTest
     response = facade.find_or_create_company
     assert_equal(1, response[:errors][:company_logos].count)
   end
+
+  test "should not attempt to create when the igdb_data is blank" do
+    stub_successful_igdb_api_request(
+      "companies/#{@id}",
+      [].to_json,
+      @twitch_bearer_token,
+    )
+    assert_difference("Company.count", +0) do
+      Api::Companies::CreateFacade.new(
+        @id,
+        @twitch_bearer_token,
+      ).find_or_create_company
+    end
+  end
 end

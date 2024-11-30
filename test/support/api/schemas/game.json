@@ -24,6 +24,10 @@
       "description": "Any errors that might be present after fulfilling a game request",
       "type": "array"
     },
+    "franchises": {
+      "items": { "$ref": "file:/franchise.json#" },
+      "type": "array"
+    },
     "gameEngines": {
       "items": { "$ref": "file:/game_engine.json#" },
       "type": "array"
@@ -104,6 +108,7 @@
     "artworks",
     "cover",
     "developers",
+    "franchises",
     "gameEngines",
     "gameModes",
     "genres",

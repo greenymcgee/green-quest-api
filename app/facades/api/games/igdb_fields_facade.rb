@@ -17,6 +17,7 @@ class Api::Games::IgdbFieldsFacade
       checksum: checksum,
       first_release_date: first_release_date,
       igdb_url: igdb_url,
+      main_franchise_id: main_franchise_id,
       name: name,
       parent_game_id: parent_game_id,
       port_ids: port_ids,
@@ -119,6 +120,10 @@ class Api::Games::IgdbFieldsFacade
 
   def igdb_url
     get_present_value(@@game.igdb_url, @@igdb_game_data["url"])
+  end
+
+  def main_franchise_id
+    get_present_value(@@game.main_franchise_id, @@igdb_game_data["franchise"])
   end
 
   def name

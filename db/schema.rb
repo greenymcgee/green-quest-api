@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_29_224905) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_29_233138) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -211,6 +211,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_29_224905) do
     t.integer "similar_game_ids", default: [], null: false, array: true
     t.integer "standalone_expansion_ids", default: [], null: false, array: true
     t.integer "version_parent_id"
+    t.integer "main_franchise_id"
     t.index ["igdb_id"], name: "index_games_on_igdb_id", unique: true
     t.index ["slug"], name: "index_games_on_slug"
   end

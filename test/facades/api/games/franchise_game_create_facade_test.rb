@@ -4,7 +4,8 @@ class Api::Games::FranchiseGameCreateFacadeTest < ActionDispatch::IntegrationTes
   include GameCreateTestHelper
 
   setup do
-    @game = Game.create(igdb_id: 1026)
+    @game =
+      Game.create(igdb_id: 1026, main_franchise_id: igdb_game_data["franchise"])
     @twitch_bearer_token = stubbed_twitch_bearer_token
     @facade =
       Api::Games::FranchiseGameCreateFacade.new(
@@ -19,6 +20,17 @@ class Api::Games::FranchiseGameCreateFacadeTest < ActionDispatch::IntegrationTes
     @facade.add_franchises_to_game
     ids = @game.franchises.map(&:igdb_id)
     igdb_game_data["franchises"].each { |id| assert ids.include? id }
+  end
+
+  test "should update the main field for franchises" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @facade.add_franchises_to_game
+    @game.franchises.each do |franchise|
+      assert_equal(
+        franchise.igdb_id === @game.main_franchise_id,
+        franchise.main?,
+      )
+    end
   end
 
   test "should not add errors to game upon success" do

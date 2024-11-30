@@ -29,8 +29,18 @@ class Api::ReleaseDates::IgdbFieldsFacade
     get_present_value(@@release_date.checksum, @@igdb_data["checksum"])
   end
 
+  def date_unix_timestamp
+    @@igdb_data["date"]
+  end
+
+  def date_to_datetime
+    return unless date_unix_timestamp.present?
+
+    Time.at(date_unix_timestamp).utc.to_datetime
+  end
+
   def date
-    get_present_value(@@release_date.date, @@igdb_data["date"])
+    get_present_value(@@release_date.date, date_to_datetime)
   end
 
   def human_readable
@@ -38,7 +48,7 @@ class Api::ReleaseDates::IgdbFieldsFacade
   end
 
   def month
-    get_present_value(@@release_date.month, @@igdb_data["month"])
+    get_present_value(@@release_date.month, @@igdb_data["m"])
   end
 
   def platform
@@ -50,6 +60,6 @@ class Api::ReleaseDates::IgdbFieldsFacade
   end
 
   def year
-    get_present_value(@@release_date.year, @@igdb_data["year"])
+    get_present_value(@@release_date.year, @@igdb_data["y"])
   end
 end

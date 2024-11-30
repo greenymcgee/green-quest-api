@@ -4,6 +4,7 @@ class Api::ReleaseDates::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
   setup do
     @release_date = ReleaseDate.new(igdb_id: 1026)
     @igdb_data, = JSON.parse(json_mocks("igdb/release_dates/514962.json"))
+    @platform = Platform.create(igdb_id: @igdb_data["platform"])
     facade = Api::ReleaseDates::IgdbFieldsFacade.new(@release_date, @igdb_data)
     facade.populate_fields
   end
@@ -16,8 +17,18 @@ class Api::ReleaseDates::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
     assert_equal(@release_date.checksum, @igdb_data["checksum"])
   end
 
+  test "should gracefully handle a null date" do
+    release_date = ReleaseDate.new(igdb_id: 40)
+    igdb_data = { **@igdb_data, "date" => nil }
+    facade = Api::ReleaseDates::IgdbFieldsFacade.new(release_date, igdb_data)
+    facade.populate_fields
+    assert_nil release_date.date
+  end
+
   test "should populate the date" do
-    assert_equal(@release_date.date, @igdb_data["date"])
+    igdb_date = @igdb_data["date"]
+    date = Time.at(igdb_date).utc.to_datetime
+    assert_equal(@release_date.date, date)
   end
 
   test "should populate the human_readable" do
@@ -25,14 +36,11 @@ class Api::ReleaseDates::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
   end
 
   test "should populate the month" do
-    assert_equal(@release_date.month, @igdb_data["month"])
+    assert_equal(@release_date.month, @igdb_data["m"])
   end
 
   test "should populate the platform" do
-    assert_equal(
-      @release_date.platform,
-      Platform.find_by(igdb_id: @igdb_data["platform"]),
-    )
+    assert_equal(@platform, @release_date.platform)
   end
 
   test "should populate the region_enum" do
@@ -40,6 +48,6 @@ class Api::ReleaseDates::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
   end
 
   test "should populate the year" do
-    assert_equal(@release_date.year, @igdb_data["year"])
+    assert_equal(@release_date.year, @igdb_data["y"])
   end
 end

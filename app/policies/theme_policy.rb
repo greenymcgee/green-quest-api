@@ -1,0 +1,2 @@
+class ThemePolicy < AdminPolicy
+end

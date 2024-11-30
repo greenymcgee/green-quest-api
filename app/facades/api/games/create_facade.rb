@@ -32,6 +32,7 @@ class Api::Games::CreateFacade
     Api::Games::ScreenshotGameCreateFacade.new(
       **@@create_facade_params,
     ).add_screenshots_to_game
+    add_themes_to_game
     add_release_dates_to_game
     add_websites_to_game
   end
@@ -84,6 +85,12 @@ class Api::Games::CreateFacade
     Api::Games::ReleaseDateGameCreateFacade.new(
       **@@create_facade_params,
     ).add_release_dates_to_game
+  end
+
+  def add_themes_to_game
+    Api::Games::ThemeGameCreateFacade.new(
+      **@@create_facade_params,
+    ).add_themes_to_game
   end
 
   def add_websites_to_game

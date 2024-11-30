@@ -102,6 +102,13 @@ class Api::Games::CreateFacadeTest < ActionDispatch::IntegrationTest
     @igdb_game_data["screenshots"].each { |id| assert ids.include? id }
   end
 
+  test "should add themes to the game" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @facade.add_game_resources
+    ids = @game.themes.map(&:igdb_id)
+    @igdb_game_data["themes"].each { |id| assert ids.include? id }
+  end
+
   test "should add websites to the game" do
     stub_successful_game_create_request(@game.igdb_id)
     @facade.add_game_resources

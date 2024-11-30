@@ -11,6 +11,7 @@ class Game < ApplicationRecord
   has_and_belongs_to_many :player_perspectives
   has_many :release_dates
   has_many :screenshots
+  has_and_belongs_to_many :themes
   has_many :websites
 
   validates :igdb_id, presence: true

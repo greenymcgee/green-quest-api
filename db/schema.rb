@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_30_125011) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_30_133037) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -114,6 +114,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_30_125011) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["igdb_id"], name: "index_franchises_on_igdb_id", unique: true
+    t.index ["slug"], name: "index_franchises_on_slug"
   end
 
   create_table "franchises_games", force: :cascade do |t|
@@ -151,6 +152,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_30_125011) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["igdb_id"], name: "index_game_engines_on_igdb_id", unique: true
+    t.index ["slug"], name: "index_game_engines_on_slug"
   end
 
   create_table "game_engines_games", force: :cascade do |t|
@@ -243,6 +245,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_30_125011) do
     t.index ["player_perspective_id"], name: "index_games_player_perspectives_on_player_perspective_id"
   end
 
+  create_table "games_themes", force: :cascade do |t|
+    t.bigint "theme_id"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_games_themes_on_game_id"
+    t.index ["theme_id"], name: "index_games_themes_on_theme_id"
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string "checksum", default: "", null: false
     t.integer "igdb_id", null: false
@@ -313,6 +324,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_30_125011) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["igdb_id"], name: "index_player_perspectives_on_igdb_id", unique: true
+    t.index ["slug"], name: "index_player_perspectives_on_slug"
   end
 
   create_table "release_dates", force: :cascade do |t|
@@ -347,6 +359,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_30_125011) do
     t.bigint "game_id"
     t.index ["game_id"], name: "index_screenshots_on_game_id"
     t.index ["igdb_id"], name: "index_screenshots_on_igdb_id", unique: true
+  end
+
+  create_table "themes", force: :cascade do |t|
+    t.string "checksum", default: "", null: false
+    t.integer "igdb_id", null: false
+    t.string "igdb_url", default: "", null: false
+    t.string "name", default: "", null: false
+    t.string "slug", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["igdb_id"], name: "index_themes_on_igdb_id", unique: true
+    t.index ["slug"], name: "index_themes_on_slug"
   end
 
   create_table "users", force: :cascade do |t|

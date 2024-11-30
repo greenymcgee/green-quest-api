@@ -8,6 +8,7 @@ class Game < ApplicationRecord
   has_and_belongs_to_many :genres
   has_many :involved_companies
   has_and_belongs_to_many :platforms
+  has_and_belongs_to_many :player_perspectives
   has_many :release_dates
   has_many :screenshots
   has_many :websites

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://greenquestgames.com/player_perspectives/index.json",
+  "description": "The GET /api/player_perspectives payload",
+  "properties": {
+    "playerPerspectives": {
+      "items": { "$ref": "file:/player_perspective.json#" },
+      "type": "array"
+    }
+  },
+  "required": ["playerPerspectives"],
+  "type": "object"
+}

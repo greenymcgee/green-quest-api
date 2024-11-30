@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_29_233138) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_30_125011) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -234,6 +234,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_29_233138) do
     t.index ["platform_id"], name: "index_games_platforms_on_platform_id"
   end
 
+  create_table "games_player_perspectives", force: :cascade do |t|
+    t.bigint "player_perspective_id"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_games_player_perspectives_on_game_id"
+    t.index ["player_perspective_id"], name: "index_games_player_perspectives_on_player_perspective_id"
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string "checksum", default: "", null: false
     t.integer "igdb_id", null: false
@@ -293,6 +302,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_29_233138) do
     t.datetime "updated_at", null: false
     t.index ["igdb_id"], name: "index_platforms_on_igdb_id", unique: true
     t.index ["slug"], name: "index_platforms_on_slug"
+  end
+
+  create_table "player_perspectives", force: :cascade do |t|
+    t.string "checksum", default: "", null: false
+    t.integer "igdb_id", null: false
+    t.string "igdb_url", default: "", null: false
+    t.string "name", default: "", null: false
+    t.string "slug", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["igdb_id"], name: "index_player_perspectives_on_igdb_id", unique: true
   end
 
   create_table "release_dates", force: :cascade do |t|

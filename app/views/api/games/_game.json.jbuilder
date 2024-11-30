@@ -46,6 +46,12 @@ json.platforms game.platforms do |platform|
     :updated_at,
   )
 end
+json.player_perspectives game.player_perspectives do |player_perspective|
+  json.partial!(
+    "api/player_perspectives/player_perspective",
+    player_perspective: player_perspective,
+  )
+end
 json.porters game.porters do |company|
   json.partial! "api/companies/company", company: company
 end

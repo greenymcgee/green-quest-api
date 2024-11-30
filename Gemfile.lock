@@ -189,7 +189,7 @@ GEM
       syntax_tree-haml (>= 2.0.0)
       syntax_tree-rbs (>= 0.2.0)
     prettier_print (1.2.1)
-    pry (0.14.2)
+    pry (0.15.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
     psych (5.1.2)
@@ -338,7 +338,7 @@ DEPENDENCIES
   json_matchers
   pg (~> 1.1)
   prettier (~> 4.0)
-  pry (~> 0.14.2)
+  pry (~> 0.15.0)
   puma (>= 5.0)
   pundit (~> 2.4)
   rack-cors (~> 2.0)

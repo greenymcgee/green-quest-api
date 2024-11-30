@@ -28,6 +28,10 @@ class Api::Games::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
     assert_equal(@game.fork_ids, @igdb_game_data["forks"])
   end
 
+  test "should populate the main_franchise_id" do
+    assert_equal(@game.main_franchise_id, @igdb_game_data["franchise"])
+  end
+
   test "should populate the parent_game_id" do
     assert_equal(@game.parent_game_id, @igdb_game_data["parent_game"])
   end

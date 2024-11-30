@@ -15,6 +15,10 @@
       "description": "The id for the platform in the IGDB database.",
       "type": "integer"
     },
+    "main": {
+      "description": "Whether or not the franchise is the main franchise of the game.",
+      "type": "boolean"
+    },
     "name": {
       "description": "The name of the platform",
       "type": "string"
@@ -32,6 +36,7 @@
     "createdAt",
     "id",
     "igdbId",
+    "main",
     "name",
     "slug",
     "updatedAt"

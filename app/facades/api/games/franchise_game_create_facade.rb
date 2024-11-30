@@ -9,6 +9,7 @@ class Api::Games::FranchiseGameCreateFacade
     set_franchises_response
     add_franchises_errors_to_game
     @@franchises_response[:resources].each do |franchise|
+      franchise.main = @@game.main_franchise_id === franchise.igdb_id
       @@game.franchises << franchise
     end
   end

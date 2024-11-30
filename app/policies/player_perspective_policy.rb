@@ -1,0 +1,2 @@
+class PlayerPerspectivePolicy < AdminPolicy
+end

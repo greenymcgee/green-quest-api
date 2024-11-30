@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     resources :involved_companies, only: %i[index show destroy]
     resources :platforms, only: %i[index show destroy]
     resources :platform_logos, only: %i[index show destroy]
+    resources :player_perspectives, only: %i[index show destroy]
     resources :release_dates, only: %i[index show destroy]
     resources :screenshots, only: %i[index show destroy]
     resources :users

@@ -54,6 +54,10 @@
       "items": { "$ref": "file:/platform_without_resources.json#" },
       "type": "array"
     },
+    "playerPerspectives": {
+      "items": { "$ref": "file:/player_perspective.json#" },
+      "type": "array"
+    },
     "porters": {
       "items": { "$ref": "file:/company.json#" },
       "type": "array"
@@ -116,6 +120,7 @@
     "igdbId",
     "name",
     "platforms",
+    "playerPerspectives",
     "porters",
     "publishers",
     "rating",

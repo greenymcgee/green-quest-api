@@ -19,6 +19,7 @@ class Api::Games::CreateFacade
     add_game_modes_to_game
     add_genres_to_game
     add_platforms_to_game
+    add_player_perspectives_to_game
     Api::Games::InvolvedCompanyGameCreateFacade.new(
       **@@create_facade_params,
     ).add_involved_companies_to_game
@@ -71,6 +72,12 @@ class Api::Games::CreateFacade
     Api::Games::PlatformGameCreateFacade.new(
       **@@create_facade_params,
     ).add_platforms_to_game
+  end
+
+  def add_player_perspectives_to_game
+    Api::Games::PlayerPerspectiveGameCreateFacade.new(
+      **@@create_facade_params,
+    ).add_player_perspectives_to_game
   end
 
   def add_release_dates_to_game

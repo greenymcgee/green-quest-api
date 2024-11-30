@@ -11,6 +11,7 @@ require "./test/support/igdb_api_test_helper.rb"
 require "./test/support/involved_company_create_test_helper.rb"
 require "./test/support/platform_create_test_helper.rb"
 require "./test/support/platform_logo_create_test_helper.rb"
+require "./test/support/player_perspective_create_test_helper.rb"
 require "./test/support/twitch_oauth_test_helper.rb"
 
 module GameCreateTestHelper
@@ -27,6 +28,7 @@ module GameCreateTestHelper
   include InvolvedCompanyCreateTestHelper
   include PlatformCreateTestHelper
   include PlatformLogoCreateTestHelper
+  include PlayerPerspectiveCreateTestHelper
   include TwitchOauthTestHelper
 
   def stub_successful_game_create_request(
@@ -43,6 +45,7 @@ module GameCreateTestHelper
     with_genre_failures: false,
     with_platform_failures: false,
     with_platform_logo_failures: false,
+    with_player_perspective_failures: false,
     with_involved_company_failures: false,
     with_release_date_failures: false,
     with_screenshot_failures: false,
@@ -66,6 +69,7 @@ module GameCreateTestHelper
     stub_genre_responses(with_genre_failures)
     stub_platform_responses(with_platform_failures)
     stub_platform_logo_responses(with_platform_logo_failures)
+    stub_player_perspective_responses(with_player_perspective_failures)
     stub_involved_company_responses(with_involved_company_failures)
     stub_screenshot_responses(with_screenshot_failures)
     stub_release_date_responses(with_release_date_failures)

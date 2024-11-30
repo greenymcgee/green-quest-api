@@ -67,6 +67,9 @@ end
 json.supporters game.supporters do |company|
   json.partial! "api/companies/company", company: company
 end
+json.themes game.themes do |theme|
+  json.partial! "api/themes/theme", theme: theme
+end
 json.websites game.websites do |website|
   json.partial! "api/websites/website", website: website
 end

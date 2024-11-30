@@ -98,6 +98,10 @@
       "items": { "$ref": "file:/company.json#" },
       "type": "array"
     },
+    "themes": {
+      "items": { "$ref": "file:/theme.json#" },
+      "type": "array"
+    },
     "websites": {
       "items": { "$ref": "file:/website.json#" },
       "type": "array"
@@ -128,6 +132,7 @@
     "review",
     "screenshots",
     "supporters",
+    "themes",
     "websites"
   ],
   "title": "Game",

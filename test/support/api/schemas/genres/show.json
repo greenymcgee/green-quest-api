@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://greenquestgames.com/genres/show.json",
+  "$id": "genres/show.json",
+  "additionalProperties": false,
   "description": "The GET /api/genres/:id payload",
   "properties": { "genre": { "$ref": "file:/genre.json#" } },
   "required": ["genre"],

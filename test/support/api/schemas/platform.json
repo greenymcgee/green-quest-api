@@ -1,10 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "id": "file:/platform.json#",
-  "description": "A platform",
+  "additionalProperties": false,
+  "description": "A Platform.",
   "properties": {
     "abbreviation": {
-      "description": "An abbreviated name for the platform",
+      "description": "An abbreviated name for the platform.",
       "type": "string"
     },
     "alternativeName": {
@@ -12,7 +13,6 @@
       "type": "string"
     },
     "createdAt": {
-      "description": "The datetime of the record's creation",
       "type": "string"
     },
     "games": {
@@ -20,31 +20,25 @@
       "type": "array"
     },
     "generation": {
-      "description": "The generation of the platform",
       "type": ["integer", "null"]
     },
     "id": {
-      "description": "The unique identifier for a platform.",
       "type": "integer"
     },
     "igdbId": {
-      "description": "The id for the platform in the IGDB database.",
       "type": "integer"
     },
     "name": {
-      "description": "The name of the platform",
       "type": "string"
     },
     "slug": {
-      "description": "The slug of the platform",
       "type": "string"
     },
     "summary": {
-      "description": "The summary of the first Version of this platform",
+      "description": "The summary of the first Version of this platform.",
       "type": "string"
     },
     "updatedAt": {
-      "description": "The datetime of the record's last update",
       "type": "string"
     }
   },

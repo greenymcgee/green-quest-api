@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://greenquestgames.com/age_ratings/show.json",
+  "$id": "age_ratings/show.json",
+  "additionalProperties": false,
   "description": "The GET /api/age_ratings/:id payload",
   "properties": { "ageRating": { "$ref": "file:/age_rating.json#" } },
   "required": ["ageRating"],

@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://greenquestgames.com/artworks/index.json",
+  "$id": "artworks/index.json",
+  "additionalProperties": false,
   "description": "The GET /api/artworks payload",
   "properties": {
     "artworks": {

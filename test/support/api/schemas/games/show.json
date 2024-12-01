@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://greenquestgames.com/games/show.json",
+  "$id": "games/show.json",
+  "additionalProperties": false,
   "description": "The GET /api/games/:id payload",
   "properties": { "game": { "$ref": "file:/game.json#" } },
   "required": ["game"],

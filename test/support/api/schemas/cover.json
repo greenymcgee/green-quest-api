@@ -1,26 +1,17 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "id": "file:/cover.json#",
-  "description": "A cover",
+  "additionalProperties": false,
+  "description": "A Cover.",
   "properties": {
     "animated": { "type": "boolean" },
-    "createdAt": {
-      "description": "The datetime of the record's creation",
-      "type": "string"
-    },
+    "createdAt": { "type": "string" },
     "height": { "type": ["integer", "null"] },
-    "id": {
-      "description": "The unique identifier for a genre.",
-      "type": "integer"
-    },
+    "id": { "type": "integer" },
     "igdbId": {
-      "description": "The id for the age rating in the IGDB database.",
       "type": "integer"
     },
-    "updatedAt": {
-      "description": "The datetime of the record's last update",
-      "type": "string"
-    },
+    "updatedAt": { "type": "string" },
     "url": { "type": "string" },
     "width": { "type": ["integer", "null"] }
   },

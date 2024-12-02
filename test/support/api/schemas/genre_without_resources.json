@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "id": "file:/player_perspective.json#",
+  "id": "file:/genre_without_resources.json#",
   "additionalProperties": false,
-  "description": "A PlayerPerspective.",
+  "description": "A version of a Genre that doesn't include relational resources.",
   "properties": {
     "createdAt": {
       "type": "string"
@@ -23,14 +23,7 @@
       "type": "string"
     }
   },
-  "required": [
-    "createdAt",
-    "id",
-    "igdbId",
-    "name",
-    "slug",
-    "updatedAt"
-  ],
-  "title": "Theme",
+  "required": ["createdAt", "id", "igdbId", "name", "slug", "updatedAt"],
+  "title": "GenreWithoutResources",
   "type": "object"
 }

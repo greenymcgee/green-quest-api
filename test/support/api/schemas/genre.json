@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "id": "file:/genre.json#",
-  "description": "A genre",
+  "additionalProperties": false,
+  "description": "A Genre.",
   "properties": {
     "createdAt": {
-      "description": "The datetime of the record's creation",
       "type": "string"
     },
     "games": {
@@ -12,23 +12,18 @@
       "type": "array"
     },
     "id": {
-      "description": "The unique identifier for a genre.",
       "type": "integer"
     },
     "igdbId": {
-      "description": "The id for the genre in the IGDB database.",
       "type": "integer"
     },
     "name": {
-      "description": "The name of the genre",
       "type": "string"
     },
     "slug": {
-      "description": "The slug of the genre",
       "type": "string"
     },
     "updatedAt": {
-      "description": "The datetime of the record's last update",
       "type": "string"
     }
   },

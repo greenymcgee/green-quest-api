@@ -1,44 +1,28 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "id": "file:/company.json#",
-  "description": "A company",
+  "additionalProperties": false,
+  "description": "A Company.",
   "properties": {
     "countryCode": {
-      "description": "ISO 3166-1 country code",
+      "description": "ISO 3166-1 country code.",
       "type": ["integer", "null"]
     },
-    "createdAt": {
-      "description": "The datetime of the record's creation",
-      "type": "string"
-    },
-    "description": {
-      "description": "A description of the company",
-      "type": "string"
-    },
+    "createdAt": { "type": "string" },
+    "description": { "type": "string" },
     "id": {
-      "description": "The unique identifier for a platform.",
       "type": "integer"
     },
     "igdbId": {
-      "description": "The id for the platform in the IGDB database.",
       "type": "integer"
     },
-    "name": {
-      "description": "The name of the platform",
-      "type": "string"
-    },
-    "slug": {
-      "description": "The slug of the platform",
-      "type": "string"
-    },
+    "name": { "type": "string" },
+    "slug": { "type": "string" },
     "startDate": {
-      "description": "The date the company was founded",
+      "description": "The date the company was founded.",
       "type": ["string", "null"]
     },
-    "updatedAt": {
-      "description": "The datetime of the record's last update",
-      "type": "string"
-    }
+    "updatedAt": { "type": "string" }
   },
   "required": [
     "countryCode",

@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://greenquestgames.com/company_logos/show.json",
+  "$id": "company_logos/show.json",
+  "additionalProperties": false,
   "description": "The GET /api/company_logos/:id payload",
   "properties": { "companyLogo": { "$ref": "file:/company_logo.json#" } },
   "required": ["companyLogo"],

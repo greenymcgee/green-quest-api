@@ -1,19 +1,19 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "id": "file:/game.json#",
-  "description": "A game",
+  "additionalProperties": false,
+  "description": "A Game.",
   "properties": {
     "ageRatings": {
       "items": { "$ref": "file:/age_rating.json#" },
       "type": "array"
     },
-    "artWorks": {
+    "artworks": {
       "items": { "$ref": "file:/artwork.json#" },
       "type": "array"
     },
     "cover": { "$ref": "file:/cover.json#" },
     "createdAt": {
-      "description": "The datetime of the record's creation",
       "type": "string"
     },
     "developers": {
@@ -21,7 +21,7 @@
       "type": "array"
     },
     "errors": {
-      "description": "Any errors that might be present after fulfilling a game request",
+      "description": "Any errors that might be present after fulfilling a game create request.",
       "type": "array"
     },
     "franchises": {
@@ -37,17 +37,7 @@
       "type": "array"
     },
     "genres": {
-      "items": {
-        "properties": {
-          "id": { "type": "integer" },
-          "igdbId": { "type": "integer" },
-          "name": { "type": "string" },
-          "slug": { "type": "string" },
-          "createdAt": { "type": "string" },
-          "updatedAt": { "type": "string" }
-        },
-        "required": ["id", "igdbId", "name", "slug", "createdAt", "updatedAt"]
-      },
+      "items": { "$ref": "file:/genre_without_resources.json#" },
       "type": "array"
     },
     "platforms": {
@@ -71,13 +61,9 @@
       "type": "integer"
     },
     "igdbId": {
-      "description": "The id for the game in the IGDB database.",
       "type": "integer"
     },
-    "name": {
-      "description": "The name of the game",
-      "type": "string"
-    },
+    "name": { "type": "string" },
     "review": {
       "description": "Richtext: the review of the game.",
       "type": "string"
@@ -106,15 +92,13 @@
       "items": { "$ref": "file:/website.json#" },
       "type": "array"
     },
-    "updatedAt": {
-      "description": "The datetime of the record's last update",
-      "type": "string"
-    }
+    "updatedAt": { "type": "string" }
   },
   "required": [
     "ageRatings",
     "artworks",
     "cover",
+    "createdAt",
     "developers",
     "franchises",
     "gameEngines",
@@ -133,6 +117,7 @@
     "screenshots",
     "supporters",
     "themes",
+    "updatedAt",
     "websites"
   ],
   "title": "Game",

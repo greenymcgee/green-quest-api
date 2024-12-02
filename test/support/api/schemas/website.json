@@ -1,24 +1,21 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "id": "file:/website.json#",
-  "description": "A website",
+  "additionalProperties": false,
+  "description": "A Website.",
   "properties": {
     "createdAt": {
-      "description": "The datetime of the record's creation",
       "type": "string"
     },
     "id": {
-      "description": "The unique identifier for a website.",
       "type": "integer"
     },
     "igdbId": {
-      "description": "The id for the website in the IGDB database.",
       "type": "integer"
     },
     "trusted": { "type": "boolean" },
     "url": { "type": "string" },
     "updatedAt": {
-      "description": "The datetime of the record's last update",
       "type": "string"
     }
   },

@@ -1,36 +1,21 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "id": "file:/franchise.json#",
-  "description": "A franchise",
+  "additionalProperties": false,
+  "description": "A Franchise.",
   "properties": {
-    "createdAt": {
-      "description": "The datetime of the record's creation",
-      "type": "string"
-    },
-    "id": {
-      "description": "The unique identifier for a platform.",
-      "type": "integer"
-    },
+    "createdAt": { "type": "string" },
+    "id": { "type": "integer" },
     "igdbId": {
-      "description": "The id for the platform in the IGDB database.",
       "type": "integer"
     },
     "main": {
       "description": "Whether or not the franchise is the main franchise of the game.",
       "type": "boolean"
     },
-    "name": {
-      "description": "The name of the platform",
-      "type": "string"
-    },
-    "slug": {
-      "description": "The slug of the platform",
-      "type": "string"
-    },
-    "updatedAt": {
-      "description": "The datetime of the record's last update",
-      "type": "string"
-    }
+    "name": { "type": "string" },
+    "slug": { "type": "string" },
+    "updatedAt": { "type": "string" }
   },
   "required": [
     "createdAt",

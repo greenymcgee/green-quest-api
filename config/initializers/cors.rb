@@ -7,13 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins(
-      %w[
-        greenquestgames.com
-        dev.greenquestgames.com
-        staging.greenquestgames.com
-      ],
-    )
+    origins([Rails.configuration.frontend_host])
 
     resource(
       "*",

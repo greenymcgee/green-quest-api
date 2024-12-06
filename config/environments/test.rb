@@ -16,7 +16,7 @@ Rails.application.configure do
     Bullet.raise = true
   end
 
-  config.front_end_host = "http://localhost:3001"
+  config.frontend_host = "http://test.gq.com"
   config.igdb_oauth_url = "https://getgreenquesttoken.com"
   config.igdb_api_url = "https://test_green_quest_idgb_api.com/v4"
 

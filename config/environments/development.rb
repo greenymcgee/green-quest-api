@@ -10,7 +10,7 @@ Rails.application.configure do
     Bullet.add_footer = true
   end
 
-  config.front_end_host = "http://localhost:3001"
+  config.frontend_host = ENV["FRONTEND_HOST"]
   config.igdb_oauth_url = "https://id.twitch.tv/oauth2/token"
   config.igdb_api_url = "https://api.igdb.com/v4"
 

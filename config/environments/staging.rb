@@ -78,7 +78,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.default_url_options = {
-    host: "https://green-quest-api-production.up.railway.app/",
+    host: "https://green-quest-api-staging.up.railway.app/",
     port: 3000,
   }
 

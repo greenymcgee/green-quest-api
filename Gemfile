@@ -46,4 +46,5 @@ group :development, :test do
   gem "prettier", "~> 4.0"
   gem "json_matchers"
   gem "webmock"
+  gem "dotenv-rails"
 end

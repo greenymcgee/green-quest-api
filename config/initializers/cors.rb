@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins([Rails.configuration.frontend_host])
+    origins([ENV["FRONTEND_HOST"]])
 
     resource(
       "*",

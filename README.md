@@ -118,6 +118,17 @@ npm run spellcheck
 The app is automatically deployed via [Railway](https://railway.app/) when a PR
 is merged to the `main` branch.
 
+### Railway Commands
+
+- Link to an environment: `railway link`
+- Deploy linked env: `railway up`
+- Run rails console in env (link to env first and run `exit` after):
+```bash
+DATABASE_URL='public url from railway vars' railway shell
+railway run rails c
+```
+- See vars for linked env: `railway run env`
+
 ## Facade Run-through
 
 There are several facade patterns in place to support fetching data for one

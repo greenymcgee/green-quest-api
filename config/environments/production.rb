@@ -76,6 +76,19 @@ Rails.application.configure do
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.
   config.action_mailer.perform_caching = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "greenquestgames.com",
+    user_name: Rails.application.credentials.gmail_email!,
+    password: Rails.application.credentials.gmail_password!,
+    authentication: "plain",
+    enable_starttls: true,
+    open_timeout: 5,
+    read_timeout: 5,
+  }
 
   config.action_mailer.default_url_options = {
     host: "https://green-quest-api-production.up.railway.app/",

@@ -64,6 +64,7 @@ end
 json.screenshots game.screenshots do |screenshot|
   json.partial! "api/screenshots/screenshot", screenshot: screenshot
 end
+json.slug game.slug
 json.supporters game.supporters do |company|
   json.partial! "api/companies/company", company: company
 end

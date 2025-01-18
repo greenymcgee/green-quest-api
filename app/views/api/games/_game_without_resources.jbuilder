@@ -3,6 +3,7 @@ json.extract!(
   :id,
   :igdb_id,
   :name,
+  :slug,
   :rating,
   :review,
   :created_at,

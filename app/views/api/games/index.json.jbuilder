@@ -1,14 +1,5 @@
 # TODO: figure out how to validate this shape with JSON schemas
 # json.array! @games, partial: "api/games/game", as: :game
 json.games @games do |game|
-  json.extract!(
-    game,
-    :id,
-    :igdb_id,
-    :name,
-    :rating,
-    :review,
-    :created_at,
-    :updated_at,
-  )
+  json.partial! "api/games/game_without_resources", game: game
 end

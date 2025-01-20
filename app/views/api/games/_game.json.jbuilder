@@ -31,6 +31,7 @@ end
 json.genres game.genres do |genre|
   json.extract! genre, :id, :igdb_id, :name, :slug, :created_at, :updated_at
 end
+json.published game.published?
 json.platforms game.platforms do |platform|
   json.extract!(
     platform,

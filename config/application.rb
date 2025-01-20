@@ -1,4 +1,5 @@
 require_relative "boot"
+require_relative "html_whitelists"
 
 require "rails/all"
 
@@ -31,5 +32,10 @@ module GreenQuestApi
     config.action_dispatch.rescue_responses[
       "Pundit::NotAuthorizedError"
     ] = :forbidden
+
+    config.action_view.sanitized_allowed_tags =
+      HTMLWhitelists.html_elements_whitelist
+    config.action_view.sanitized_allowed_attributes =
+      HTMLWhitelists.html_attributes_whitelist
   end
 end

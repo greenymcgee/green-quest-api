@@ -1,4 +1,6 @@
 class Api::GamesController < ApplicationController
+  include ActionView::Helpers::SanitizeHelper
+
   before_action :set_game, only: %i[show update destroy]
 
   # 200
@@ -64,7 +66,11 @@ class Api::GamesController < ApplicationController
   end
 
   def game_update_params
-    params.require(:game).permit(:rating, :review)
+    strong_params = params.require(:game).permit(:rating, :review)
+    {
+      rating: strong_params[:rating],
+      review: sanitize(strong_params[:review]) || "",
+    }
   end
 
   def game_create_params

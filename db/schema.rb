@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_30_133037) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_20_180226) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "age_ratings", force: :cascade do |t|
     t.integer "category_enum"
@@ -214,6 +214,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_30_133037) do
     t.integer "standalone_expansion_ids", default: [], null: false, array: true
     t.integer "version_parent_id"
     t.integer "main_franchise_id"
+    t.datetime "published_at"
     t.index ["igdb_id"], name: "index_games_on_igdb_id", unique: true
     t.index ["slug"], name: "index_games_on_slug"
   end

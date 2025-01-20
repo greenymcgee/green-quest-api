@@ -32,6 +32,12 @@ class Game < ApplicationRecord
     end
   end
 
+  def published?
+    return false if published_at.blank?
+
+    published_at < Time.current
+  end
+
   def publishers
     publisher_involved_companies =
       involved_companies.where(is_publisher: true).includes([:company])

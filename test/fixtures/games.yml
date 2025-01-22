@@ -6,9 +6,11 @@ super_metroid:
   igdb_id: 47
   name: Super Metroid
   platforms: [snes]
+  slug: super-metroid
 
 dark_souls:
   genres: [rpg]
   igdb_id: 1
   name: Dark Souls
   platforms: [xbox_360]
+  slug: dark-souls

@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     resources :covers, only: %i[index show destroy]
     get "/current_user", controller: "current_users", action: :show
     resources :franchises, only: %i[index show destroy]
-    resources :games
+    resources :games, param: :slug
     resources :game_engines, only: %i[index show destroy]
     resources :game_engine_logos, only: %i[index show destroy]
     resources :game_modes, only: %i[index show destroy]

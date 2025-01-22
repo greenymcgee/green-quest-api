@@ -5,7 +5,7 @@ class Api::GamesController < ApplicationController
 
   # 200
   def index
-    @games = Game.all
+    @games = Game.all.order(name: :asc)
   end
 
   # 200, 404
@@ -62,7 +62,7 @@ class Api::GamesController < ApplicationController
   end
 
   def set_game
-    @game = Game.find(params[:id])
+    @game = Game.find_by(slug: params[:slug])
   end
 
   def game_update_params

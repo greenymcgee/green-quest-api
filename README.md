@@ -123,9 +123,9 @@ is merged to the `main` branch.
 - Link to an environment: `railway link`
 - Deploy linked env: `railway up`
 - Run rails console in env (link to env first and run `exit` after):
+  - https://help.railway.com/questions/how-can-i-access-rails-console-of-prod-a-b9b207aa#cqdq
 ```bash
-DATABASE_URL='public url from railway vars' railway shell
-railway run rails c
+DATABASE_URL='public url from railway vars' rails c
 ```
 - See vars for linked env: `railway run env`
 

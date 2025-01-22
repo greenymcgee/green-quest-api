@@ -159,18 +159,18 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "#show should show game" do
-    get api_game_url(@game), as: :json
+    get api_game_url(@game.slug), as: :json
     assert_response :success
   end
 
   test "#show should return the expected show json payload" do
-    get api_game_url(@game), as: :json
+    get api_game_url(@game.slug), as: :json
     assert_matches_json_schema response, "games/show"
   end
 
   test "#update should update game" do
     patch(
-      api_game_url(@game),
+      api_game_url(@game.slug),
       as: :json,
       headers: @admin_auth_headers,
       params: {
@@ -186,7 +186,7 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
 
   test "#update should not update igdb_id" do
     patch(
-      api_game_url(@game),
+      api_game_url(@game.slug),
       as: :json,
       headers: @admin_auth_headers,
       params: {
@@ -200,7 +200,7 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
 
   test "#update should return an error" do
     patch(
-      api_game_url(@game),
+      api_game_url(@game.slug),
       as: :json,
       headers: @admin_auth_headers,
       params: {
@@ -211,7 +211,7 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
 
   test "#update should not update game for non-admin users" do
     patch(
-      api_game_url(@game),
+      api_game_url(@game.slug),
       as: :json,
       headers: @basic_auth_headers,
       params: {
@@ -224,7 +224,7 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
 
   test "#update should return the expected update json payload" do
     patch(
-      api_game_url(@game),
+      api_game_url(@game.slug),
       as: :json,
       headers: @admin_auth_headers,
       params: {
@@ -240,13 +240,13 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
 
   test "#destroy should destroy game" do
     assert_difference("Game.count", -1) do
-      delete api_game_url(@game), as: :json, headers: @admin_auth_headers
+      delete api_game_url(@game.slug), as: :json, headers: @admin_auth_headers
     end
     assert_response :no_content
   end
 
   test "#destroy should not destroy game for non-admin users" do
-    delete api_game_url(@game), as: :json, headers: @basic_auth_headers
+    delete api_game_url(@game.slug), as: :json, headers: @basic_auth_headers
     assert_response :forbidden
   end
 end

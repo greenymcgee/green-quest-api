@@ -10,6 +10,14 @@ class Api::GamesController < ApplicationController
 
   # 200, 404
   def show
+    unless @game.present?
+      render(
+        json: {
+          message: "No games found matching #{params[:slug]}",
+        },
+        status: :not_found,
+      )
+    end
   end
 
   # 200, 207, 400, 401, 403

@@ -163,6 +163,11 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "#show should return a 404 when a game isn't found" do
+    get api_game_url("nothing"), as: :json
+    assert_response :not_found
+  end
+
   test "#show should return the expected show json payload" do
     get api_game_url(@game.slug), as: :json
     assert_matches_json_schema response, "games/show"

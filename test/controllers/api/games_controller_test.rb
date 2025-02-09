@@ -141,6 +141,24 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
     assert_response :forbidden
   end
 
+  test "#create should render an unprocessable_entity when the game already exists" do
+    igdb_id = games(:super_metroid).igdb_id
+    stub_successful_game_create_request(igdb_id)
+    post(
+      api_games_url,
+      as: :json,
+      headers: @admin_auth_headers,
+      params: {
+        game: {
+          igdb_id: igdb_id,
+          rating: 5,
+          review: "<p>rich text</p>",
+        },
+      },
+    )
+    assert_response :unprocessable_entity
+  end
+
   test "#create should return the expected create json payload" do
     stub_successful_game_create_request(1026)
     post(

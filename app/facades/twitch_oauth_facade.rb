@@ -1,3 +1,5 @@
+require "net/http"
+
 class TwitchOauthFacade
   def self.get_twitch_oauth_token
     request_bearer_token

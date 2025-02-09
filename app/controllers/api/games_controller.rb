@@ -25,15 +25,34 @@ class Api::GamesController < ApplicationController
     authenticate_user!
     @game = Game.new(game_create_params)
     authorize @game
-    request_igdb_game_data
-    return render_igdb_game_request_failure if @igdb_game_request_error.present?
 
-    return render_unprocessable_game unless populate_igdb_fields
+    begin
+      request_igdb_game_data
+      if @igdb_game_request_error.present?
+        return render_igdb_game_request_failure
+      end
 
-    add_game_resources
-    return render_successful_show_response(:multi_status) if errors_present?
+      return render_unprocessable_game unless populate_igdb_fields
 
-    render_successful_show_response(:created)
+      add_game_resources
+      return render_successful_show_response(:multi_status) if errors_present?
+
+      render_successful_show_response(:created)
+    rescue StandardError => error
+      if error.message.include? "duplicate"
+        preexisting_game = Game.find_by(igdb_id: game_create_params[:igdb_id])
+        return(
+          render(
+            json: {
+              message: "#{preexisting_game.name} already exists",
+            },
+            status: :unprocessable_entity,
+          )
+        )
+      end
+
+      raise StandardError.new(error)
+    end
   end
 
   # 200, 400, 401, 403, 404

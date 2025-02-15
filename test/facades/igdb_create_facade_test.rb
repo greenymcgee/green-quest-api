@@ -180,4 +180,16 @@ class IgdbCreateFacadeTest < ActionDispatch::IntegrationTest
       ).find_or_create_resources
     end
   end
+
+  test "should return resources when they are already present" do
+    genre = genres(:rpg)
+    response =
+      IgdbCreateFacade.new(
+        fields_facade: Api::Genres::IgdbFieldsFacade,
+        ids: [genre.igdb_id],
+        model: Genre,
+        twitch_bearer_token: @twitch_bearer_token,
+      ).find_or_create_resources
+    assert_equal(response[:resources], [genre])
+  end
 end

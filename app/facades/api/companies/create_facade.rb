@@ -14,17 +14,41 @@ class Api::Companies::CreateFacade
   private
 
   def company
+    record = find_or_initialize_company
+    save_company_record(record)
+    record
+  end
+
+  def save_company_record(record)
+    # If this hits, that means the IGDB request didn't go as expected
+    return if @@errors[:companies].present?
+
+    record.save
+    record.errors.each { |error| @@errors[:companies] << error }
+  end
+
+  def find_or_initialize_company
     Company.find_or_initialize_by(igdb_id: @@id) do |company|
       next if company.id.present?
 
       igdb_response = get_company_igdb_data
       igdb_data = igdb_response[:igdb_data]
-      next if add_company_igdb_error(igdb_response[:error]) || igdb_data.blank?
+      next if encountered_errors?(igdb_response)
 
       populate_company_fields(company, igdb_data)
       set_company_company_logo(company, igdb_data)
-      company.errors.each { |error| @@errors[:companies] << error }
     end
+  end
+
+  def encountered_errors?(igdb_response)
+    add_company_igdb_error(igdb_response[:error]) ||
+      add_company_blank_igdb_data_error(igdb_response[:igdb_data])
+  end
+
+  def add_company_blank_igdb_data_error(igdb_data)
+    return false unless igdb_data.blank?
+
+    @@errors[:companies] << { @@id => "IGDB data is blank" }
   end
 
   def add_company_igdb_error(error)

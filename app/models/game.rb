@@ -1,18 +1,18 @@
 class Game < ApplicationRecord
   has_and_belongs_to_many :age_ratings
-  has_many :artworks
-  has_one :cover
+  has_many :artworks, dependent: :destroy
+  has_one :cover, dependent: :destroy
   has_and_belongs_to_many :franchises
   has_and_belongs_to_many :game_engines
   has_and_belongs_to_many :game_modes
   has_and_belongs_to_many :genres
-  has_many :involved_companies
+  has_many :involved_companies, dependent: :destroy
   has_and_belongs_to_many :platforms
   has_and_belongs_to_many :player_perspectives
-  has_many :release_dates
-  has_many :screenshots
+  has_many :release_dates, dependent: :destroy
+  has_many :screenshots, dependent: :destroy
   has_and_belongs_to_many :themes
-  has_many :websites
+  has_many :websites, dependent: :destroy
 
   validates :igdb_id, presence: true
 

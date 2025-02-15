@@ -7,7 +7,7 @@ class Api::GameEngines::IgdbFieldsFacade
   end
 
   def populate_fields
-    @@game_engine.update(
+    @@game_engine.assign_attributes(
       checksum: checksum,
       description: description,
       igdb_url: igdb_url,

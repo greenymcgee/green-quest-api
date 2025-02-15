@@ -7,7 +7,7 @@ class Api::Websites::IgdbFieldsFacade
   end
 
   def populate_fields
-    @@website.update(
+    @@website.assign_attributes(
       category_enum: category_enum,
       checksum: checksum,
       trusted: trusted,

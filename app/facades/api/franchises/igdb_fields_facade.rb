@@ -7,7 +7,7 @@ class Api::Franchises::IgdbFieldsFacade
   end
 
   def populate_fields
-    @@franchise.update(
+    @@franchise.assign_attributes(
       checksum: checksum,
       igdb_url: igdb_url,
       name: name,

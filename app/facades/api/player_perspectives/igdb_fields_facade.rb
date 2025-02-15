@@ -7,7 +7,7 @@ class Api::PlayerPerspectives::IgdbFieldsFacade
   end
 
   def populate_fields
-    @@player_perspective.update(
+    @@player_perspective.assign_attributes(
       checksum: checksum,
       igdb_url: igdb_url,
       name: name,

@@ -7,7 +7,7 @@ class Api::Themes::IgdbFieldsFacade
   end
 
   def populate_fields
-    @@theme.update(
+    @@theme.assign_attributes(
       checksum: checksum,
       igdb_url: igdb_url,
       name: name,

@@ -7,7 +7,7 @@ class Api::AgeRatings::IgdbFieldsFacade
   end
 
   def populate_fields
-    @@age_rating.update(
+    @@age_rating.assign_attributes(
       category_enum: category_enum,
       checksum: checksum,
       rating_enum: rating_enum,

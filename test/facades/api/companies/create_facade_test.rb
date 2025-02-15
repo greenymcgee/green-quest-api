@@ -89,4 +89,14 @@ class Api::Companies::CreateFacadeTest < ActionDispatch::IntegrationTest
       ).find_or_create_company
     end
   end
+
+  test "should return a company when it is already saved" do
+    company = companies(:sony)
+    response =
+      Api::Companies::CreateFacade.new(
+        company.igdb_id,
+        @twitch_bearer_token,
+      ).find_or_create_company
+    assert_equal(response[:company], company)
+  end
 end

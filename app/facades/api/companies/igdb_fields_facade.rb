@@ -7,7 +7,7 @@ class Api::Companies::IgdbFieldsFacade
   end
 
   def populate_fields
-    @@company.update(
+    @@company.assign_attributes(
       change_date: change_date,
       change_date_category_enum: change_date_category_enum,
       changed_company_id: changed_company_id,

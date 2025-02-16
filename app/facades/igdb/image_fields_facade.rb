@@ -7,7 +7,7 @@ class Igdb::ImageFieldsFacade
   end
 
   def populate_fields
-    @@resource.update(
+    @@resource.assign_attributes(
       alpha_channel: alpha_channel,
       animated: animated,
       checksum: checksum,

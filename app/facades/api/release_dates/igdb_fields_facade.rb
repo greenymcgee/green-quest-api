@@ -7,7 +7,7 @@ class Api::ReleaseDates::IgdbFieldsFacade
   end
 
   def populate_fields
-    @@release_date.update(
+    @@release_date.assign_attributes(
       category_enum: category_enum,
       checksum: checksum,
       date: date,

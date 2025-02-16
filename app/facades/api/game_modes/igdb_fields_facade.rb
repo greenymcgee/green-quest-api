@@ -7,7 +7,7 @@ class Api::GameModes::IgdbFieldsFacade
   end
 
   def populate_fields
-    @@game_mode.update(
+    @@game_mode.assign_attributes(
       checksum: checksum,
       igdb_url: igdb_url,
       name: name,

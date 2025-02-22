@@ -1,11 +1,13 @@
 class Api::GamesController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
+  include Pagy::Backend
 
   before_action :set_game, only: %i[show update destroy]
 
   # 200
   def index
-    @games = Game.all.order(name: :asc)
+    @pagy, @games = pagy(Game.order(name: :asc))
+    @pagy_metadata = pagy_metadata(@pagy)
   end
 
   # 200, 404

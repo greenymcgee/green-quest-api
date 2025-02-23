@@ -14,6 +14,13 @@ class Game < ApplicationRecord
   has_and_belongs_to_many :themes
   has_many :websites, dependent: :destroy
 
+  scope(
+    :by_query,
+    ->(query) do
+      where("name ILIKE ?", "%#{sanitize_sql_like(query)}%") if query.present?
+    end,
+  )
+
   validates :igdb_id, presence: true
 
   def developers

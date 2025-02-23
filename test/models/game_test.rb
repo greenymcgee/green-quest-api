@@ -12,6 +12,19 @@ class GameTest < ActiveSupport::TestCase
     assert game.errors[:igdb_id].include? "can't be blank"
   end
 
+  test "#by_query when query is present" do
+    games = Game.by_query("metroid")
+    assert_equal games, [games(:super_metroid)]
+  end
+
+  test "#by_query when query is blank" do
+    games = Game.by_query(nil)
+    expected_games = Game.all
+    games.each_with_index do |game, index|
+      assert_equal(game, expected_games[index])
+    end
+  end
+
   test "#developers should return companies that developed the game" do
     developers = games(:super_metroid).developers
     assert_equal developers, [companies(:nintendo)]

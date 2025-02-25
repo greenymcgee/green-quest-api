@@ -16,7 +16,7 @@ class Api::Games::GameVideoGameCreateFacade
     facade =
       IgdbCreateFacade.new(
         fields_facade: Api::GameVideos::IgdbFieldsFacade,
-        ids: @@igdb_game_data["game_videos"],
+        ids: @@igdb_game_data["videos"],
         model: GameVideo,
         twitch_bearer_token: @@twitch_bearer_token,
       )

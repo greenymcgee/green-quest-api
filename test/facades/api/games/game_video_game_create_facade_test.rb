@@ -19,7 +19,7 @@ class Api::Games::GameVideoGameCreateFacadeTest < ActionDispatch::IntegrationTes
     stub_successful_game_create_request(@game.igdb_id)
     @facade.add_game_videos_to_game
     ids = @game.game_videos.map(&:igdb_id)
-    @igdb_game_data["game_videos"].each { |id| assert ids.include? id }
+    @igdb_game_data["videos"].each { |id| assert ids.include? id }
   end
 
   test "should not add errors to game upon success" do
@@ -34,7 +34,7 @@ class Api::Games::GameVideoGameCreateFacadeTest < ActionDispatch::IntegrationTes
       with_game_video_failures: true,
     )
     @facade.add_game_videos_to_game
-    ids = @igdb_game_data["game_videos"]
+    ids = @igdb_game_data["videos"]
     @game.errors[:game_videos].first.each_with_index do |errors, index|
       assert_equal(
         errors.first,

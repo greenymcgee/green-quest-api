@@ -23,7 +23,6 @@
     "franchises": [596],
     "game_engines": [2],
     "game_modes": [1],
-    "game_videos": [715, 67036],
     "genres": [9, 31],
     "involved_companies": [101094, 162318, 162319],
     "keywords": [
@@ -84,7 +83,7 @@
     "url": "https://www.igdb.com/games/the-legend-of-zelda-a-link-to-the-past",
     "version_parent": 1,
     "version_title": "Version 1",
-    "videos": [715, 67036, 67037, 109510],
+    "videos": [715, 67036],
     "websites": [53240, 243088, 512375],
     "checksum": "2f5d7a1e-73a6-28de-b9e7-b7ac59f69721",
     "expanded_games": [229416],

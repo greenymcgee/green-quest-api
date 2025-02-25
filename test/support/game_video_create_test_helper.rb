@@ -6,7 +6,7 @@ module GameVideoCreateTestHelper
   include TwitchOauthTestHelper
 
   def stub_successful_game_video_responses
-    igdb_game_data["game_videos"].each do |id|
+    igdb_game_data["videos"].each do |id|
       stub_successful_igdb_api_request(
         "game_videos/#{id}",
         json_mocks("igdb/game_videos/#{id}.json"),
@@ -16,7 +16,7 @@ module GameVideoCreateTestHelper
   end
 
   def stub_game_video_request_failures
-    igdb_game_data["game_videos"].each do |id|
+    igdb_game_data["videos"].each do |id|
       stub_igdb_api_request_failure("game_videos/#{id}")
     end
   end

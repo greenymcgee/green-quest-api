@@ -1,0 +1,9 @@
+json.extract!(
+  game_video,
+  :created_at,
+  :id,
+  :igdb_id,
+  :name,
+  :updated_at,
+  :video_id,
+)

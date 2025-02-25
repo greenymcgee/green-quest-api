@@ -13,6 +13,7 @@ class Game < ApplicationRecord
   has_many :screenshots, dependent: :destroy
   has_and_belongs_to_many :themes
   has_many :websites, dependent: :destroy
+  has_many :game_videos, dependent: :destroy
 
   scope(
     :by_query,

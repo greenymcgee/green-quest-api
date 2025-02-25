@@ -1,0 +1,2 @@
+class GameVideoPolicy < AdminPolicy
+end

@@ -75,3 +75,6 @@ end
 json.websites game.websites do |website|
   json.partial! "api/websites/website", website: website
 end
+json.videos game.game_videos do |game_video|
+  json.partial! "api/game_videos/game_video", game_video: game_video
+end

@@ -17,6 +17,7 @@ class Api::Games::CreateFacade
     add_franchises_to_game
     add_game_engines_to_game
     add_game_modes_to_game
+    add_game_videos_to_game
     add_genres_to_game
     add_platforms_to_game
     add_player_perspectives_to_game
@@ -97,5 +98,11 @@ class Api::Games::CreateFacade
     Api::Games::WebsiteGameCreateFacade.new(
       **@@create_facade_params,
     ).add_websites_to_game
+  end
+
+  def add_game_videos_to_game
+    Api::Games::GameVideoGameCreateFacade.new(
+      **@@create_facade_params,
+    ).add_game_videos_to_game
   end
 end

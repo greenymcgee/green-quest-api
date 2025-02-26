@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_20_180226) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_25_130941) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -183,6 +183,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_20_180226) do
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_game_modes_games_on_game_id"
     t.index ["game_mode_id"], name: "index_game_modes_games_on_game_mode_id"
+  end
+
+  create_table "game_videos", force: :cascade do |t|
+    t.string "checksum", default: "", null: false
+    t.integer "igdb_id", null: false
+    t.string "name", default: "", null: false
+    t.string "video_id", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "game_id"
+    t.index ["game_id"], name: "index_game_videos_on_game_id"
+    t.index ["igdb_id"], name: "index_game_videos_on_igdb_id", unique: true
   end
 
   create_table "games", force: :cascade do |t|

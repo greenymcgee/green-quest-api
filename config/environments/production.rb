@@ -73,6 +73,10 @@ Rails.application.configure do
   # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "green_quest_api_production"
 
+  Rails.application.routes.default_url_options[
+    :host
+  ] = "https://green-quest-api-production.up.railway.app/"
+
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.
   config.action_mailer.perform_caching = false

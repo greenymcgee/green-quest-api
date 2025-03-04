@@ -1,13 +1,5 @@
-# CHange this to BannerImageUploader
-# Figure out full urls for frontend
-# Send the image to the frontend
-# Change the migration to game.banner_image
-# Add migration for featured_video_id
-# Configure default values of all inputs in edit page
-# Update the jbuilder to send new attributes
 class BannerImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  include Rails.application.routes.url_helpers
 
   process resize_to_fill: [1200, 400]
   process convert: "webp"
@@ -19,12 +11,6 @@ class BannerImageUploader < CarrierWave::Uploader::Base
 
   storage :file
 
-  def asset_host
-    Rails.application.routes.default_url_options[:host]
-  end
-
-  # Override the directory where uploaded files will be stored.
-  # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
@@ -44,13 +30,6 @@ class BannerImageUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process resize_to_fit: [50, 50]
-  # end
-
-  # Add an allowlist of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
   def extension_allowlist
     %w[jpg jpeg gif png webp]
   end

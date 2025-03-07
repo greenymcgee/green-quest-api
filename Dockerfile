@@ -18,6 +18,7 @@ RUN apt-get update -qq && \
 
 ENV RAILS_ENV=${RAILS_ENV} \
     RAILS_MASTER_KEY=${RAILS_MASTER_KEY} \
+    APP_HOST=${APP_HOST} \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development" \
@@ -48,9 +49,6 @@ COPY . .
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
-
-
-
 
 # Final stage for app image
 FROM base

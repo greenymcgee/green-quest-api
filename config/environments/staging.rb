@@ -4,6 +4,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   config.frontend_host = ENV["FRONTEND_HOST"]
+  config.app_host = ENV["APP_HOST"]
   config.igdb_oauth_url = "https://id.twitch.tv/oauth2/token"
   config.igdb_api_url = "https://api.igdb.com/v4"
 
@@ -24,7 +25,7 @@ Rails.application.configure do
   config.require_master_key = true
 
   # Disable serving static files from `public/`, relying on NGINX/Apache to do so instead.
-  # config.public_file_server.enabled = false
+  config.public_file_server.enabled = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
@@ -72,10 +73,6 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "green_quest_api_production"
-
-  Rails.application.routes.default_url_options[
-    :host
-  ] = "https://green-quest-api-staging.up.railway.app/"
 
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.

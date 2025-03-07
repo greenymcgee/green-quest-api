@@ -1,11 +1,15 @@
 json.errors game.errors if game.errors.present?
 json.extract!(
   game,
+  :banner_image,
+  :featured_video_id,
   :id,
   :igdb_id,
   :name,
+  :published_at,
   :rating,
   :review,
+  :slug,
   :created_at,
   :updated_at,
 )
@@ -65,7 +69,6 @@ end
 json.screenshots game.screenshots do |screenshot|
   json.partial! "api/screenshots/screenshot", screenshot: screenshot
 end
-json.slug game.slug
 json.supporters game.supporters do |company|
   json.partial! "api/companies/company", company: company
 end

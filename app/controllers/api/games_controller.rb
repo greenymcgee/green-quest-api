@@ -61,9 +61,11 @@ class Api::GamesController < ApplicationController
   def update
     authenticate_user!
     authorize @game
-    if @game.update(game_update_params)
-      return render_successful_show_response(:ok)
-    end
+    update_params = game_update_params
+    review = update_params.delete(:review)
+    @game.assign_attributes(update_params)
+    @game.review = sanitize(review) || ""
+    return render_successful_show_response(:ok) if @game.save!
 
     render json: @game.errors, status: :unprocessable_entity
   end
@@ -95,11 +97,13 @@ class Api::GamesController < ApplicationController
   end
 
   def game_update_params
-    strong_params = params.require(:game).permit(:rating, :review)
-    {
-      rating: strong_params[:rating],
-      review: sanitize(strong_params[:review]) || "",
-    }
+    params.require(:game).permit(
+      :banner_image,
+      :featured_video_id,
+      :published_at,
+      :rating,
+      :review,
+    )
   end
 
   def game_create_params

@@ -2,7 +2,8 @@
   "ignorePaths": [
     "node_modules/**",
     "./config/credentials.yml.enc",
-    "./test/support/mocks"
+    "./test/support/mocks",
+    "./config/nginx"
   ],
   "words": [
     "Agahnim",

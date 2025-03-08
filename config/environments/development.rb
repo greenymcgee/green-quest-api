@@ -12,6 +12,7 @@ Rails.application.configure do
 
   config.frontend_host = ENV["FRONTEND_HOST"]
   config.app_host = ENV["APP_HOST"]
+  config.app_host_with_protocol = ENV["APP_HOST_WITH_PROTOCOL"]
   config.igdb_oauth_url = "https://id.twitch.tv/oauth2/token"
   config.igdb_api_url = "https://api.igdb.com/v4"
   config.hosts << ENV["FRONTEND_HOST"]

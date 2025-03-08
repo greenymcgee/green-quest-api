@@ -17,7 +17,8 @@ Rails.application.configure do
   end
 
   config.frontend_host = "http://test.gq.com"
-  config.app_host = "http://localhost"
+  config.app_host = "localhost"
+  config.app_host_with_protocol = "http://localhost"
   config.igdb_oauth_url = "https://getgreenquesttoken.com"
   config.igdb_api_url = "https://test_green_quest_idgb_api.com/v4"
 

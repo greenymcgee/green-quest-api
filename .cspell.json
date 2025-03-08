@@ -2,7 +2,8 @@
   "ignorePaths": [
     "node_modules/**",
     "./config/credentials.yml.enc",
-    "./test/support/mocks"
+    "./test/support/mocks",
+    "./config/nginx"
   ],
   "words": [
     "Agahnim",
@@ -16,6 +17,7 @@
     "autofocus",
     "autoindex",
     "autorun",
+    "bootsnap",
     "bson",
     "carrierwave",
     "cellspacing",
@@ -45,6 +47,7 @@
     "libjemalloc",
     "libmagic",
     "libmagickwand",
+    "libpq",
     "libvips",
     "magick",
     "mailcatcher",
@@ -84,6 +87,7 @@
     "Takashi",
     "Tezuka",
     "timeoutable",
+    "ungroup",
     "unlockable",
     "uploaders",
     "validatable",

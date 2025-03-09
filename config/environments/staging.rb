@@ -4,6 +4,8 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   config.frontend_host = ENV["FRONTEND_HOST"]
+  config.app_host = ENV["APP_HOST"]
+  config.app_host_with_protocol = ENV["APP_HOST_WITH_PROTOCOL"]
   config.igdb_oauth_url = "https://id.twitch.tv/oauth2/token"
   config.igdb_api_url = "https://api.igdb.com/v4"
 
@@ -24,7 +26,7 @@ Rails.application.configure do
   config.require_master_key = true
 
   # Disable serving static files from `public/`, relying on NGINX/Apache to do so instead.
-  # config.public_file_server.enabled = false
+  config.public_file_server.enabled = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
@@ -43,10 +45,10 @@ Rails.application.configure do
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
-  # config.assume_ssl = true
+  config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  # config.force_ssl = true
 
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
@@ -107,7 +109,7 @@ Rails.application.configure do
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts << ENV["FRONTEND_HOST"]
-  config.hosts << "green-quest-api-staging.up.railway.app"
+  config.hosts << ENV["APP_HOST"]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end

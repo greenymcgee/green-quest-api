@@ -1,4 +1,6 @@
 class Game < ApplicationRecord
+  mount_uploader :banner_image, BannerImageUploader
+
   has_and_belongs_to_many :age_ratings
   has_many :artworks, dependent: :destroy
   has_one :cover, dependent: :destroy

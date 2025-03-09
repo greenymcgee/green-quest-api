@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_25_130941) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_28_131356) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -227,6 +227,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_25_130941) do
     t.integer "version_parent_id"
     t.integer "main_franchise_id"
     t.datetime "published_at"
+    t.string "banner_image"
+    t.string "featured_video_id", default: "", null: false
     t.index ["igdb_id"], name: "index_games_on_igdb_id", unique: true
     t.index ["slug"], name: "index_games_on_slug"
   end

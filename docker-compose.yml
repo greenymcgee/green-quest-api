@@ -20,11 +20,12 @@ services:
     restart: always
   web:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: ["sh", "-c", "parallel --ungroup --halt now,fail=1 ::: 'nginx -g \"daemon off;\"' 'bundle exec rails s -b 0.0.0.0 -p 3000'"]
     container_name: rails
     environment:
       - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
       - RAILS_ENV=${RAILS_ENV}
+      - APP_HOST=${APP_HOST}
       - DATABASE_URL=${DATABASE_URL}
       - FRONTEND_HOST=${FRONTEND_HOST}
       - POSTGRES_HOST=${POSTGRES_HOST}
@@ -33,14 +34,15 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_PORT=${POSTGRES_PORT}
     volumes:
-      - app:/rails/storage
+      - storage:/rails/storage
     depends_on:
       - db
     links:
       - mailcatcher
     ports:
       - "3000:3000"
+      - "8080:8080"
 
 volumes:
   data: {}
-  app: {}
+  storage: {}

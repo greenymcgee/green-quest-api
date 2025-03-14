@@ -12,6 +12,7 @@ class Igdb::ImageFieldsFacade
       animated: animated,
       checksum: checksum,
       height: height,
+      image_id: image_id,
       url: url,
       width: width,
     )
@@ -36,6 +37,10 @@ class Igdb::ImageFieldsFacade
 
   def height
     get_present_value(@@resource.height, @@igdb_data["height"])
+  end
+
+  def image_id
+    get_present_value(@@resource.image_id, @@igdb_data["image_id"])
   end
 
   def url

@@ -3,6 +3,7 @@ json.extract!(
   game,
   :banner_image,
   :featured_video_id,
+  :first_release_date,
   :id,
   :igdb_id,
   :name,

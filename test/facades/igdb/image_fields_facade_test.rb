@@ -24,6 +24,10 @@ class Igdb::ImageFieldsFacadeTest < ActionDispatch::IntegrationTest
     assert_equal(@resource.height, @igdb_data["height"])
   end
 
+  test "should populate the image_id" do
+    assert_equal(@resource.image_id, @igdb_data["image_id"])
+  end
+
   test "should populate the url" do
     assert_equal(@resource.url, @igdb_data["url"])
   end

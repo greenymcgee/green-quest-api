@@ -39,6 +39,7 @@
       "type": "array"
     },
     "featuredVideoId": { "type": "string" },
+    "firstReleaseDate": { "type": ["string", "null"] },
     "franchises": {
       "items": { "$ref": "file:/franchise.json#" },
       "type": "array"
@@ -124,6 +125,7 @@
     "createdAt",
     "developers",
     "featuredVideoId",
+    "firstReleaseDate",
     "franchises",
     "gameEngines",
     "gameModes",

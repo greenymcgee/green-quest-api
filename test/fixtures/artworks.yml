@@ -1,5 +1,9 @@
 one:
+  height: 24
   igdb_id: 1
+  width: 56
 
 two:
+  height: 24
   igdb_id: 2
+  width: 56

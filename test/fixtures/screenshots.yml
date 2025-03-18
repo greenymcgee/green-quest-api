@@ -1,7 +1,11 @@
 one:
   game: super_metroid
+  height: 24
   igdb_id: 1
+  width: 56
 
 two:
   game: super_metroid
+  height: 24
   igdb_id: 2
+  width: 56

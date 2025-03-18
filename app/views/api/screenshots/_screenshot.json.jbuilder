@@ -6,6 +6,7 @@ json.extract!(
   :id,
   :igdb_id,
   :updated_at,
-  :url,
   :width,
 )
+
+json.url "https://images.igdb.com/igdb/image/upload/t_720p/#{screenshot.image_id}.webp"

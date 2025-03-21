@@ -14,6 +14,8 @@ RUN apt-get update -qq && \
     parallel nginx && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
+ARG RAILWAY_VOLUME_MOUNT_PATH
+
 ENV RAILS_ENV=${RAILS_ENV} \
     RAILS_MASTER_KEY=${RAILS_MASTER_KEY} \
     APP_HOST=${APP_HOST} \
@@ -26,7 +28,9 @@ ENV RAILS_ENV=${RAILS_ENV} \
     POSTGRES_DB=${POSTGRES_DB} \
     POSTGRES_USER=${POSTGRES_USER} \
     POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
-    POSTGRES_PORT=${POSTGRES_PORT}
+    POSTGRES_PORT=${POSTGRES_PORT} \
+    RAILWAY_VOLUME_MOUNT_PATH=${RAILWAY_VOLUME_MOUNT_PATH} \
+    RAILWAY_RUN_UID=0
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
@@ -60,8 +64,6 @@ RUN groupadd --system --gid 1000 rails && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
     mkdir -p /etc/nginx /var/cache/nginx /var/log/nginx /var/lib/nginx /run && \
     chown -R rails:rails db log storage tmp /etc/nginx /var/cache/nginx /var/log/nginx /var/lib/nginx /run
-
-USER 1000:1000
 
 COPY ./config/nginx/nginx.conf /etc/nginx/nginx.conf
 

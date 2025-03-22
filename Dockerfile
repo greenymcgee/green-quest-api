@@ -61,8 +61,6 @@ RUN groupadd --system --gid 1000 rails && \
     mkdir -p /etc/nginx /var/cache/nginx /var/log/nginx /var/lib/nginx /run && \
     chown -R rails:rails db log storage tmp /etc/nginx /var/cache/nginx /var/log/nginx /var/lib/nginx /run
 
-USER 1000:1000
-
 COPY ./config/nginx/nginx.conf /etc/nginx/nginx.conf
 
 # Entrypoint prepares the database.

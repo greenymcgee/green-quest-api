@@ -7,17 +7,21 @@
     "games": {
       "items": {
         "additionalProperties": false,
-        "description": "A version of a Game that doesn't include relational resources.",
         "properties": {
           "createdAt": {
             "type": "string"
           },
-          "cover": { "ref": "file:/cover.json#" },
+          "cover": { "$ref": "file:/cover.json#" },
+          "firstReleaseDate": { "type": ["string", "null"] },
           "id": {
             "type": "integer"
           },
           "igdbId": { "type": "integer" },
           "name": { "type": "string" },
+          "platforms": {
+            "items": { "$ref": "file:/platform_without_resources.json#" },
+            "type": "array"
+          },
           "published": { "type": "boolean" },
           "slug": { "type": "string" },
           "rating": {
@@ -35,16 +39,18 @@
         "required": [
           "cover",
           "createdAt",
+          "firstReleaseDate",
           "id",
           "igdbId",
           "name",
+          "platforms",
           "published",
           "slug",
           "rating",
           "review",
           "updatedAt"
         ],
-        "title": "GameWithoutResources",
+        "title": "IndexGame",
         "type": "object"
       },
       "type": "array"

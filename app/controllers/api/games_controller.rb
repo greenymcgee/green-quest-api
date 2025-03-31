@@ -7,7 +7,12 @@ class Api::GamesController < ApplicationController
   # 200
   def index
     @pagy, @games =
-      pagy(Game.by_query(params[:query]).includes([:cover]).order(name: :asc))
+      pagy(
+        Game
+          .by_query(params[:query])
+          .includes(%i[cover platforms])
+          .order(name: :asc),
+      )
     @pagy_metadata = pagy_metadata(@pagy)
   end
 

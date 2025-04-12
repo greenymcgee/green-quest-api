@@ -3,6 +3,11 @@ snes:
   igdb_id: 71
   name: Super Nintendo Entertainment System
 
+switch:
+  games: [super_metroid]
+  igdb_id: 578
+  name: Switch
+
 sega:
   igdb_id: 2
   name: Sega
@@ -11,3 +16,8 @@ xbox_360:
   games: [dark_souls]
   igdb_id: 12
   name: Xbox 360
+
+playstation_3:
+  games: [dark_souls]
+  igdb_id: 3838
+  name: Playstation 3

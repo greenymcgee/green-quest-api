@@ -8,6 +8,7 @@ two:
   company: fromsoft
   game: dark_souls
   igdb_id: 2
+  is_developer: true
 
 super_metroid_porter:
   company: super_metroid_porter

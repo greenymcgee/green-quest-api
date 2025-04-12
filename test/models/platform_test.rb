@@ -11,4 +11,10 @@ class PlatformTest < ActiveSupport::TestCase
     platform.valid?
     assert platform.errors[:igdb_id].include? "can't be blank"
   end
+
+  test "#with_games" do
+    with_games = Platform.with_games
+    expectation = Platform.all.select { |platform| platform.games.count != 0 }
+    with_games.each { |platform| assert expectation.include? platform }
+  end
 end

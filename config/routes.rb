@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     resources :games, param: :slug
     resources :game_engines, only: %i[index show destroy]
     resources :game_engine_logos, only: %i[index show destroy]
+    resources :game_filters, only: %i[index]
     resources :game_modes, only: %i[index show destroy]
     resources :game_videos, only: %i[index show destroy]
     resources :genres, only: %i[index show destroy]

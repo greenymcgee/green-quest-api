@@ -10,6 +10,9 @@ class Api::GamesController < ApplicationController
       pagy(
         Game
           .by_query(params[:query])
+          .by_companies(params[:companies])
+          .by_genres(params[:genres])
+          .by_platforms(params[:platforms])
           .includes(%i[cover platforms])
           .order(name: :asc),
       )

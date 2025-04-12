@@ -11,4 +11,10 @@ class GenreTest < ActiveSupport::TestCase
     genre.valid?
     assert genre.errors[:igdb_id].include? "can't be blank"
   end
+
+  test "#with_games" do
+    with_games = Genre.with_games
+    expectation = Genre.all.select { |genre| genre.games.count != 0 }
+    with_games.each { |genre| assert expectation.include? genre }
+  end
 end

@@ -24,6 +24,37 @@ class Game < ApplicationRecord
     end,
   )
 
+  scope(
+    :by_companies,
+    ->(company_ids) do
+      return if company_ids.blank?
+
+      joins(:involved_companies).where(
+        involved_companies: {
+          company_id: company_ids,
+        },
+      ).distinct
+    end,
+  )
+
+  scope(
+    :by_genres,
+    ->(genre_ids) do
+      return if genre_ids.blank?
+
+      joins(:genres).where(genres: { id: genre_ids }).distinct
+    end,
+  )
+
+  scope(
+    :by_platforms,
+    ->(platform_ids) do
+      return if platform_ids.blank?
+
+      joins(:platforms).where(platforms: { id: platform_ids }).distinct
+    end,
+  )
+
   validates :igdb_id, presence: true
 
   def developers

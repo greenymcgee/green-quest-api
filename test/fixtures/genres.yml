@@ -1,6 +1,14 @@
+action:
+  checksum: asdlfkj
+  games: [super_metroid]
+  igdb_id: 97898798
+  igdb_url: https://www.igdb.com/genres/action
+  name: Action
+  slug: action
+
 rpg:
   checksum: "aslfkjasldfj"
-  games: [super_metroid]
+  games: [dark_souls]
   igdb_id: 4
   igdb_url: "http://www.igdbgenre.com/4"
   name: "RPG"
@@ -13,3 +21,11 @@ puzzle:
   igdb_url: https://www.igdb.com/genres/puzzle
   name: Puzzle
   slug: puzzle
+
+without_games:
+  checksum: f4afdd14-b8c5-e938-58a6-ff0a56514f8b
+  games: []
+  igdb_id: 898989
+  igdb_url: https://www.igdb.com/genres/without_games
+  name: Without Games
+  slug: without-games

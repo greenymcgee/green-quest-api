@@ -4,4 +4,6 @@ class Platform < ApplicationRecord
   has_many :release_dates
 
   validates :igdb_id, presence: true
+
+  scope(:with_games, -> { joins(:games).where.not(games: []).distinct })
 end

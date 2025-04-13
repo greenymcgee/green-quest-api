@@ -25,6 +25,40 @@ class GameTest < ActiveSupport::TestCase
     end
   end
 
+  test "#by_platforms when platforms are present" do
+    snes_id = platforms(:snes).id
+    switch_id = platforms(:switch).id
+    games = Game.by_platforms([snes_id, switch_id])
+    assert_equal games, [games(:super_metroid)]
+  end
+
+  test "#by_platforms when platforms are blank" do
+    games = Game.by_platforms(nil)
+    assert_equal games, Game.all
+  end
+
+  test "#by_genres when genres are present" do
+    rpg_id = genres(:rpg).id
+    games = Game.by_genres([rpg_id])
+    assert_equal games, [games(:dark_souls)]
+  end
+
+  test "#by_genres when genres are blank" do
+    games = Game.by_genres(nil)
+    assert_equal games, Game.all
+  end
+
+  test "#by_companies when companies are present" do
+    fromsoft_id = companies(:fromsoft).id
+    games = Game.by_companies([fromsoft_id])
+    assert_equal games, [games(:dark_souls)]
+  end
+
+  test "#by_companies when companies are blank" do
+    games = Game.by_companies(nil)
+    assert_equal games, Game.all
+  end
+
   test "#developers should return companies that developed the game" do
     developers = games(:super_metroid).developers
     assert_equal developers, [companies(:nintendo)]

@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     resources :game_modes, only: %i[index show destroy]
     resources :game_videos, only: %i[index show destroy]
     resources :genres, only: %i[index show destroy]
+    resources :home_carousels, only: %i[show], param: :carousel
     resources :involved_companies, only: %i[index show destroy]
     resources :platforms, only: %i[index show destroy]
     resources :platform_logos, only: %i[index show destroy]

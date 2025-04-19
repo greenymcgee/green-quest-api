@@ -59,6 +59,11 @@ class GameTest < ActiveSupport::TestCase
     assert_equal games, Game.all
   end
 
+  test "#most_recent_snes" do
+    games = Game.most_recent_snes
+    assert_equal games, [games(:super_metroid)]
+  end
+
   test "#developers should return companies that developed the game" do
     developers = games(:super_metroid).developers
     assert_equal developers, [companies(:nintendo)]
@@ -95,5 +100,9 @@ class GameTest < ActiveSupport::TestCase
   test "#supporters should return companies that published the game" do
     supporters = games(:super_metroid).supporters
     assert_equal supporters, [companies(:super_metroid_supporter)]
+  end
+
+  test "#scope_map" do
+    assert_equal Game.scope_map, { "snes" => :most_recent_snes }
   end
 end

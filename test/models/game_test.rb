@@ -26,9 +26,9 @@ class GameTest < ActiveSupport::TestCase
   end
 
   test "#by_platforms when platforms are present" do
-    snes_id = platforms(:snes).id
-    switch_id = platforms(:switch).id
-    games = Game.by_platforms([snes_id, switch_id])
+    snes_slug = platforms(:snes).slug
+    switch_slug = platforms(:switch).slug
+    games = Game.by_platforms([snes_slug, switch_slug])
     assert_equal games, [games(:super_metroid)]
   end
 
@@ -38,8 +38,8 @@ class GameTest < ActiveSupport::TestCase
   end
 
   test "#by_genres when genres are present" do
-    rpg_id = genres(:rpg).id
-    games = Game.by_genres([rpg_id])
+    rpg_slug = genres(:rpg).slug
+    games = Game.by_genres([rpg_slug])
     assert_equal games, [games(:dark_souls)]
   end
 
@@ -49,8 +49,8 @@ class GameTest < ActiveSupport::TestCase
   end
 
   test "#by_companies when companies are present" do
-    fromsoft_id = companies(:fromsoft).id
-    games = Game.by_companies([fromsoft_id])
+    fromsoft_slug = companies(:fromsoft).slug
+    games = Game.by_companies([fromsoft_slug])
     assert_equal games, [games(:dark_souls)]
   end
 

@@ -1,23 +1,29 @@
 sony:
   igdb_id: 1
   name: "Sony"
+  slug: sony
 
 nintendo:
   igdb_id: 2
   name: "Nintendo"
+  slug: nintendo
 
 fromsoft:
   igdb_id: 3
   name: "Fromsoftware"
+  slug: fromsoftware
 
 super_metroid_publisher:
   igdb_id: 4
   name: Super Metroid Publisher
+  slug: super-metroid-publisher
 
 super_metroid_porter:
   igdb_id: 5
   name: Super Metroid Porter
+  slug: super-metroid-porter
 
 super_metroid_supporter:
   igdb_id: 6
   name: Super Metroid Supporter
+  slug: super-metroid-supporter

@@ -2,22 +2,27 @@ snes:
   games: [super_metroid]
   igdb_id: 71
   name: Super Nintendo Entertainment System
+  slug: snes
 
 switch:
   games: [super_metroid]
   igdb_id: 578
   name: Switch
+  slug: switch
 
 sega:
   igdb_id: 2
   name: Sega
+  slug: sega
 
 xbox_360:
   games: [dark_souls]
   igdb_id: 12
   name: Xbox 360
+  slug: xbox-360
 
 playstation_3:
   games: [dark_souls]
   igdb_id: 3838
   name: Playstation 3
+  slug: playstation-3

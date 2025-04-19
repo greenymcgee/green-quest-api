@@ -55,6 +55,17 @@ class Game < ApplicationRecord
     end,
   )
 
+  scope(
+    :most_recent_snes,
+    -> do
+      joins(:platforms)
+        .where(platforms: { slug: "snes" })
+        .order(created_at: :desc)
+        .distinct
+        .limit(10)
+    end,
+  )
+
   validates :igdb_id, presence: true
 
   def developers
@@ -93,5 +104,9 @@ class Game < ApplicationRecord
     supporter_involved_companies.map do |involved_company|
       involved_company.company
     end
+  end
+
+  def self.scope_map
+    { "snes" => :most_recent_snes }
   end
 end

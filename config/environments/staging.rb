@@ -73,7 +73,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter = :resque
-  # config.active_job.queue_name_prefix = "green_quest_api_production"
+  # config.active_job.queue_name_prefix = "the_verdant_veil_api_production"
 
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.
@@ -83,7 +83,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: "greenquestgames.com",
+    domain: "theverdantveil.com",
     user_name: Rails.application.credentials.gmail_email!,
     password: Rails.application.credentials.gmail_password!,
     authentication: "plain",
@@ -93,7 +93,7 @@ Rails.application.configure do
   }
 
   config.action_mailer.default_url_options = {
-    host: "https://green-quest-api-staging.up.railway.app/",
+    host: "https://the-verdant-veil-api-staging.up.railway.app/",
     port: 3000,
   }
 

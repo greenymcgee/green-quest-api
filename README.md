@@ -1,6 +1,6 @@
-# Green Quest API
+# The Verdant Veil API
 
-The Green Quest API is the backend for Green Quest. The bulk of it's business
+The The Verdant Veil API is the backend for The Verdant Veil. The bulk of it's business
 logic consists of generating many relational records based on the data returned
 from the [IGDB API](https://api-docs.igdb.com/?ruby#getting-started).
 

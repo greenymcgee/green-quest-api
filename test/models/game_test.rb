@@ -40,7 +40,10 @@ class GameTest < ActiveSupport::TestCase
   test "#by_genres when genres are present" do
     rpg_slug = genres(:rpg).slug
     games = Game.by_genres([rpg_slug])
-    assert_equal games, [games(:dark_souls)]
+    assert_equal(
+      games,
+      Game.all.select { |game| game.genres.include? genres(:rpg) },
+    )
   end
 
   test "#by_genres when genres are blank" do
@@ -62,6 +65,11 @@ class GameTest < ActiveSupport::TestCase
   test "#most_recent_snes" do
     games = Game.most_recent_snes
     assert_equal games, [games(:super_metroid)]
+  end
+
+  test "#most_recent_ps" do
+    games = Game.most_recent_ps
+    assert_equal games, [games(:threads_of_fate)]
   end
 
   test "#developers should return companies that developed the game" do
@@ -103,6 +111,9 @@ class GameTest < ActiveSupport::TestCase
   end
 
   test "#scope_map" do
-    assert_equal Game.scope_map, { "snes" => :most_recent_snes }
+    assert_equal(
+      Game.scope_map,
+      { "ps" => :most_recent_ps, "snes" => :most_recent_snes },
+    )
   end
 end

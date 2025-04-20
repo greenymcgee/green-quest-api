@@ -16,3 +16,11 @@ dark_souls:
   name: Dark Souls
   platforms: [xbox_360]
   slug: dark-souls
+
+threads_of_fate:
+  first_release_date: 1999-11-18T00:00:00.000Z
+  genres: [rpg]
+  igdb_id: 2
+  name: Threads of Fate
+  platforms: [playstation_1]
+  slug: threads-of-fate

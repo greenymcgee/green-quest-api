@@ -9,3 +9,9 @@ two:
   height: 24
   igdb_id: 2
   width: 56
+
+threads_of_fate:
+  game: threads_of_fate
+  height: 24
+  igdb_id: 3
+  width: 56

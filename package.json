@@ -1,6 +1,5 @@
 {
-  "author": "greenhouston@gmail.com",
-  "name": "green-quest-api",
+  "name": "the-verdant-veil-api",
   "version": "1.0.0",
   "scripts": {
     "spellcheck": "cspell \"/**/*.*\""

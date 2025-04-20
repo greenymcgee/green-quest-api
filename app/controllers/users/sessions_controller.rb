@@ -14,8 +14,8 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def respond_to_on_destroy
-    set_current_green_quest_user
-    return render_active_user_response if @current_green_quest_user.present?
+    set_current_verdant_veil_user
+    return render_active_user_response if @current_verdant_veil_user.present?
 
     render_inactive_user_response
   end
@@ -51,13 +51,13 @@ class Users::SessionsController < Devise::SessionsController
     @jwt_payload = jwt_payload
   end
 
-  def set_current_green_quest_user
+  def set_current_verdant_veil_user
     set_request_auth_header
     set_bearer_token
     set_jwt_payload
     return unless @jwt_payload.present?
 
-    @current_green_quest_user = User.find(@jwt_payload["sub"])
+    @current_verdant_veil_user = User.find(@jwt_payload["sub"])
   end
 
   # ##

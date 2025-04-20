@@ -19,8 +19,8 @@ Rails.application.configure do
   config.frontend_host = "http://test.gq.com"
   config.app_host = "localhost"
   config.app_host_with_protocol = "http://localhost"
-  config.igdb_oauth_url = "https://getgreenquesttoken.com"
-  config.igdb_api_url = "https://test_green_quest_idgb_api.com/v4"
+  config.igdb_oauth_url = "https://getverdantveiltoken.com"
+  config.igdb_api_url = "https://test_verdant_veil_idgb_api.com/v4"
 
   # Settings specified here will take precedence over those in config/application.rb.
 

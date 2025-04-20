@@ -2,7 +2,7 @@
 require "fileutils"
 
 APP_ROOT = File.expand_path("..", __dir__)
-APP_NAME = "green-quest-api"
+APP_NAME = "the-verdant-veil-api"
 
 def system!(*args)
   system(*args, exception: true)

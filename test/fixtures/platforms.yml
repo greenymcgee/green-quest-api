@@ -21,6 +21,12 @@ xbox_360:
   name: Xbox 360
   slug: xbox-360
 
+playstation_1:
+  games: [threads_of_fate]
+  igdb_id: 7858
+  name: Playstation 1
+  slug: ps
+
 playstation_3:
   games: [dark_souls]
   igdb_id: 3838

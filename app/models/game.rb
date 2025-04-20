@@ -56,6 +56,17 @@ class Game < ApplicationRecord
   )
 
   scope(
+    :most_recent_ps,
+    -> do
+      joins(:platforms)
+        .where(platforms: { slug: "ps" })
+        .order(created_at: :desc)
+        .distinct
+        .limit(10)
+    end,
+  )
+
+  scope(
     :most_recent_snes,
     -> do
       joins(:platforms)
@@ -107,6 +118,6 @@ class Game < ApplicationRecord
   end
 
   def self.scope_map
-    { "snes" => :most_recent_snes }
+    { "ps" => :most_recent_ps, "snes" => :most_recent_snes }
   end
 end

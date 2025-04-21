@@ -2,6 +2,8 @@ json.errors game.errors if game.errors.present?
 json.extract!(
   game,
   :banner_image,
+  :created_at,
+  :currently_playing,
   :featured_video_id,
   :first_release_date,
   :id,
@@ -13,7 +15,6 @@ json.extract!(
   :slug,
   :storyline,
   :summary,
-  :created_at,
   :updated_at,
 )
 json.age_ratings game.age_ratings do |age_rating|

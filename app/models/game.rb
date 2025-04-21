@@ -55,6 +55,8 @@ class Game < ApplicationRecord
     end,
   )
 
+  scope :currently_playing, -> { where(currently_playing: true) }
+
   scope(
     :most_recent_ps,
     -> do
@@ -118,6 +120,16 @@ class Game < ApplicationRecord
   end
 
   def self.scope_map
-    { "ps" => :most_recent_ps, "snes" => :most_recent_snes }
+    {
+      "currently_playing" => :currently_playing,
+      "ps" => :most_recent_ps,
+      "snes" => :most_recent_snes,
+    }
+  end
+
+  def self.unset_currently_playing!
+    transaction do
+      where(currently_playing: true).update_all(currently_playing: false)
+    end
   end
 end

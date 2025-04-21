@@ -113,7 +113,16 @@ class GameTest < ActiveSupport::TestCase
   test "#scope_map" do
     assert_equal(
       Game.scope_map,
-      { "ps" => :most_recent_ps, "snes" => :most_recent_snes },
+      {
+        "currently_playing" => :currently_playing,
+        "ps" => :most_recent_ps,
+        "snes" => :most_recent_snes,
+      },
     )
+  end
+
+  test "#unset_currently_playing! sets only the given game as currently playing" do
+    Game.unset_currently_playing!
+    refute games(:super_metroid).reload.currently_playing
   end
 end

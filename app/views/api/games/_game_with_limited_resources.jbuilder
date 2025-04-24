@@ -1,5 +1,7 @@
 json.extract!(
   game,
+  :created_at,
+  :currently_playing,
   :first_release_date,
   :id,
   :igdb_id,
@@ -7,7 +9,6 @@ json.extract!(
   :slug,
   :rating,
   :review,
-  :created_at,
   :updated_at,
 )
 json.cover { json.partial! "api/covers/cover", cover: game.cover }

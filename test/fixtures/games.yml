@@ -2,6 +2,7 @@
 # https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 super_metroid:
+  currently_playing: true
   first_release_date: 1999-11-18T00:00:00.000Z
   genres: [action, puzzle]
   igdb_id: 47

@@ -74,6 +74,7 @@ class Api::GamesController < ApplicationController
     review = update_params.delete(:review)
     @game.assign_attributes(update_params)
     @game.review = sanitize(review) || ""
+    Game.unset_currently_playing! if update_params[:currently_playing]
     return render_successful_show_response(:ok) if @game.save!
 
     render json: @game.errors, status: :unprocessable_entity
@@ -108,6 +109,7 @@ class Api::GamesController < ApplicationController
   def game_update_params
     params.require(:game).permit(
       :banner_image,
+      :currently_playing,
       :featured_video_id,
       :published_at,
       :rating,

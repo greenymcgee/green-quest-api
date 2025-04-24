@@ -261,6 +261,40 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
     assert_matches_json_schema response, "games/update"
   end
 
+  test "#update should set currently playing game and unset any previous one" do
+    old_current = games(:super_metroid)
+    new_current = games(:threads_of_fate)
+    patch(
+      api_game_url(new_current.slug),
+      as: :json,
+      headers: @admin_auth_headers,
+      params: {
+        game: {
+          currently_playing: true,
+        },
+      },
+    )
+    assert new_current.reload.currently_playing
+    refute old_current.reload.currently_playing
+  end
+
+  test "#update should not set currently playing when param is false" do
+    old_current = games(:super_metroid)
+    unset_current = games(:threads_of_fate)
+    patch(
+      api_game_url(unset_current.slug),
+      as: :json,
+      headers: @admin_auth_headers,
+      params: {
+        game: {
+          currently_playing: false,
+        },
+      },
+    )
+    refute unset_current.reload.currently_playing
+    assert old_current.reload.currently_playing
+  end
+
   test "#destroy should destroy game" do
     assert_difference("Game.count", -1) do
       delete api_game_url(@game.slug), as: :json, headers: @admin_auth_headers

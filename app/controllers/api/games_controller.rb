@@ -116,6 +116,7 @@ class Api::GamesController < ApplicationController
       :published_at,
       :rating,
       :review,
+      :review_title,
     )
   end
 

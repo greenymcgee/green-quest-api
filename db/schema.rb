@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_24_120022) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_26_014142) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -232,6 +232,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_24_120022) do
     t.boolean "currently_playing", default: false, null: false
     t.date "last_played_date"
     t.date "estimated_first_played_date"
+    t.string "review_title", default: "", null: false
     t.index ["igdb_id"], name: "index_games_on_igdb_id", unique: true
     t.index ["slug"], name: "index_games_on_slug"
   end

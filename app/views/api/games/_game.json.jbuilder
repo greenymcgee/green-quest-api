@@ -14,6 +14,7 @@ json.extract!(
   :published_at,
   :rating,
   :review,
+  :review_title,
   :slug,
   :storyline,
   :summary,

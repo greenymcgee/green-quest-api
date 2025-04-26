@@ -278,21 +278,19 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
     refute old_current.reload.currently_playing
   end
 
-  test "#update should not set currently playing when param is false" do
-    old_current = games(:super_metroid)
-    unset_current = games(:threads_of_fate)
+  test "#update should accept a last_played_date" do
+    date = "1999-11-18T00:00:00.000Z"
     patch(
-      api_game_url(unset_current.slug),
+      api_game_url(@game.slug),
       as: :json,
       headers: @admin_auth_headers,
       params: {
         game: {
-          currently_playing: false,
+          last_played_date: date,
         },
       },
     )
-    refute unset_current.reload.currently_playing
-    assert old_current.reload.currently_playing
+    assert_equal(Date.parse(date), @game.reload.last_played_date)
   end
 
   test "#destroy should destroy game" do

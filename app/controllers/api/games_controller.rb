@@ -71,10 +71,10 @@ class Api::GamesController < ApplicationController
     authenticate_user!
     authorize @game
     update_params = game_update_params
+    CurrentlyPlayingStatusFacade.call(@game, update_params)
     review = update_params.delete(:review)
     @game.assign_attributes(update_params)
     @game.review = sanitize(review) || ""
-    Game.unset_currently_playing! if update_params[:currently_playing]
     return render_successful_show_response(:ok) if @game.save!
 
     render json: @game.errors, status: :unprocessable_entity
@@ -110,7 +110,9 @@ class Api::GamesController < ApplicationController
     params.require(:game).permit(
       :banner_image,
       :currently_playing,
+      :estimated_first_played_date,
       :featured_video_id,
+      :last_played_date,
       :published_at,
       :rating,
       :review,

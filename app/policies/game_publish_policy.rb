@@ -1,0 +1,2 @@
+class GamePublishPolicy < AdminPolicy
+end

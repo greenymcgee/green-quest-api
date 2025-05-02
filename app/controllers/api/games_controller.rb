@@ -113,7 +113,6 @@ class Api::GamesController < ApplicationController
       :estimated_first_played_date,
       :featured_video_id,
       :last_played_date,
-      :published_at,
       :rating,
       :review,
       :review_title,

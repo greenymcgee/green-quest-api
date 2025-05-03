@@ -6,17 +6,8 @@ class Api::GamesController < ApplicationController
 
   # 200
   def index
-    @pagy, @games =
-      pagy(
-        Game
-          .by_query(params[:query])
-          .by_companies(params[:companies])
-          .by_genres(params[:genres])
-          .by_platforms(params[:platforms])
-          .includes(%i[cover platforms])
-          .order(name: :asc),
-      )
-    @pagy_metadata = pagy_metadata(@pagy)
+    facade = Api::Games::IndexFacade.new(params)
+    @pagy, @games = pagy(facade.games)
   end
 
   # 200, 404

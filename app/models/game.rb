@@ -79,6 +79,13 @@ class Game < ApplicationRecord
     end,
   )
 
+  scope(
+    :published,
+    -> do
+      where("published_at IS NOT NULL AND published_at <= ?", Time.current)
+    end,
+  )
+
   validates :igdb_id, presence: true
 
   def developers

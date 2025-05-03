@@ -9,6 +9,7 @@ super_metroid:
   last_played_date: 2024-11-18
   name: Super Metroid
   platforms: [snes, switch]
+  published_at: 2024-11-18T00:00:00.000Z
   slug: super-metroid
 
 dark_souls:

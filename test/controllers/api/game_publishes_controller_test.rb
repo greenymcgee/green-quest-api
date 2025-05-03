@@ -56,7 +56,7 @@ class Api::GamePublishesControllerTest < ActionDispatch::IntegrationTest
   test "#destroy should destroy published_at date" do
     delete publish_api_game_url(@game.slug), headers: @admin_auth_headers
     assert_response :ok
-    assert_nil @game.published_at
+    assert_nil @game.reload.published_at
   end
 
   test "#destroy should not destroy for non-admin users" do

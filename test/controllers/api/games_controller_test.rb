@@ -278,19 +278,25 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
     refute old_current.reload.currently_playing
   end
 
-  test "#update should accept a last_played_date" do
-    date = "1999-11-18T00:00:00.000Z"
+  test "#update render reasons the update failed when known" do
+    game = games(:dark_souls)
     patch(
-      api_game_url(@game.slug),
+      api_game_url(game.slug),
       as: :json,
       headers: @admin_auth_headers,
       params: {
         game: {
-          last_played_date: date,
+          currently_playing: true,
         },
       },
     )
-    assert_equal(Date.parse(date), @game.reload.last_played_date)
+    assert_equal(
+      {
+        "message" => "The game could not be updated",
+        "reasons" => ["Cannot mark an unpublished game as currently playing"],
+      },
+      response.parsed_body,
+    )
   end
 
   test "#destroy should destroy game" do

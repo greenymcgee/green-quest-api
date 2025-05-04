@@ -72,6 +72,15 @@ class GameTest < ActiveSupport::TestCase
     assert_equal games, [games(:threads_of_fate)]
   end
 
+  test "#published" do
+    games = Game.published
+    expectation =
+      games.select do |game|
+        game.published_at.present? && game.published_at <= Time.current
+      end
+    assert_equal games, expectation
+  end
+
   test "#developers should return companies that developed the game" do
     developers = games(:super_metroid).developers
     assert_equal developers, [companies(:nintendo)]
@@ -96,7 +105,7 @@ class GameTest < ActiveSupport::TestCase
   end
 
   test "#published? be false when the published_at date is blank" do
-    game = games(:super_metroid)
+    game = games(:dark_souls)
     assert_equal false, game.published?
   end
 

@@ -16,6 +16,9 @@ class Api::HomeCarouselsController < ApplicationController
 
   def set_games
     @games =
-      Game.includes(%i[platforms cover]).public_send(Game.scope_map[@carousel])
+      Game
+        .published
+        .includes(%i[platforms cover])
+        .public_send(Game.scope_map[@carousel])
   end
 end

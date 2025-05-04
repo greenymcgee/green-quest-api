@@ -36,4 +36,13 @@ class CurrentlyPlayingStatusFacadeTest < ActiveSupport::TestCase
       CurrentlyPlayingStatusFacade.call(game, { currently_playing: true })
     end
   end
+
+  test "should return reason string when trying to mark an unpublished game as currently playing" do
+    result =
+      CurrentlyPlayingStatusFacade.call(
+        games(:dark_souls),
+        { currently_playing: true },
+      )
+    assert_equal "Cannot mark an unpublished game as currently playing", result
+  end
 end

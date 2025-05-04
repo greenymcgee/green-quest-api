@@ -57,16 +57,13 @@ class Api::GamesController < ApplicationController
     end
   end
 
-  # 200, 400, 401, 403, 404
   def update
     authenticate_user!
     authorize @game
-    update_params = game_update_params
-    CurrentlyPlayingStatusFacade.call(@game, update_params)
-    review = update_params.delete(:review)
-    @game.assign_attributes(update_params)
-    @game.review = sanitize(review) || ""
-    return render_successful_show_response(:ok) if @game.save!
+    result = Api::Games::UpdateFacade.call(@game, game_update_params)
+    return render_successful_show_response(:ok) if result === :ok
+
+    return render_update_failure(result) if result.is_a?(Array)
 
     render json: @game.errors, status: :unprocessable_entity
   end
@@ -124,6 +121,16 @@ class Api::GamesController < ApplicationController
 
   def render_unprocessable_game
     render json: @game.errors, status: :unprocessable_entity
+  end
+
+  def render_update_failure(reasons)
+    render(
+      json: {
+        message: "The game could not be updated",
+        reasons: reasons,
+      },
+      status: :unprocessable_entity,
+    )
   end
 
   def errors_present?

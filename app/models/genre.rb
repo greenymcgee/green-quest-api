@@ -3,5 +3,5 @@ class Genre < ApplicationRecord
 
   validates :igdb_id, presence: true
 
-  scope(:with_games, -> { joins(:games).where.not(games: []).distinct })
+  scope(:with_games, -> { joins(:games).merge(Game.published).distinct })
 end

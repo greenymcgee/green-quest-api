@@ -19,7 +19,7 @@ class GameFiltersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "returns a 500" do
-    Company.stub(:joins, ->(*) { raise StandardError, "DB blew up" }) do
+    Company.stub(:with_games, ->(*) { raise StandardError, "DB blew up" }) do
       get api_game_filters_url, as: :json
     end
     assert_response :internal_server_error

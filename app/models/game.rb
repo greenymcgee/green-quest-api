@@ -20,7 +20,9 @@ class Game < ApplicationRecord
   scope(
     :by_query,
     ->(query) do
-      where("name ILIKE ?", "%#{sanitize_sql_like(query)}%") if query.present?
+      if query.present?
+        where("games.name ILIKE ?", "%#{sanitize_sql_like(query)}%")
+      end
     end,
   )
 

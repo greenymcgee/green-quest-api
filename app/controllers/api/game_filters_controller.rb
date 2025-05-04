@@ -1,6 +1,6 @@
 class Api::GameFiltersController < ApplicationController
   def index
-    @companies = Company.joins(:involved_companies).distinct.order(:name)
+    @companies = Company.with_games.order(:name)
     @genres = Genre.with_games.includes(:games).order(:name)
     @platforms = Platform.with_games.includes(:games).order(:name)
   rescue => error

@@ -1,0 +1,17 @@
+[
+  {
+    "id": 306,
+    "category": 1,
+    "created_at": 1590781904,
+    "generation": 4,
+    "name": "Satellaview",
+    "platform_logo": 595,
+    "platform_family": 5,
+    "slug": "satellaview-refreshed",
+    "updated_at": 1718027289,
+    "url": "https://www.igdb.com/platforms/satellaview",
+    "versions": [423],
+    "websites": [205, 289],
+    "checksum": "57d261ec-73e8-3132-1beb-9678e284f9b0"
+  }
+]

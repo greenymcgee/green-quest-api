@@ -1,0 +1,2 @@
+class GameRefreshPolicy < AdminPolicy
+end

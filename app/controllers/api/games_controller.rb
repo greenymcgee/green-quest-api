@@ -37,7 +37,7 @@ class Api::GamesController < ApplicationController
       return render_unprocessable_game unless populate_igdb_fields
 
       add_game_resources
-      return render_successful_show_response(:multi_status) if errors_present?
+      return render_partial_creation if errors_present?
 
       render_successful_show_response(:created)
     rescue StandardError => error
@@ -117,6 +117,14 @@ class Api::GamesController < ApplicationController
 
   def render_igdb_game_request_failure
     render json: @igdb_game_request_error, status: :unprocessable_entity
+  end
+
+  def render_partial_creation
+    Rails.logger.warn(
+      "[GameCreate] Partial success creating game #{@game.slug}: " \
+        "#{@game.errors.full_messages.join("; ")}",
+    )
+    render_successful_show_response(:multi_status)
   end
 
   def render_unprocessable_game

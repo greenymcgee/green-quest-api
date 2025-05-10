@@ -1,0 +1,19 @@
+[
+  {
+    "id": 41,
+    "abbreviation": "WiiU",
+    "alternative_name": "Project Cafe",
+    "category": 1,
+    "created_at": 1317739102,
+    "generation": 8,
+    "name": "Wii U",
+    "platform_logo": 239,
+    "platform_family": 5,
+    "slug": "wiiu-refreshed",
+    "updated_at": 1718027289,
+    "url": "https://www.igdb.com/platforms/wiiu",
+    "versions": [73],
+    "websites": [10],
+    "checksum": "f89734ee-569c-b25c-0ae0-6eb11b2224dd"
+  }
+]

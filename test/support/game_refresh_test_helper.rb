@@ -1,0 +1,22 @@
+require "./test/support/platform_refresh_test_helper.rb"
+require "./test/support/platform_logo_refresh_test_helper.rb"
+
+module GameRefreshTestHelper
+  include PlatformRefreshTestHelper
+  include PlatformLogoRefreshTestHelper
+
+  def stub_successful_game_refresh_request(
+    game_id,
+    with_platform_failures: false,
+    with_platform_logo_failures: false
+  )
+    stub_successful_twitch_oauth_request
+    stub_successful_igdb_api_request(
+      "games/#{game_id}",
+      game_json,
+      stubbed_twitch_bearer_token,
+    )
+    stub_platform_refresh_responses(with_platform_failures)
+    stub_platform_logo_refresh_responses(with_platform_logo_failures)
+  end
+end

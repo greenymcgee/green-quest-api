@@ -5,7 +5,7 @@ class Api::Platforms::IgdbFieldsFacadeTest < ActionDispatch::IntegrationTest
     @platform = Platform.new(igdb_id: 1026)
     @igdb_data, = JSON.parse(json_mocks("igdb/platforms/19.json"))
     facade = Api::Platforms::IgdbFieldsFacade.new(@platform, @igdb_data)
-    facade.populate_platform_fields
+    facade.populate_fields
   end
 
   test "should populate the abbreviation" do

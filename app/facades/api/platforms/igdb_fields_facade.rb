@@ -6,7 +6,7 @@ class Api::Platforms::IgdbFieldsFacade
     @@igdb_data = igdb_data
   end
 
-  def populate_platform_fields
+  def populate_fields
     @@platform.update(
       abbreviation: abbreviation,
       alternative_name: alternative_name,

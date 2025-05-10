@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     resources :games, param: :slug do
       post :publish, to: "game_publishes#create", on: :member
       delete :publish, to: "game_publishes#destroy", on: :member
+      post :refresh, to: "game_refreshes#create", on: :member
     end
     resources :game_engines, only: %i[index show destroy]
     resources :game_engine_logos, only: %i[index show destroy]

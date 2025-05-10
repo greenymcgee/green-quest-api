@@ -42,17 +42,20 @@ class HTMLWhitelists
   def self.html_attributes_whitelist
     Rails::Html::WhiteListSanitizer.allowed_attributes +
       %w[
-        style
-        color
-        href
-        src
-        width
-        height
-        colspan
-        rowspan
-        cellspacing
-        cellpadding
         border
+        cellpadding
+        cellspacing
+        class
+        color
+        colspan
+        height
+        href
+        rel
+        rowspan
+        src
+        style
+        target
+        width
       ].freeze
   end
 end

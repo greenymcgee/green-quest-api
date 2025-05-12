@@ -8,6 +8,7 @@ class Api::InvolvedCompanies::IgdbFieldsFacade
 
   def populate_involved_company_fields
     @@involved_company.update(
+      checksum: checksum,
       is_developer: is_developer,
       is_porter: is_porter,
       is_publisher: is_publisher,
@@ -16,6 +17,10 @@ class Api::InvolvedCompanies::IgdbFieldsFacade
   end
 
   private
+
+  def checksum
+    get_present_value(@@involved_company.checksum, @@igdb_data["checksum"])
+  end
 
   def is_developer
     get_present_boolean_value(

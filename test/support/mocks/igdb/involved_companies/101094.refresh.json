@@ -1,0 +1,14 @@
+[
+  {
+    "id": 101094,
+    "company": 25230,
+    "created_at": 1591380316,
+    "developer": false,
+    "game": 1026,
+    "porting": false,
+    "publisher": true,
+    "supporting": false,
+    "updated_at": 1591406052,
+    "checksum": "38ae0fe3-c894-523e-ad3e-501db581c28d-refreshed"
+  }
+]

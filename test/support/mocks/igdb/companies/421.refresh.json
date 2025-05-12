@@ -1,0 +1,37 @@
+[
+  {
+    "id": 421,
+    "change_date": 1442361600,
+    "change_date_category": 0,
+    "changed_company_id": 7902,
+    "country": 392,
+    "created_at": 1317639457,
+    "description": "Nintendo Entertainment Analysis & Development was the largest division inside Nintendo. It was preceded by the Creative Department, a team of designers with backgrounds in art responsible for many different tasks, to which Shigeru Miyamoto and Takashi Tezuka originally belonged. Both served as managers of the EAD studios and were credited in every game developed by the division, with varying degrees of involvement. Nintendo EAD was best known for its work on games in the Donkey Kong, Mario, The Legend of Zelda, F-Zero, Star Fox, Pikmin, and Animal Crossing series.",
+    "developed": [
+      1026, 1027, 1028, 1029, 1070, 1073, 1074, 1075, 1076, 1077, 1078, 1079,
+      1080, 1089, 2171, 2178, 2180, 2183, 2239, 2240, 2290, 2332, 2342, 2344,
+      2485, 2591, 2645, 2655, 3213, 3328, 3489, 3490, 3573, 3629, 4062, 5138,
+      5199, 8581, 9619, 22301, 38348, 41360, 41361, 42259, 42365, 44042, 44059,
+      45161, 47710, 47740, 48915, 49038, 67025, 67026, 67027, 67043, 67280,
+      73026, 73027, 77336, 77378, 79479, 84696, 84697, 89904, 124007, 131901,
+      131902, 132030, 132642, 132644, 134170, 134171, 134173, 134174, 134175,
+      134176, 134177, 134178, 134180, 134435, 151577, 163095, 175951, 175952,
+      175953, 175954, 175957, 175961, 175964, 175969, 175970, 176033, 176043,
+      178257, 179711, 179712, 179713, 179714, 179729, 179730, 179736, 179744,
+      179782, 179785, 179794, 179799, 179806, 179811, 179903, 179904, 179905,
+      179906, 179972, 179973, 179974, 179975, 180001, 180002, 222095, 222097,
+      222098, 222099, 229177, 229245, 229246, 229416, 231725, 231727, 231729,
+      231732, 231733, 231735, 231737, 231738, 231739, 231740, 231742, 281778,
+      286694
+    ],
+    "logo": 7672,
+    "name": "Nintendo EAD",
+    "parent": 70,
+    "slug": "nintendo-ead-refreshed",
+    "start_date": 631065600,
+    "start_date_category": 2,
+    "updated_at": 1728957382,
+    "url": "https://www.igdb.com/companies/nintendo-ead",
+    "checksum": "bfb8a95f-67b0-b96b-71f7-ccb4000008f8"
+  }
+]

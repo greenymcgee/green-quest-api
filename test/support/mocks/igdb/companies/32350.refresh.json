@@ -1,0 +1,19 @@
+
+[
+  {
+    "id": 32350,
+    "change_date_category": 7,
+    "created_at": 1615059896,
+    "name": "Hyundai",
+    "published": [
+      1026, 1070, 1073, 1090, 1092, 1094, 1741, 2332, 2550, 3186, 3490, 5199,
+      5418, 6351, 6570, 6621, 8050, 8564, 12860, 14531, 14697, 19712, 38423,
+      38429, 42639, 42665, 56038, 77457, 114033, 203293
+    ],
+    "slug": "hyundai-refreshed",
+    "start_date_category": 7,
+    "updated_at": 1721740779,
+    "url": "https://www.igdb.com/companies/hyundai",
+    "checksum": "7df4b7e3-8f06-cfe8-8bc2-d14667f0c34d"
+  }
+]

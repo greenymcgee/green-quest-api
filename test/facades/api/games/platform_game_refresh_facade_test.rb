@@ -22,8 +22,8 @@ class Api::Games::PlatformGameRefreshFacadeTest < ActionDispatch::IntegrationTes
 
   test "should refresh game platform data" do
     stub_successful_game_create_request(@game.igdb_id)
-    stub_successful_game_refresh_request(@game.igdb_id)
     @create_facade.add_platforms_to_game
+    stub_successful_game_refresh_request(@game.igdb_id)
     @refresh_facade.refresh_game_platforms
     igdb_game_data["platforms"].each do |id|
       platform_json =

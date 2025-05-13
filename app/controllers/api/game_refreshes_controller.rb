@@ -52,11 +52,11 @@ class Api::GameRefreshesController < ApplicationController
   end
 
   def add_game_resources
-    Api::Games::PlatformGameRefreshFacade.new(
+    Api::Games::RefreshFacade.new(
       game: @game,
       igdb_game_data: @igdb_game_data,
       twitch_bearer_token: @twitch_bearer_token,
-    ).refresh_game_platforms
+    ).refresh_game_resources
   end
 
   def populate_igdb_fields

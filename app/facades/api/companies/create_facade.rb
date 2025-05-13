@@ -1,14 +1,17 @@
 class Api::Companies::CreateFacade
   include IgdbFieldsHelper
 
+  attr_reader :id
+  attr_reader :twitch_bearer_token
+
   def initialize(id, twitch_bearer_token)
-    @@twitch_bearer_token = twitch_bearer_token
-    @@id = id
-    @@errors = { companies: [], company_logos: [] }
+    @twitch_bearer_token = twitch_bearer_token
+    @id = id
+    @errors = { companies: [], company_logos: [] }
   end
 
   def find_or_create_company
-    { errors: @@errors, company: company }
+    { errors: @errors, company: company }
   end
 
   private
@@ -21,14 +24,14 @@ class Api::Companies::CreateFacade
 
   def save_company_record(record)
     # If this hits, that means the IGDB request didn't go as expected
-    return if @@errors[:companies].present?
+    return if @errors[:companies].present?
 
     record.save
-    record.errors.each { |error| @@errors[:companies] << error }
+    record.errors.each { |error| @errors[:companies] << error }
   end
 
   def find_or_initialize_company
-    Company.find_or_initialize_by(igdb_id: @@id) do |company|
+    Company.find_or_initialize_by(igdb_id: id) do |company|
       next if company.id.present?
 
       igdb_response = get_company_igdb_data
@@ -48,20 +51,20 @@ class Api::Companies::CreateFacade
   def add_company_blank_igdb_data_error(igdb_data)
     return false unless igdb_data.blank?
 
-    @@errors[:companies] << { @@id => "IGDB data is blank" }
+    @errors[:companies] << { id => "IGDB data is blank" }
   end
 
   def add_company_igdb_error(error)
     return false unless error.present?
 
-    @@errors[:companies] << { @@id => JSON.parse(error.message) }
+    @errors[:companies] << { id => JSON.parse(error.message) }
   end
 
   def get_company_igdb_data
     IgdbRequestFacade.new(
-      igdb_id: @@id,
+      igdb_id: id,
       pathname: "companies",
-      twitch_bearer_token: @@twitch_bearer_token,
+      twitch_bearer_token: twitch_bearer_token,
     ).get_igdb_data
   end
 
@@ -74,7 +77,7 @@ class Api::Companies::CreateFacade
       fields_facade: Igdb::ImageFieldsFacade,
       ids: [id],
       model: CompanyLogo,
-      twitch_bearer_token: @@twitch_bearer_token,
+      twitch_bearer_token: twitch_bearer_token,
     ).find_or_create_resources(company_logo_callback(company))
   end
 
@@ -92,6 +95,6 @@ class Api::Companies::CreateFacade
   def add_company_logo_error(error)
     return false unless error.present?
 
-    @@errors[:company_logos] << error
+    @errors[:company_logos] << error
   end
 end

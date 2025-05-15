@@ -23,9 +23,11 @@ class IgdbCreateFacade
 
   def resources(callback)
     ids.map do |id|
-      record = find_or_initialize_record(id)
-      save_record(record, callback)
-      record
+      RequestThrottlerRegistry.instance.throttle do
+        record = find_or_initialize_record(id)
+        save_record(record, callback)
+        record
+      end
     end
   end
 

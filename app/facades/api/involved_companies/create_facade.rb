@@ -20,17 +20,19 @@ class Api::InvolvedCompanies::CreateFacade
 
   def involved_companies
     ids.map do |id|
-      InvolvedCompany.find_or_initialize_by(igdb_id: id) do |involved_company|
-        igdb_response = get_igdb_data(id)
-        igdb_data = igdb_response[:igdb_data]
-        igdb_error = igdb_response[:error]
-        next if unprocessable_igdb_response?(id, igdb_data, igdb_error)
+      RequestThrottlerRegistry.instance.throttle do
+        InvolvedCompany.find_or_initialize_by(igdb_id: id) do |involved_company|
+          igdb_response = get_igdb_data(id)
+          igdb_data = igdb_response[:igdb_data]
+          igdb_error = igdb_response[:error]
+          next if unprocessable_igdb_response?(id, igdb_data, igdb_error)
 
-        next unless set_involved_company_company(involved_company, igdb_data)
+          next unless set_involved_company_company(involved_company, igdb_data)
 
-        involved_company.game = game
-        populate_involved_company_fields(involved_company, igdb_data)
-        set_involved_company_errors(involved_company)
+          involved_company.game = game
+          populate_involved_company_fields(involved_company, igdb_data)
+          set_involved_company_errors(involved_company)
+        end
       end
     end
   end

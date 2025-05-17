@@ -1,3 +1,4 @@
+require "./test/support/artwork_refresh_test_helper.rb"
 require "./test/support/company_refresh_test_helper.rb"
 require "./test/support/company_logo_refresh_test_helper.rb"
 require "./test/support/game_engine_refresh_test_helper.rb"
@@ -7,6 +8,7 @@ require "./test/support/platform_refresh_test_helper.rb"
 require "./test/support/platform_logo_refresh_test_helper.rb"
 
 module GameRefreshTestHelper
+  include ArtworkRefreshTestHelper
   include CompanyRefreshTestHelper
   include CompanyLogoRefreshTestHelper
   include InvolvedCompanyRefreshTestHelper
@@ -17,6 +19,7 @@ module GameRefreshTestHelper
 
   def stub_successful_game_refresh_request(
     game_id,
+    with_artwork_failures: false,
     with_company_failures: false,
     with_company_logo_failures: false,
     with_involved_company_failures: false,
@@ -31,6 +34,7 @@ module GameRefreshTestHelper
       game_json,
       stubbed_twitch_bearer_token,
     )
+    stub_artwork_refresh_responses(with_artwork_failures)
     stub_company_refresh_responses(with_company_failures)
     stub_company_logo_refresh_responses(with_company_logo_failures)
     stub_game_engine_refresh_responses(with_game_engine_failures)

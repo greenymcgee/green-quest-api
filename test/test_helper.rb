@@ -29,4 +29,8 @@ module ActiveSupport
       Devise::JWT::TestHelpers.auth_headers(headers, user)
     end
   end
+
+  RequestThrottlerRegistry.instance.replace_throttler(
+    RequestThrottler.new(calls_per_second: Float::INFINITY, enabled: false),
+  )
 end

@@ -8,4 +8,8 @@ class RequestThrottlerRegistry
   def throttle(&block)
     @throttler.throttle(&block)
   end
+
+  def replace_throttler(throttler)
+    @throttler = throttler
+  end
 end

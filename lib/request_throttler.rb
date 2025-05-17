@@ -1,5 +1,6 @@
 class RequestThrottler
-  def initialize(calls_per_second: 3)
+  def initialize(calls_per_second: 3, enabled: true)
+    @enabled = enabled
     @interval = 1.0 / calls_per_second.to_f
     @last_call_time = nil
   end
@@ -13,7 +14,7 @@ class RequestThrottler
   private
 
   def sleep_for_interval_duration
-    return unless @last_call_time.present?
+    return unless @enabled && @last_call_time.present?
 
     elapsed_time = Time.now - @last_call_time
     return unless elapsed_time < @interval

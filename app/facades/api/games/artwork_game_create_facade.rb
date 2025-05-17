@@ -1,8 +1,12 @@
 class Api::Games::ArtworkGameCreateFacade
+  attr_reader :game
+  attr_reader :igdb_game_data
+  attr_reader :twitch_bearer_token
+
   def initialize(game:, igdb_game_data:, twitch_bearer_token:)
-    @@game = game
-    @@igdb_game_data = igdb_game_data
-    @@twitch_bearer_token = twitch_bearer_token
+    @game = game
+    @igdb_game_data = igdb_game_data
+    @twitch_bearer_token = twitch_bearer_token
   end
 
   def add_artworks_to_game
@@ -16,17 +20,17 @@ class Api::Games::ArtworkGameCreateFacade
     facade =
       IgdbCreateFacade.new(
         fields_facade: Igdb::ImageFieldsFacade,
-        ids: @@igdb_game_data["artworks"],
+        ids: igdb_game_data["artworks"],
         model: Artwork,
-        twitch_bearer_token: @@twitch_bearer_token,
+        twitch_bearer_token: twitch_bearer_token,
       )
-    @@artworks_response =
-      facade.find_or_create_resources(->(artwork) { artwork.game = @@game })
+    @artworks_response =
+      facade.find_or_create_resources(->(artwork) { artwork.game = game })
   end
 
   def add_artworks_errors_to_game
-    return false unless @@artworks_response[:errors].present?
+    return false unless @artworks_response[:errors].present?
 
-    @@game.errors.add(:artworks, @@artworks_response[:errors])
+    game.errors.add(:artworks, @artworks_response[:errors])
   end
 end

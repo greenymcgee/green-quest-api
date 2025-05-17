@@ -15,11 +15,18 @@ class Api::Games::RefreshFacade
   end
 
   def refresh_game_resources
+    refresh_game_engines
     refresh_involved_companies
     refresh_platforms
   end
 
   private
+
+  def refresh_game_engines
+    Api::Games::GameEngineGameRefreshFacade.new(
+      **@refresh_facade_params,
+    ).refresh_game_game_engines
+  end
 
   def refresh_involved_companies
     Api::Games::InvolvedCompanyGameRefreshFacade.new(

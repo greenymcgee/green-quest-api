@@ -54,4 +54,19 @@ class Api::Games::InvolvedCompanyGameRefreshFacadeTest < ActionDispatch::Integra
       end
     end
   end
+
+  test "should not duplicate associations on refresh" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @create_facade.add_involved_companies_to_game
+    stub_successful_game_refresh_request(@game.igdb_id)
+    @refresh_facade.refresh_game_involved_companies
+    assert_equal(
+      igdb_game_data["involved_companies"].count,
+      @game.involved_companies.count,
+    )
+    assert_equal(
+      @game.involved_companies.distinct.count,
+      @game.involved_companies.count,
+    )
+  end
 end

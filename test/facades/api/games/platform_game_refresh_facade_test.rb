@@ -39,4 +39,13 @@ class Api::Games::PlatformGameRefreshFacadeTest < ActionDispatch::IntegrationTes
       assert platform_logo_json.first["url"].include? "refresh"
     end
   end
+
+  test "should not duplicate associations on refresh" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @create_facade.add_platforms_to_game
+    stub_successful_game_refresh_request(@game.igdb_id)
+    @refresh_facade.refresh_game_platforms
+    assert_equal igdb_game_data["platforms"].count, @game.platforms.count
+    assert_equal @game.platforms.distinct.count, @game.platforms.count
+  end
 end

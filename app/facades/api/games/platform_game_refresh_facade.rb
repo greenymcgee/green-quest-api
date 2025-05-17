@@ -4,7 +4,7 @@ class Api::Games::PlatformGameRefreshFacade < Api::Games::PlatformGameCreateFaca
     add_platforms_errors_to_game
     add_platform_logos_errors_to_game
     @platforms_response[:platforms].each do |platform|
-      next if game.platforms.map(&:id).include? platform.id
+      next if game.platforms.exists?(id: platform.id)
 
       game.platforms << platform
     end

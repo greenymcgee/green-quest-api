@@ -5,7 +5,7 @@ class Api::Games::InvolvedCompanyGameRefreshFacade < Api::Games::InvolvedCompany
     add_companies_errors_to_game
     add_company_logos_errors_to_game
     @involved_companies_response[:involved_companies].each do |involved_company|
-      next if game.involved_companies.map(&:id).include? involved_company.id
+      next if game.involved_companies.exists?(id: involved_company.id)
 
       game.involved_companies << involved_company
     end

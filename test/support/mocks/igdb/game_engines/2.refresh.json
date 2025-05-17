@@ -1,0 +1,15 @@
+[
+  {
+    "id": 2,
+    "companies": [94],
+    "created_at": 1399505504,
+    "description": "We provide powerful workflows, pipelines, and runtime solutions for our diverse stable of Frostbite games including shipped Frostbite titles like Battlefield and Need For Speed and upcoming Frostbite titles like Dragon Age and Mass Effect.",
+    "logo": 67,
+    "name": "Frostbite",
+    "platforms": [6, 9, 12, 48, 49],
+    "slug": "frostbite-refreshed",
+    "updated_at": 1731479289,
+    "url": "https://www.igdb.com/game_engines/frostbite",
+    "checksum": "29941e9d-769d-d4ce-2830-51a695f25f6a"
+  }
+]

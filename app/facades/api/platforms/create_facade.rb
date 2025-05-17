@@ -26,6 +26,7 @@ class Api::Platforms::CreateFacade
           next if unprocessable_igdb_response?(id, igdb_data, igdb_error)
 
           populate_fields(platform, igdb_data)
+          platform.save
           set_platform_platform_logo(platform, igdb_data)
           platform.errors.each { |error| @errors[:platforms] << error }
         end

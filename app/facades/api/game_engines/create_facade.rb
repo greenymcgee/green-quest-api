@@ -26,6 +26,7 @@ class Api::GameEngines::CreateFacade
           next if unprocessable_igdb_response?(id, igdb_data, igdb_error)
 
           populate_game_engine_fields(game_engine, igdb_data)
+          game_engine.save
           set_game_engine_game_engine_logo(game_engine, igdb_data)
           game_engine.errors.each { |error| @errors[:game_engines] << error }
         end

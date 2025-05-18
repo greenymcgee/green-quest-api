@@ -88,6 +88,14 @@ class Api::Games::RefreshFacadeTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should refresh genres" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @create_facade.add_game_resources
+    stub_successful_game_refresh_request(@game.igdb_id)
+    @refresh_facade.refresh_game_resources
+    @game.genres.each { |genre| assert genre.slug.include?("refreshed") }
+  end
+
   test "should refresh platforms" do
     stub_successful_game_create_request(@game.igdb_id)
     @create_facade.add_game_resources

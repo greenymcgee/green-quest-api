@@ -22,7 +22,7 @@ class Api::Games::RefreshFacadeTest < ActionDispatch::IntegrationTest
       )
   end
 
-  test "should refresh game age_ratings" do
+  test "should refresh age_ratings" do
     stub_successful_game_create_request(@game.igdb_id)
     @create_facade.add_game_resources
     stub_successful_game_refresh_request(@game.igdb_id)
@@ -32,7 +32,7 @@ class Api::Games::RefreshFacadeTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "should refresh game artworks" do
+  test "should refresh artworks" do
     stub_successful_game_create_request(@game.igdb_id)
     @create_facade.add_game_resources
     stub_successful_game_refresh_request(@game.igdb_id)
@@ -40,7 +40,7 @@ class Api::Games::RefreshFacadeTest < ActionDispatch::IntegrationTest
     @game.artworks.each { |artwork| assert artwork.url.include?("refresh") }
   end
 
-  test "should refresh game cover" do
+  test "should refresh the cover" do
     stub_successful_game_create_request(@game.igdb_id)
     @create_facade.add_game_resources
     stub_successful_game_refresh_request(@game.igdb_id)
@@ -48,7 +48,7 @@ class Api::Games::RefreshFacadeTest < ActionDispatch::IntegrationTest
     assert @game.cover.reload.url.include?("refresh")
   end
 
-  test "should refresh game franchises" do
+  test "should refresh franchises" do
     stub_successful_game_create_request(@game.igdb_id)
     @create_facade.add_game_resources
     stub_successful_game_refresh_request(@game.igdb_id)
@@ -58,7 +58,7 @@ class Api::Games::RefreshFacadeTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "should refresh game game engines" do
+  test "should refresh game_engines" do
     stub_successful_game_create_request(@game.igdb_id)
     @create_facade.add_game_resources
     stub_successful_game_refresh_request(@game.igdb_id)
@@ -68,7 +68,17 @@ class Api::Games::RefreshFacadeTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "should refresh game platforms" do
+  test "should refresh game_modes" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @create_facade.add_game_resources
+    stub_successful_game_refresh_request(@game.igdb_id)
+    @refresh_facade.refresh_game_resources
+    @game.game_modes.each do |game_mode|
+      assert game_mode.slug.include?("refreshed")
+    end
+  end
+
+  test "should refresh platforms" do
     stub_successful_game_create_request(@game.igdb_id)
     @create_facade.add_game_resources
     stub_successful_game_refresh_request(@game.igdb_id)
@@ -78,7 +88,7 @@ class Api::Games::RefreshFacadeTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "should refresh involved companies" do
+  test "should refresh involved_companies" do
     stub_successful_game_create_request(@game.igdb_id)
     @create_facade.add_game_resources
     stub_successful_game_refresh_request(@game.igdb_id)

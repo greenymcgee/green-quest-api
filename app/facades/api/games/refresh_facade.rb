@@ -20,6 +20,7 @@ class Api::Games::RefreshFacade
     refresh_cover
     refresh_franchises
     refresh_game_engines
+    refresh_game_modes
     refresh_involved_companies
     refresh_platforms
   end
@@ -54,6 +55,12 @@ class Api::Games::RefreshFacade
     Api::Games::GameEngineGameRefreshFacade.new(
       **@refresh_facade_params,
     ).refresh_game_game_engines
+  end
+
+  def refresh_game_modes
+    Api::Games::GameModeGameRefreshFacade.new(
+      **@refresh_facade_params,
+    ).refresh_game_game_modes
   end
 
   def refresh_involved_companies

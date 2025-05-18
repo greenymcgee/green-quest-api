@@ -18,6 +18,7 @@ class Api::Games::RefreshFacade
     refresh_age_ratings
     refresh_artworks
     refresh_cover
+    refresh_franchises
     refresh_game_engines
     refresh_involved_companies
     refresh_platforms
@@ -41,6 +42,12 @@ class Api::Games::RefreshFacade
     Api::Games::CoverGameRefreshFacade.new(
       **@refresh_facade_params,
     ).refresh_game_cover
+  end
+
+  def refresh_franchises
+    Api::Games::FranchiseGameRefreshFacade.new(
+      **@refresh_facade_params,
+    ).refresh_game_franchises
   end
 
   def refresh_game_engines

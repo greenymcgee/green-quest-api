@@ -22,6 +22,16 @@ class Api::Games::RefreshFacadeTest < ActionDispatch::IntegrationTest
       )
   end
 
+  test "should refresh game age_ratings" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @create_facade.add_game_resources
+    stub_successful_game_refresh_request(@game.igdb_id)
+    @refresh_facade.refresh_game_resources
+    @game.age_ratings.each do |age_rating|
+      assert age_rating.checksum.include?("refresh")
+    end
+  end
+
   test "should refresh game artworks" do
     stub_successful_game_create_request(@game.igdb_id)
     @create_facade.add_game_resources

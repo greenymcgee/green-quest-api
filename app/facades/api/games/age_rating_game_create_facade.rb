@@ -1,15 +1,19 @@
 class Api::Games::AgeRatingGameCreateFacade
+  attr_reader :game
+  attr_reader :igdb_game_data
+  attr_reader :twitch_bearer_token
+
   def initialize(game:, igdb_game_data:, twitch_bearer_token:)
-    @@game = game
-    @@igdb_game_data = igdb_game_data
-    @@twitch_bearer_token = twitch_bearer_token
+    @game = game
+    @igdb_game_data = igdb_game_data
+    @twitch_bearer_token = twitch_bearer_token
   end
 
   def add_age_ratings_to_game
     set_age_ratings_response
     add_age_ratings_errors_to_game
-    @@age_ratings_response[:resources].each do |age_rating|
-      @@game.age_ratings << age_rating
+    @age_ratings_response[:resources].each do |age_rating|
+      game.age_ratings << age_rating
     end
   end
 
@@ -19,16 +23,16 @@ class Api::Games::AgeRatingGameCreateFacade
     facade =
       IgdbCreateFacade.new(
         fields_facade: Api::AgeRatings::IgdbFieldsFacade,
-        ids: @@igdb_game_data["age_ratings"],
+        ids: igdb_game_data["age_ratings"],
         model: AgeRating,
-        twitch_bearer_token: @@twitch_bearer_token,
+        twitch_bearer_token: twitch_bearer_token,
       )
-    @@age_ratings_response = facade.find_or_create_resources
+    @age_ratings_response = facade.find_or_create_resources
   end
 
   def add_age_ratings_errors_to_game
-    return false unless @@age_ratings_response[:errors].present?
+    return false unless @age_ratings_response[:errors].present?
 
-    @@game.errors.add(:age_ratings, @@age_ratings_response[:errors])
+    game.errors.add(:age_ratings, @age_ratings_response[:errors])
   end
 end

@@ -1,3 +1,4 @@
+require "./test/support/age_rating_refresh_test_helper.rb"
 require "./test/support/artwork_refresh_test_helper.rb"
 require "./test/support/company_refresh_test_helper.rb"
 require "./test/support/company_logo_refresh_test_helper.rb"
@@ -8,6 +9,7 @@ require "./test/support/platform_refresh_test_helper.rb"
 require "./test/support/platform_logo_refresh_test_helper.rb"
 
 module GameRefreshTestHelper
+  include AgeRatingRefreshTestHelper
   include ArtworkRefreshTestHelper
   include CompanyRefreshTestHelper
   include CompanyLogoRefreshTestHelper
@@ -19,6 +21,7 @@ module GameRefreshTestHelper
 
   def stub_successful_game_refresh_request(
     game_id,
+    with_age_rating_failures: false,
     with_artwork_failures: false,
     with_company_failures: false,
     with_company_logo_failures: false,
@@ -34,6 +37,7 @@ module GameRefreshTestHelper
       game_json,
       stubbed_twitch_bearer_token,
     )
+    stub_age_rating_refresh_responses(with_age_rating_failures)
     stub_artwork_refresh_responses(with_artwork_failures)
     stub_company_refresh_responses(with_company_failures)
     stub_company_logo_refresh_responses(with_company_logo_failures)

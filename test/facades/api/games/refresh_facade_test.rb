@@ -78,6 +78,16 @@ class Api::Games::RefreshFacadeTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should refresh game_videos" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @create_facade.add_game_resources
+    stub_successful_game_refresh_request(@game.igdb_id)
+    @refresh_facade.refresh_game_resources
+    @game.game_videos.each do |game_video|
+      assert game_video.checksum.include?("refreshed")
+    end
+  end
+
   test "should refresh platforms" do
     stub_successful_game_create_request(@game.igdb_id)
     @create_facade.add_game_resources

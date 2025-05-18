@@ -1,8 +1,12 @@
 class Api::Games::GameVideoGameCreateFacade
+  attr_reader :game
+  attr_reader :igdb_game_data
+  attr_reader :twitch_bearer_token
+
   def initialize(game:, igdb_game_data:, twitch_bearer_token:)
-    @@game = game
-    @@igdb_game_data = igdb_game_data
-    @@twitch_bearer_token = twitch_bearer_token
+    @game = game
+    @igdb_game_data = igdb_game_data
+    @twitch_bearer_token = twitch_bearer_token
   end
 
   def add_game_videos_to_game
@@ -16,19 +20,17 @@ class Api::Games::GameVideoGameCreateFacade
     facade =
       IgdbCreateFacade.new(
         fields_facade: Api::GameVideos::IgdbFieldsFacade,
-        ids: @@igdb_game_data["videos"],
+        ids: igdb_game_data["videos"],
         model: GameVideo,
-        twitch_bearer_token: @@twitch_bearer_token,
+        twitch_bearer_token: twitch_bearer_token,
       )
-    @@game_videos_response =
-      facade.find_or_create_resources(
-        ->(game_video) { game_video.game = @@game },
-      )
+    @game_videos_response =
+      facade.find_or_create_resources(->(game_video) { game_video.game = game })
   end
 
   def add_game_videos_errors_to_game
-    return false unless @@game_videos_response[:errors].present?
+    return false unless @game_videos_response[:errors].present?
 
-    @@game.errors.add(:game_videos, @@game_videos_response[:errors])
+    game.errors.add(:game_videos, @game_videos_response[:errors])
   end
 end

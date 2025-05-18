@@ -22,6 +22,7 @@ class Api::Games::RefreshFacade
     refresh_game_engines
     refresh_game_modes
     refresh_game_videos
+    refresh_genres
     refresh_involved_companies
     refresh_platforms
   end
@@ -68,6 +69,12 @@ class Api::Games::RefreshFacade
     Api::Games::GameVideoGameRefreshFacade.new(
       **@refresh_facade_params,
     ).refresh_game_game_videos
+  end
+
+  def refresh_genres
+    Api::Games::GenreGameRefreshFacade.new(
+      **@refresh_facade_params,
+    ).refresh_game_genres
   end
 
   def refresh_involved_companies

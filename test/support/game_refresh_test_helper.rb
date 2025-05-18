@@ -2,6 +2,7 @@ require "./test/support/age_rating_refresh_test_helper.rb"
 require "./test/support/artwork_refresh_test_helper.rb"
 require "./test/support/company_refresh_test_helper.rb"
 require "./test/support/company_logo_refresh_test_helper.rb"
+require "./test/support/cover_refresh_test_helper.rb"
 require "./test/support/game_engine_refresh_test_helper.rb"
 require "./test/support/game_engine_logo_refresh_test_helper.rb"
 require "./test/support/involved_company_refresh_test_helper.rb"
@@ -13,6 +14,7 @@ module GameRefreshTestHelper
   include ArtworkRefreshTestHelper
   include CompanyRefreshTestHelper
   include CompanyLogoRefreshTestHelper
+  include CoverRefreshTestHelper
   include InvolvedCompanyRefreshTestHelper
   include GameEngineRefreshTestHelper
   include GameEngineLogoRefreshTestHelper
@@ -25,6 +27,7 @@ module GameRefreshTestHelper
     with_artwork_failures: false,
     with_company_failures: false,
     with_company_logo_failures: false,
+    with_cover_failures: false,
     with_involved_company_failures: false,
     with_game_engine_failures: false,
     with_game_engine_logo_failures: false,
@@ -41,6 +44,7 @@ module GameRefreshTestHelper
     stub_artwork_refresh_responses(with_artwork_failures)
     stub_company_refresh_responses(with_company_failures)
     stub_company_logo_refresh_responses(with_company_logo_failures)
+    stub_cover_refresh_response(with_cover_failures)
     stub_game_engine_refresh_responses(with_game_engine_failures)
     stub_game_engine_logo_refresh_responses(with_game_engine_logo_failures)
     stub_involved_company_refresh_responses(with_involved_company_failures)

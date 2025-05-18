@@ -7,6 +7,7 @@ require "./test/support/franchise_refresh_test_helper.rb"
 require "./test/support/game_engine_refresh_test_helper.rb"
 require "./test/support/game_engine_logo_refresh_test_helper.rb"
 require "./test/support/game_mode_refresh_test_helper.rb"
+require "./test/support/game_video_refresh_test_helper.rb"
 require "./test/support/involved_company_refresh_test_helper.rb"
 require "./test/support/platform_refresh_test_helper.rb"
 require "./test/support/platform_logo_refresh_test_helper.rb"
@@ -22,6 +23,7 @@ module GameRefreshTestHelper
   include GameEngineRefreshTestHelper
   include GameEngineLogoRefreshTestHelper
   include GameModeRefreshTestHelper
+  include GameVideoRefreshTestHelper
   include PlatformRefreshTestHelper
   include PlatformLogoRefreshTestHelper
 
@@ -37,6 +39,7 @@ module GameRefreshTestHelper
     with_game_engine_failures: false,
     with_game_engine_logo_failures: false,
     with_game_mode_failures: false,
+    with_game_video_failures: false,
     with_platform_failures: false,
     with_platform_logo_failures: false
   )
@@ -55,6 +58,7 @@ module GameRefreshTestHelper
     stub_game_engine_refresh_responses(with_game_engine_failures)
     stub_game_engine_logo_refresh_responses(with_game_engine_logo_failures)
     stub_game_mode_refresh_responses(with_game_mode_failures)
+    stub_game_video_refresh_responses(with_game_video_failures)
     stub_involved_company_refresh_responses(with_involved_company_failures)
     stub_platform_refresh_responses(with_platform_failures)
     stub_platform_logo_refresh_responses(with_platform_logo_failures)

@@ -25,6 +25,7 @@ class Api::Games::RefreshFacade
     refresh_genres
     refresh_involved_companies
     refresh_platforms
+    refresh_player_perspectives
   end
 
   private
@@ -87,5 +88,11 @@ class Api::Games::RefreshFacade
     Api::Games::PlatformGameRefreshFacade.new(
       **@refresh_facade_params,
     ).refresh_game_platforms
+  end
+
+  def refresh_player_perspectives
+    Api::Games::PlayerPerspectiveGameRefreshFacade.new(
+      **@refresh_facade_params,
+    ).refresh_game_player_perspectives
   end
 end

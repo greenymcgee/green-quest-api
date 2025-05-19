@@ -106,6 +106,16 @@ class Api::Games::RefreshFacadeTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should refresh player_perspectives" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @create_facade.add_game_resources
+    stub_successful_game_refresh_request(@game.igdb_id)
+    @refresh_facade.refresh_game_resources
+    @game.player_perspectives.each do |player_perspective|
+      assert player_perspective.slug.include?("refreshed")
+    end
+  end
+
   test "should refresh involved_companies" do
     stub_successful_game_create_request(@game.igdb_id)
     @create_facade.add_game_resources

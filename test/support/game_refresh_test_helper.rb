@@ -13,6 +13,7 @@ require "./test/support/involved_company_refresh_test_helper.rb"
 require "./test/support/platform_refresh_test_helper.rb"
 require "./test/support/platform_logo_refresh_test_helper.rb"
 require "./test/support/player_perspective_refresh_test_helper.rb"
+require "./test/support/release_date_refresh_test_helper.rb"
 
 module GameRefreshTestHelper
   include AgeRatingRefreshTestHelper
@@ -30,6 +31,7 @@ module GameRefreshTestHelper
   include PlatformRefreshTestHelper
   include PlatformLogoRefreshTestHelper
   include PlayerPerspectiveRefreshTestHelper
+  include ReleaseDateRefreshTestHelper
 
   def stub_successful_game_refresh_request(
     game_id,
@@ -47,7 +49,8 @@ module GameRefreshTestHelper
     with_genre_failures: false,
     with_platform_failures: false,
     with_platform_logo_failures: false,
-    with_player_perspective_failures: false
+    with_player_perspective_failures: false,
+    with_release_date_failures: false
   )
     stub_successful_twitch_oauth_request
     stub_successful_igdb_api_request(
@@ -70,5 +73,6 @@ module GameRefreshTestHelper
     stub_platform_refresh_responses(with_platform_failures)
     stub_platform_logo_refresh_responses(with_platform_logo_failures)
     stub_player_perspective_refresh_responses(with_player_perspective_failures)
+    stub_release_date_refresh_responses(with_release_date_failures)
   end
 end

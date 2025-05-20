@@ -96,6 +96,16 @@ class Api::Games::RefreshFacadeTest < ActionDispatch::IntegrationTest
     @game.genres.each { |genre| assert genre.slug.include?("refreshed") }
   end
 
+  test "should refresh involved_companies" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @create_facade.add_game_resources
+    stub_successful_game_refresh_request(@game.igdb_id)
+    @refresh_facade.refresh_game_resources
+    @game.involved_companies.each do |involved_company|
+      assert involved_company.checksum.include?("refresh")
+    end
+  end
+
   test "should refresh platforms" do
     stub_successful_game_create_request(@game.igdb_id)
     @create_facade.add_game_resources
@@ -116,13 +126,20 @@ class Api::Games::RefreshFacadeTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "should refresh involved_companies" do
+  test "should refresh release_dates" do
+    platform_facade =
+      Api::Games::PlatformGameCreateFacade.new(
+        game: @game,
+        igdb_game_data: @igdb_game_data,
+        twitch_bearer_token: @twitch_bearer_token,
+      )
     stub_successful_game_create_request(@game.igdb_id)
+    platform_facade.add_platforms_to_game
     @create_facade.add_game_resources
     stub_successful_game_refresh_request(@game.igdb_id)
     @refresh_facade.refresh_game_resources
-    @game.involved_companies.each do |involved_company|
-      assert involved_company.checksum.include?("refresh")
+    @game.release_dates.each do |release_date|
+      assert release_date.reload.checksum.include?("refreshed")
     end
   end
 end

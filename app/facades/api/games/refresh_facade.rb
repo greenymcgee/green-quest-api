@@ -26,6 +26,7 @@ class Api::Games::RefreshFacade
     refresh_involved_companies
     refresh_platforms
     refresh_player_perspectives
+    refresh_release_dates
   end
 
   private
@@ -94,5 +95,11 @@ class Api::Games::RefreshFacade
     Api::Games::PlayerPerspectiveGameRefreshFacade.new(
       **@refresh_facade_params,
     ).refresh_game_player_perspectives
+  end
+
+  def refresh_release_dates
+    Api::Games::ReleaseDateGameRefreshFacade.new(
+      **@refresh_facade_params,
+    ).refresh_game_release_dates
   end
 end

@@ -27,6 +27,7 @@ class Api::Games::RefreshFacade
     refresh_platforms
     refresh_player_perspectives
     refresh_release_dates
+    refresh_screenshots
   end
 
   private
@@ -101,5 +102,11 @@ class Api::Games::RefreshFacade
     Api::Games::ReleaseDateGameRefreshFacade.new(
       **@refresh_facade_params,
     ).refresh_game_release_dates
+  end
+
+  def refresh_screenshots
+    Api::Games::ScreenshotGameRefreshFacade.new(
+      **@refresh_facade_params,
+    ).refresh_game_screenshots
   end
 end

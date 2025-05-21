@@ -1,8 +1,12 @@
 class Api::Games::ScreenshotGameCreateFacade
+  attr_reader :game
+  attr_reader :igdb_game_data
+  attr_reader :twitch_bearer_token
+
   def initialize(game:, igdb_game_data:, twitch_bearer_token:)
-    @@game = game
-    @@igdb_game_data = igdb_game_data
-    @@twitch_bearer_token = twitch_bearer_token
+    @game = game
+    @igdb_game_data = igdb_game_data
+    @twitch_bearer_token = twitch_bearer_token
   end
 
   def add_screenshots_to_game
@@ -16,21 +20,21 @@ class Api::Games::ScreenshotGameCreateFacade
     facade =
       IgdbCreateFacade.new(
         fields_facade: Igdb::ImageFieldsFacade,
-        ids: @@igdb_game_data["screenshots"],
+        ids: igdb_game_data["screenshots"],
         model: Screenshot,
-        twitch_bearer_token: @@twitch_bearer_token,
+        twitch_bearer_token: twitch_bearer_token,
       )
-    @@screenshots_response =
+    @screenshots_response =
       facade.find_or_create_resources(update_screenshot_game)
   end
 
   def update_screenshot_game
-    ->(screenshot) { screenshot.game = @@game }
+    ->(screenshot) { screenshot.game = game }
   end
 
   def add_screenshots_errors_to_game
-    return false unless @@screenshots_response[:errors].present?
+    return false unless @screenshots_response[:errors].present?
 
-    @@game.errors.add(:screenshots, @@screenshots_response[:errors])
+    game.errors.add(:screenshots, @screenshots_response[:errors])
   end
 end

@@ -142,4 +142,14 @@ class Api::Games::RefreshFacadeTest < ActionDispatch::IntegrationTest
       assert release_date.reload.checksum.include?("refreshed")
     end
   end
+
+  test "should refresh screenshots" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @create_facade.add_game_resources
+    stub_successful_game_refresh_request(@game.igdb_id)
+    @refresh_facade.refresh_game_resources
+    @game.screenshots.each do |screenshot|
+      assert screenshot.reload.url.include?("refreshed")
+    end
+  end
 end

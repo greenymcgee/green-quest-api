@@ -29,6 +29,7 @@ class Api::Games::RefreshFacade
     refresh_release_dates
     refresh_screenshots
     refresh_themes
+    refresh_websites
   end
 
   private
@@ -115,5 +116,11 @@ class Api::Games::RefreshFacade
     Api::Games::ThemeGameRefreshFacade.new(
       **@refresh_facade_params,
     ).refresh_game_themes
+  end
+
+  def refresh_websites
+    Api::Games::WebsiteGameRefreshFacade.new(
+      **@refresh_facade_params,
+    ).refresh_game_websites
   end
 end

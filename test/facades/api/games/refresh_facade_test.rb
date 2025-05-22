@@ -152,4 +152,14 @@ class Api::Games::RefreshFacadeTest < ActionDispatch::IntegrationTest
       assert screenshot.reload.url.include?("refreshed")
     end
   end
+
+  test "should refresh themes" do
+    stub_successful_game_create_request(@game.igdb_id)
+    @create_facade.add_game_resources
+    stub_successful_game_refresh_request(@game.igdb_id)
+    @refresh_facade.refresh_game_resources
+    @game.themes.each do |theme|
+      assert theme.reload.checksum.include?("refreshed")
+    end
+  end
 end

@@ -28,6 +28,7 @@ class Api::Games::RefreshFacade
     refresh_player_perspectives
     refresh_release_dates
     refresh_screenshots
+    refresh_themes
   end
 
   private
@@ -108,5 +109,11 @@ class Api::Games::RefreshFacade
     Api::Games::ScreenshotGameRefreshFacade.new(
       **@refresh_facade_params,
     ).refresh_game_screenshots
+  end
+
+  def refresh_themes
+    Api::Games::ThemeGameRefreshFacade.new(
+      **@refresh_facade_params,
+    ).refresh_game_themes
   end
 end

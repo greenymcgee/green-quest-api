@@ -10,7 +10,7 @@ class Api::CurrentUsersControllerTest < ActionDispatch::IntegrationTest
 
   test "#show should return the expected show json payload" do
     get(api_current_user_url, as: :json, headers: @admin_auth_headers)
-    assert_matches_json_schema response, "users/show"
+    assert_matches_json_schema response, "current_users/show"
   end
 
   test "#show should return an unauthorized error" do

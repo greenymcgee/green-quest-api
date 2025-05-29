@@ -3,6 +3,6 @@ class Api::CurrentUsersController < ApplicationController
   def show
     authenticate_user!
     @user = current_user
-    render "api/users/show", status: :ok
+    render :show, status: :ok
   end
 end

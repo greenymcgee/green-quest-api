@@ -4,6 +4,14 @@ services:
     ports:
       - "1080:1080"
       - "1025:1025"
+
+  redis:
+    image: redis:7.2
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: always
+
   db:
     image: postgres:17.0
     container_name: postgres
@@ -35,11 +43,18 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_PORT=${POSTGRES_PORT}
+      - REDIS_URL=redis://redis:6379/1
+      - REDISHOST=${REDISHOST}
+      - REDISPASSWORD=${REDISPASSWORD}
+      - REDISPORT=${REDISPORT}
+      - REDISUSER=${REDISUSER}
     volumes:
       - .:/rails:cached
       - storage:/rails/storage
+      - ./tmp/caching-dev.txt:/rails/tmp/caching-dev.txt
     depends_on:
       - db
+      - redis
     links:
       - mailcatcher
     ports:

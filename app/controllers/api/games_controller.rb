@@ -20,6 +20,8 @@ class Api::GamesController < ApplicationController
         status: :not_found,
       )
     end
+
+    render json: game_cache
   end
 
   # 200, 207, 400, 401, 403
@@ -151,5 +153,20 @@ class Api::GamesController < ApplicationController
       igdb_game_data: @igdb_game_data,
       twitch_bearer_token: @twitch_bearer_token,
     ).add_game_resources
+  end
+
+  def game_cache
+    Rails
+      .cache
+      .fetch("game/#{@game.slug}/show", expires_in: 12.hours) do
+        Rails.logger.info "[CACHE FETCH] Rendering game ##{@game.slug}"
+        ApplicationController.renderer.render(
+          template: "api/games/show",
+          assigns: {
+            game: @game,
+          },
+          formats: [:json],
+        )
+      end
   end
 end
